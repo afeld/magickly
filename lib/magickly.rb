@@ -1,7 +1,3 @@
-require 'rubygems'
-require 'bundler'
-Bundler.require
-
 require 'sinatra/base'
 require 'dragonfly'
 require File.join(File.dirname(__FILE__), 'dragonfly', 'data_storage', 'remote_data_store')

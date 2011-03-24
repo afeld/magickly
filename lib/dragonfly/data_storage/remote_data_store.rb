@@ -1,3 +1,5 @@
+require 'httparty'
+
 module Dragonfly
   module DataStorage
     
