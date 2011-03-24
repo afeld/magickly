@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "magickly"
   gem.homepage = "http://github.com/afeld/magickly"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Imagemagick as a service}
+  gem.description = %Q{A simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   gem.email = "aidan.feldman@gmail.com"
   gem.authors = ["Aidan Feldman"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
