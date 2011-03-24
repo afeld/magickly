@@ -19,6 +19,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{A simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   gem.email = "aidan.feldman@gmail.com"
   gem.authors = ["Aidan Feldman"]
+  gem.executables = ['magickly']
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
   #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
