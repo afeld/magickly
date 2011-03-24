@@ -8,20 +8,18 @@ require File.join(File.dirname(__FILE__), 'dragonfly', 'data_storage', 'remote_d
 
 
 class MagicklyApp < Sinatra::Base
-  # use Dragonfly::Middleware, :images
-  
-  app = Dragonfly[:images].configure_with(:imagemagick)
-  app.datastore = Dragonfly::DataStorage::RemoteDataStore.new
+  dragonfly = Dragonfly[:images].configure_with(:imagemagick)
+  dragonfly.datastore = Dragonfly::DataStorage::RemoteDataStore.new
   
   before do
-    app.datastore.configure do |d|
+    dragonfly.datastore.configure do |d|
       d.cookie_str = request.env["rack.request.cookie_string"]
     end
   end
   
   get '/' do
     src = params.delete('src')
-    image = app.fetch(src)
+    image = dragonfly.fetch(src)
     
     # TODO handle non-ordered hash
     params.each do |method, val|
