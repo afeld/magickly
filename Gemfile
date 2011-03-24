@@ -7,6 +7,8 @@ gem 'sinatra', '~> 1.2.1', :require => 'sinatra/base'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~> 0.8.2'
 
+gem 'httparty', '~> 0.7.3'
+
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
