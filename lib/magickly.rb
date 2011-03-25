@@ -6,6 +6,19 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_st
 class MagicklyApp < Sinatra::Base
   dragonfly = Dragonfly[:images].configure_with(:imagemagick)
   dragonfly.datastore = Dragonfly::DataStorage::RemoteDataStore.new
+  set :dragonfly, dragonfly
+  
+  def magickify(params)
+    src = params.delete('src')
+    image = settings.dragonfly.fetch(src)
+    
+    # TODO handle non-ordered hash
+    params.each do |method, val|
+      image = image.process method, val
+    end
+    
+    image
+  end
   
   before do
     dragonfly.datastore.configure do |d|
@@ -14,14 +27,7 @@ class MagicklyApp < Sinatra::Base
   end
   
   get '/' do
-    src = params.delete('src')
-    image = dragonfly.fetch(src)
-    
-    # TODO handle non-ordered hash
-    params.each do |method, val|
-      image = image.process method, val
-    end
-    
+    image = magickify(params)
     image.to_response(env)
   end
   
