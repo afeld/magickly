@@ -1,6 +1,6 @@
 require 'sinatra/base'
 require 'dragonfly'
-require File.join(File.dirname(__FILE__), 'dragonfly', 'data_storage', 'remote_data_store')
+require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_storage', 'remote_data_store'))
 
 
 class MagicklyApp < Sinatra::Base
@@ -26,5 +26,5 @@ class MagicklyApp < Sinatra::Base
   end
   
   # start the server if ruby file executed directly
-  run! if app_file == $0
+  run! if __FILE__ == $0
 end
