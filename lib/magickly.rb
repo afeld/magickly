@@ -14,7 +14,11 @@ class MagicklyApp < Sinatra::Base
     
     # TODO handle non-ordered hash
     params.each do |method, val|
-      image = image.process method, val
+      if val == 'true'
+        image = image.process method
+      else
+        image = image.process method, val
+      end
     end
     
     image
