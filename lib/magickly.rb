@@ -10,7 +10,8 @@ class MagicklyApp < Sinatra::Base
   
   def magickify(params)
     src = params.delete('src')
-    image = settings.dragonfly.fetch(src)
+    escaped_src = URI.escape(src)
+    image = settings.dragonfly.fetch(escaped_src)
     
     # TODO handle non-ordered hash
     params.each do |method, val|
