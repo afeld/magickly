@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_st
 
 class MagicklyApp < Sinatra::Base
   enable :logging
+  set :homepage, "http://github.com/afeld/magickly"
   
   dragonfly = Dragonfly[:images].configure_with(:imagemagick)
   dragonfly.configure do |c|
@@ -38,8 +39,13 @@ class MagicklyApp < Sinatra::Base
   
   get '/' do
     src = params.delete('src')
-    image = magickify(src, params)
-    image.to_response(env)
+    
+    if src
+      image = magickify(src, params)
+      image.to_response(env)
+    else
+      redirect settings.homepage
+    end
   end
   
   # start the server if ruby file executed directly
