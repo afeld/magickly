@@ -13,13 +13,12 @@ class MagicklyApp < Sinatra::Base
   end
   set :dragonfly, dragonfly
   
-  def magickify(params)
-    src = params.delete('src')
+  def magickify(src, options)
     escaped_src = URI.escape(src)
     image = settings.dragonfly.fetch(escaped_src)
     
     # TODO handle non-ordered hash
-    params.each do |method, val|
+    options.each do |method, val|
       if val == 'true'
         image = image.process method
       else
@@ -32,12 +31,14 @@ class MagicklyApp < Sinatra::Base
   
   before do
     dragonfly.datastore.configure do |d|
+      # pass cookies to subsequent request
       d.cookie_str = request.env["rack.request.cookie_string"]
     end
   end
   
   get '/' do
-    image = magickify(params)
+    src = params.delete('src')
+    image = magickify(src, params)
     image.to_response(env)
   end
   
