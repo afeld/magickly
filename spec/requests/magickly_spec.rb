@@ -26,7 +26,7 @@ describe MagicklyApp do
     last_response.should be_ok
     
     # check that the returned file is identical to the original
-    last_response.body.should eq IO.binread(image_path)
+    last_response.body.should eq IO.read(image_path)
   end
   
   it "resizes an image" do
