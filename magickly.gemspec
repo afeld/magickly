@@ -9,8 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Aidan Feldman"]
-  s.date = %q{2011-03-24}
-  s.default_executable = %q{magickly}
+  s.date = %q{2011-04-08}
   s.description = %q{A simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   s.email = %q{aidan.feldman@gmail.com}
   s.executables = ["magickly"]
@@ -20,6 +19,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".document",
+    ".gemtest",
     ".rspec",
     "Gemfile",
     "Gemfile.lock",
@@ -32,16 +32,17 @@ Gem::Specification.new do |s|
     "lib/dragonfly/data_storage/remote_data_store.rb",
     "lib/magickly.rb",
     "magickly.gemspec",
-    "spec/magickly_spec.rb",
-    "spec/spec_helper.rb"
+    "spec/requests/magickly_spec.rb",
+    "spec/spec_helper.rb",
+    "spec/support/imagemagick.png"
   ]
   s.homepage = %q{http://github.com/afeld/magickly}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.1}
+  s.rubygems_version = %q{1.7.2}
   s.summary = %q{Imagemagick as a service}
   s.test_files = [
-    "spec/magickly_spec.rb",
+    "spec/requests/magickly_spec.rb",
     "spec/spec_helper.rb"
   ]
 
@@ -53,29 +54,35 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<rack-cache>, [">= 0"])
       s.add_runtime_dependency(%q<dragonfly>, ["~> 0.8.2"])
       s.add_runtime_dependency(%q<httparty>, ["~> 0.7.3"])
-      s.add_development_dependency(%q<rspec>, ["~> 2.4.0"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_development_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_development_dependency(%q<jeweler>, ["~> 1.5"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<rack-test>, [">= 0"])
+      s.add_development_dependency(%q<rspec>, ["~> 2.4"])
+      s.add_development_dependency(%q<webmock>, ["~> 1.6"])
+      s.add_development_dependency(%q<imagesize>, ["~> 0.1"])
     else
       s.add_dependency(%q<sinatra>, ["~> 1.2.1"])
       s.add_dependency(%q<rack-cache>, [">= 0"])
       s.add_dependency(%q<dragonfly>, ["~> 0.8.2"])
       s.add_dependency(%q<httparty>, ["~> 0.7.3"])
-      s.add_dependency(%q<rspec>, ["~> 2.4.0"])
-      s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-      s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+      s.add_dependency(%q<jeweler>, ["~> 1.5"])
       s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<rack-test>, [">= 0"])
+      s.add_dependency(%q<rspec>, ["~> 2.4"])
+      s.add_dependency(%q<webmock>, ["~> 1.6"])
+      s.add_dependency(%q<imagesize>, ["~> 0.1"])
     end
   else
     s.add_dependency(%q<sinatra>, ["~> 1.2.1"])
     s.add_dependency(%q<rack-cache>, [">= 0"])
     s.add_dependency(%q<dragonfly>, ["~> 0.8.2"])
     s.add_dependency(%q<httparty>, ["~> 0.7.3"])
-    s.add_dependency(%q<rspec>, ["~> 2.4.0"])
-    s.add_dependency(%q<bundler>, ["~> 1.0.0"])
-    s.add_dependency(%q<jeweler>, ["~> 1.5.2"])
+    s.add_dependency(%q<jeweler>, ["~> 1.5"])
     s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<rack-test>, [">= 0"])
+    s.add_dependency(%q<rspec>, ["~> 2.4"])
+    s.add_dependency(%q<webmock>, ["~> 1.6"])
+    s.add_dependency(%q<imagesize>, ["~> 0.1"])
   end
 end
 
