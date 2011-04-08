@@ -4,8 +4,13 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_st
 
 
 class MagicklyApp < Sinatra::Base
+  enable :logging
+  
   dragonfly = Dragonfly[:images].configure_with(:imagemagick)
-  dragonfly.datastore = Dragonfly::DataStorage::RemoteDataStore.new
+  dragonfly.configure do |c|
+    c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
+    c.log = Logger.new($stdout)
+  end
   set :dragonfly, dragonfly
   
   def magickify(params)
