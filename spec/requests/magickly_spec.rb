@@ -28,4 +28,18 @@ describe MagicklyApp do
     # check that the returned file is identical to the original
     last_response.body.should eq IO.binread(image_path)
   end
+  
+  it "resizes an image" do
+    image_url = "http://www.foo.com/imagemagick.png"
+    image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
+    stub_request(:get, image_url).to_return(:body => File.new(image_path))
+    width = 100
+    
+    get "/?src=#{image_url}&resize=#{width}x"
+    
+    a_request(:get, image_url).should have_been_made.once
+    last_response.should be_ok
+    
+    ImageSize.new(last_response.body).get_width.should eq width
+  end
 end
