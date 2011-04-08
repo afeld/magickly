@@ -16,6 +16,7 @@ GEM
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
+    linecache (0.43)
     linecache19 (0.5.11)
       ruby_core_source (>= 0.1.4)
     rack (1.2.2)
@@ -33,6 +34,11 @@ GEM
     rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.5.0)
+    ruby-debug (0.10.4)
+      columnize (>= 0.1)
+      ruby-debug-base (~> 0.10.4.0)
+    ruby-debug-base (0.10.4)
+      linecache (>= 0.3)
     ruby-debug-base19 (0.11.24)
       columnize (>= 0.3.1)
       linecache19 (>= 0.5.11)
@@ -63,6 +69,7 @@ DEPENDENCIES
   rack-test
   rcov
   rspec (~> 2.4)
+  ruby-debug
   ruby-debug19
   sinatra (~> 1.2.1)
   webmock (~> 1.6)
