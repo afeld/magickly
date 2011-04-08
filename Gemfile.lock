@@ -1,6 +1,9 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    addressable (2.2.4)
+    archive-tar-minitar (0.5.2)
+    columnize (0.3.2)
     crack (0.1.8)
     diff-lcs (1.1.2)
     dragonfly (0.8.2)
@@ -12,33 +15,52 @@ GEM
       bundler (~> 1.0.0)
       git (>= 1.2.5)
       rake
+    linecache19 (0.5.11)
+      ruby_core_source (>= 0.1.4)
     rack (1.2.2)
     rack-cache (1.0)
       rack (>= 0.4)
+    rack-test (0.5.7)
+      rack (>= 1.0)
     rake (0.8.7)
     rcov (0.9.9)
-    rspec (2.4.0)
-      rspec-core (~> 2.4.0)
-      rspec-expectations (~> 2.4.0)
-      rspec-mocks (~> 2.4.0)
-    rspec-core (2.4.0)
-    rspec-expectations (2.4.0)
+    rspec (2.5.0)
+      rspec-core (~> 2.5.0)
+      rspec-expectations (~> 2.5.0)
+      rspec-mocks (~> 2.5.0)
+    rspec-core (2.5.1)
+    rspec-expectations (2.5.0)
       diff-lcs (~> 1.1.2)
-    rspec-mocks (2.4.0)
+    rspec-mocks (2.5.0)
+    ruby-debug-base19 (0.11.24)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.4)
+      archive-tar-minitar (>= 0.5.2)
     sinatra (1.2.1)
       rack (~> 1.1)
       tilt (< 2.0, >= 1.2.2)
     tilt (1.2.2)
+    webmock (1.6.2)
+      addressable (>= 2.2.2)
+      crack (>= 0.1.7)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  bundler (~> 1.0.0)
   dragonfly (~> 0.8.2)
   httparty (~> 0.7.3)
-  jeweler (~> 1.5.2)
+  jeweler (~> 1.5)
   rack-cache
+  rack-test
   rcov
-  rspec (~> 2.4.0)
+  rspec (~> 2.4)
+  ruby-debug19
   sinatra (~> 1.2.1)
+  webmock (~> 1.6)

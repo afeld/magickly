@@ -12,8 +12,13 @@ gem 'httparty', '~> 0.7.3'
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
 group :development do
-  gem 'rspec', '~> 2.4.0'
-  gem 'bundler', '~> 1.0.0'
-  gem 'jeweler', '~> 1.5.2'
+  gem 'jeweler', '~> 1.5'
   gem 'rcov', '>= 0'
+end
+
+group :development, :test do
+  gem 'rack-test'
+  gem 'rspec', '~> 2.4'
+  gem 'webmock', '~> 1.6'
+  gem 'ruby-debug19'
 end
