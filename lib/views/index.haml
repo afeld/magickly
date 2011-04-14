@@ -1,0 +1,13 @@
+!!!
+%html
+  %head
+    %title Magickly Demo Page
+    %script{:type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'}
+    %script{:type => 'text/javascript', :src => 'screen.js'}
+  %body
+    %h1 Welcome to Magickly
+    
+    %label Image URL:
+    %input#src-img{:size => 80, :value => "http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png"}
+    %br
+    %img#result-image

@@ -5,6 +5,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_st
 
 class MagicklyApp < Sinatra::Base
   enable :logging
+  set :root, File.dirname(__FILE__)
   set :homepage, "http://github.com/afeld/magickly"
   
   dragonfly = Dragonfly[:images].configure_with(:imagemagick)
@@ -44,7 +45,7 @@ class MagicklyApp < Sinatra::Base
       image = magickify(src, params)
       image.to_response(env)
     else
-      redirect settings.homepage
+      haml :index
     end
   end
   

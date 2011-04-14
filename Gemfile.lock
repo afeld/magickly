@@ -7,6 +7,7 @@ GEM
     dragonfly (0.8.2)
       rack
     git (1.2.5)
+    haml (3.0.25)
     httparty (0.7.3)
       crack (= 0.1.8)
     imagesize (0.1.1)
@@ -42,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   dragonfly (~> 0.8.2)
+  haml (~> 3.0.25)
   httparty (~> 0.7.3)
   imagesize (~> 0.1)
   jeweler (~> 1.5)
