@@ -6,8 +6,10 @@
     %script{:type => 'text/javascript', :src => 'screen.js'}
   %body
     %h1 Welcome to Magickly
-    
     %label Image URL:
     %input#src-img{:size => 80, :value => "http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png"}
     %br
     %img#result-image
+    %br
+    %label Result URL:
+    %input#result-url{:size => 80}
