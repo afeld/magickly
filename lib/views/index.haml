@@ -5,7 +5,14 @@
     %script{:type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'}
     :javascript
       function updateResult(){
-        var resultUrl = '?' + $('#params').val() + '&src=' + $('#src-img').val();
+        var query = [];
+        var params = $('#params').val();
+        if (params) {
+          query.push(params);
+        }
+        query.push('src=' + $('#src-img').val());
+        
+        var resultUrl = '?' + query.join('&');
         $('#result-url').val(location + resultUrl);
         $('#result-image').attr('src', resultUrl);
       }
@@ -23,6 +30,9 @@
     %br
     %label Params:
     %input#params{:size => 80}
+    %br
+    %strong Available methods:
+    = @methods.join(', ')
     %br
     %br
     %label Result URL:

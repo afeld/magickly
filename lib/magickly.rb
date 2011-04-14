@@ -19,12 +19,19 @@ class MagicklyApp < Sinatra::Base
     escaped_src = URI.escape(src)
     image = settings.dragonfly.fetch(escaped_src)
     
-    # TODO handle non-ordered hash
-    options.each do |method, val|
-      if val == 'true'
-        image = image.process method
+    options = options.entries if options.is_a? Hash
+    stash = {}
+    options.each do |pair|
+      method, val = pair
+      if method == 'filter'
+        stash[method.to_sym] = val
       else
-        image = image.process method, val
+        if val == 'true'
+          image = image.process method, stash
+        else
+          image = image.process method, val, stash
+        end
+        stash = {}
       end
     end
     
@@ -39,12 +46,18 @@ class MagicklyApp < Sinatra::Base
   end
   
   get '/' do
-    src = params.delete('src')
+    src = params['src']
     
     if src
-      image = magickify(src, params)
+      options = request.query_string.split('&').map do |e|
+        k,v = e.split('=')
+        [k,v] if k != 'src'
+      end
+      options.compact!
+      image = magickify(src, options)
       image.to_response(env)
     else
+      @methods = Dragonfly::ImageMagick::Processor.instance_methods(false)
       haml :index
     end
   end
