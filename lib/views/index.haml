@@ -3,7 +3,19 @@
   %head
     %title Magickly Demo Page
     %script{:type => 'text/javascript', :src => 'http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js'}
-    %script{:type => 'text/javascript', :src => 'screen.js'}
+    :javascript
+      function updateResult(){
+        var resultUrl = '?' + $('#params').val() + '&src=' + $('#src-img').val();
+        $('#result-url').val(location + resultUrl);
+        $('#result-image').attr('src', resultUrl);
+      }
+      
+      $(function(){
+        updateResult();
+        $('#src-img').change(updateResult);
+        $('#params').change(updateResult);
+      });
+
   %body
     %h1 Welcome to Magickly
     %label Image URL:
