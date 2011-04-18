@@ -1,4 +1,5 @@
 require 'active_support/core_ext/object/blank'
+require 'active_support/ordered_hash'
 
 require 'sinatra/base'
 require 'dragonfly'
@@ -22,10 +23,8 @@ class MagicklyApp < Sinatra::Base
     escaped_src = URI.escape(src)
     image = settings.dragonfly.fetch(escaped_src)
     
-    options = options.entries if options.is_a? Hash
-    stash = {}
-    options.each do |pair|
-      method, val = pair
+    stash = ActiveSupport::OrderedHash.new
+    options.each do |method, val|
       if method == 'filter'
         stash[method.to_sym] = val
       else
@@ -52,11 +51,11 @@ class MagicklyApp < Sinatra::Base
     src = params['src']
     
     if src
-      options = request.query_string.split('&').map do |e|
+      options = ActiveSupport::OrderedHash.new
+      request.query_string.split('&').each do |e|
         k,v = e.split('=')
-        [k,v] if k != 'src'
+        options[k] = v if k != 'src'
       end
-      options.compact!
       image = magickify(src, options)
       image.to_response(env)
     else
@@ -70,3 +69,4 @@ class MagicklyApp < Sinatra::Base
   # start the server if ruby file executed directly
   run! if __FILE__ == $0
 end
+
