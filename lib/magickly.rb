@@ -23,17 +23,11 @@ class MagicklyApp < Sinatra::Base
     escaped_src = URI.escape(src)
     image = settings.dragonfly.fetch(escaped_src)
     
-    stash = ActiveSupport::OrderedHash.new
     options.each do |method, val|
-      if method == 'filter'
-        stash[method.to_sym] = val
+      if val == 'true'
+        image = image.process method
       else
-        if val == 'true'
-          image = image.process method, stash
-        else
-          image = image.process method, val, stash
-        end
-        stash = {}
+        image = image.process method, val
       end
     end
     
