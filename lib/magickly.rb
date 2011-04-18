@@ -1,3 +1,5 @@
+require 'active_support/core_ext/object/blank'
+
 require 'sinatra/base'
 require 'dragonfly'
 require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_storage', 'remote_data_store'))
@@ -15,7 +17,8 @@ class MagicklyApp < Sinatra::Base
   end
   set :dragonfly, dragonfly
   
-  def magickify(src, options)
+  def magickify(src, options={})
+    raise ArgumentError.new("src needed") if src.blank?
     escaped_src = URI.escape(src)
     image = settings.dragonfly.fetch(escaped_src)
     
@@ -57,7 +60,9 @@ class MagicklyApp < Sinatra::Base
       image = magickify(src, options)
       image.to_response(env)
     else
-      @methods = Dragonfly::ImageMagick::Processor.instance_methods(false)
+      # fallback for Dragonfly v0.8.2 and below
+      klass = Dragonfly::ImageMagick::Processor rescue Dragonfly::Processing::ImageMagickProcessor
+      @methods = klass.instance_methods(false)
       haml :index
     end
   end
