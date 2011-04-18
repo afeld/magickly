@@ -8,11 +8,8 @@ describe MagicklyApp do
   end
   
   it "says hello" do
-    pending 'need to add homepage'
-    
     get '/'
     last_response.should be_ok
-    last_response.body.should == 'Hello World'
   end
   
   it "retrieves an image with no options" do
