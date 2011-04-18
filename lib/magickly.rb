@@ -7,6 +7,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_st
 
 
 class MagicklyApp < Sinatra::Base
+  RESERVED_PARAMS = ['src']
+  
   enable :logging
   set :root, File.dirname(__FILE__)
   set :homepage, "http://github.com/afeld/magickly"
@@ -39,18 +41,19 @@ class MagicklyApp < Sinatra::Base
       # pass cookies to subsequent request
       d.cookie_str = request.env["rack.request.cookie_string"]
     end
+    
+    @options = ActiveSupport::OrderedHash.new
+    request.query_string.split('&').each do |e|
+      k,v = e.split('=')
+      @options[k] = v unless RESERVED_PARAMS.include?(k)
+    end
   end
   
   get '/' do
     src = params['src']
     
     if src
-      options = ActiveSupport::OrderedHash.new
-      request.query_string.split('&').each do |e|
-        k,v = e.split('=')
-        options[k] = v if k != 'src'
-      end
-      image = magickify(src, options)
+      image = magickify(src, @options)
       image.to_response(env)
     else
       # fallback for Dragonfly v0.8.2 and below
