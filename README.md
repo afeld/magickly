@@ -69,5 +69,5 @@ For more info, see [Rails Routing from the Outside In](http://guides.rubyonrails
 
 ## Credits
 
-Created by Aidan Feldman at [Jux.com](http://www.jux.com).
+Created by [Aidan Feldman](http://www.aidanfeldman.com) at [Jux.com](http://www.jux.com).
 
