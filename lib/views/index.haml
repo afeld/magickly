@@ -25,11 +25,15 @@
 
   %body
     %h1 Welcome to Magickly
+    More info on the
+    %a{:href => "https://github.com/afeld/magickly"} Github project page
+    %br
+    %br
     %label Image URL:
     %input#src-img{:size => 80, :value => "http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png"}
     %br
     %label Params:
-    %input#params{:size => 80}
+    %input#params{:size => 80, :value => "resize=200x"}
     %br
     %strong Available methods:
     = @methods.join(', ')

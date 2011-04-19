@@ -8,11 +8,13 @@ Say the base URL is the hosted version of this app, [magickly.heroku.com](http:/
 
 [http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png&resize=100x100](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png&resize=100x100)
 
-### Parameters
+### Parameters (required)
 
-**src** - (required) the URL of the original image
+**src** - the URL of the original image
 
-Supported options (more details coming soon):
+### Parameters (optional):
+
+See the [imagemagick command line params documentation](http://www.imagemagick.org/script/command-line-options.php) for details about allowed values.
 
 **crop**
 
