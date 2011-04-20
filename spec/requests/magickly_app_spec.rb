@@ -52,6 +52,7 @@ describe MagicklyApp do
     end
     
     it "should return my filter" do
+      expect { AppSpecFilter }.to raise_error(NameError)
       get "/filters"
       last_response.body.should_not include 'app_spec_filter'
       
