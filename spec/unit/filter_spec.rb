@@ -34,14 +34,6 @@ describe Magickly::Filter do
   end
   
   it "should not raise an exception when the filter has overridden .call" do
-    expect { FilterWithCall }.to raise_error(NameError)
-    
-    class FilterWithCall < Magickly::Filter
-      def self.call(options={})
-        "you're all good"
-      end
-    end
-    
-    expect { FilterWithCall.call }.to_not raise_error
+    expect { StubFilter.call }.to_not raise_error
   end
 end
