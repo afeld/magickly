@@ -23,4 +23,25 @@ describe Magickly::Filter do
     
     Magickly.filters.should include 'filter_spec/my_filter'
   end
+  
+  it "should raise an exception when the filter has does not override .call" do
+    expect { FilterWithoutCall }.to raise_error(NameError)
+    
+    class FilterWithoutCall < Magickly::Filter
+    end
+    
+    expect { FilterWithoutCall.call }.to raise_error
+  end
+  
+  it "should not raise an exception when the filter has overridden .call" do
+    expect { FilterWithCall }.to raise_error(NameError)
+    
+    class FilterWithCall < Magickly::Filter
+      def self.call(options={})
+        "you're all good"
+      end
+    end
+    
+    expect { FilterWithCall.call }.to_not raise_error
+  end
 end

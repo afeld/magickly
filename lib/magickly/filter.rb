@@ -9,8 +9,14 @@ module Magickly
   end
   
   class Filter
-    def self.inherited(subclass)
-      Magickly.filters << subclass.to_s.underscore
+    class << self
+      def inherited(subclass)
+        Magickly.filters << subclass.to_s.underscore
+      end
+    
+      def call(options={})
+        raise "#{self.class.to_s} needs to override the #call method."
+      end
     end
   end
 end
