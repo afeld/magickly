@@ -11,6 +11,7 @@ GEM
     haml (3.0.25)
     httparty (0.7.3)
       crack (= 0.1.8)
+    i18n (0.5.0)
     imagesize (0.1.1)
     jeweler (1.5.2)
       bundler (~> 1.0.0)
@@ -47,6 +48,7 @@ DEPENDENCIES
   dragonfly (~> 0.8.2)
   haml (~> 3.0.25)
   httparty (~> 0.7.3)
+  i18n
   imagesize (~> 0.1)
   jeweler (~> 1.5)
   rack-cache

@@ -10,6 +10,7 @@ gem 'dragonfly', '~> 0.8.2'
 gem 'haml', '~> 3.0.25'
 gem 'httparty', '~> 0.7.3'
 gem 'activesupport', '>= 2.0.0', :require => false
+gem 'i18n' # required for activesupport string extensions
 
 # Add dependencies to develop your gem here.
 # Include everything needed to run rake, tests, features, etc.
