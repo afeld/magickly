@@ -53,15 +53,15 @@ describe MagicklyApp do
     
     it "should return my filter" do
       get "/filters"
-      last_response.body.should_not include 'my_filter'
+      last_response.body.should_not include 'app_spec_filter'
       
-      module AppSpec
-        class MyFilter < Magickly::Filter
-        end
+      class AppSpecFilter < Magickly::Filter
       end
       
       get "/filters"
-      last_response.body.should include 'my_filter'
+      filters = Kernel.eval(last_response.body)
+      filters.should be_a Array
+      filters.should include 'app_spec_filter'
     end
   end
 end
