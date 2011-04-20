@@ -9,13 +9,11 @@ describe MagicklyApp do
   
   describe "GET /" do
     
-    it "should display the welcome page for no params" do
+    it "should display the demo page for no params" do
       get '/'
       last_response.should be_ok
       # TODO test that it renders the view
     end
-    
-    it "should display the welcome page for no src"
     
     it "retrieves an image with no options" do
       image_url = "http://www.foo.com/imagemagick.png"
@@ -48,9 +46,22 @@ describe MagicklyApp do
   end
   
   describe "GET /filters" do
-    it "should return a list of filters" do
+    it "should return the list of filters" do
       get "/filters"
       last_response.body.should eq Magickly.filters.inspect
+    end
+    
+    it "should return my filter" do
+      get "/filters"
+      last_response.body.should_not include 'my_filter'
+      
+      module AppSpec
+        class MyFilter < Magickly::Filter
+        end
+      end
+      
+      get "/filters"
+      last_response.body.should include 'my_filter'
     end
   end
 end

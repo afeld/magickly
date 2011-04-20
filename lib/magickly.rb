@@ -57,6 +57,8 @@ class MagicklyApp < Sinatra::Base
       image = magickify(src, @options)
       image.to_response(env)
     else
+      # display demo page
+      
       # fallback for Dragonfly v0.8.2 and below
       klass = Dragonfly::ImageMagick::Processor rescue Dragonfly::Processing::ImageMagickProcessor
       @methods = klass.instance_methods(false)
