@@ -64,6 +64,10 @@ class MagicklyApp < Sinatra::Base
     end
   end
   
+  get '/filters' do
+    Magickly.filters.inspect
+  end
+  
   # start the server if ruby file executed directly
   run! if __FILE__ == $0
 end

@@ -46,4 +46,11 @@ describe MagicklyApp do
     end
     
   end
+  
+  describe "GET /filters" do
+    it "should return a list of filters" do
+      get "/filters"
+      last_response.body.should eq Magickly.filters.inspect
+    end
+  end
 end
