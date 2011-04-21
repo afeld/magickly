@@ -14,31 +14,8 @@ class MagicklyApp < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :homepage, "http://github.com/afeld/magickly"
   
-  dragonfly = Dragonfly[:images].configure_with(:imagemagick)
-  dragonfly.configure do |c|
-    c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
-    c.log = Logger.new($stdout)
-  end
-  set :dragonfly, dragonfly
-  
-  def magickify(src, options={})
-    raise ArgumentError.new("src needed") if src.blank?
-    escaped_src = URI.escape(src)
-    image = settings.dragonfly.fetch(escaped_src)
-    
-    options.each do |method, val|
-      if val == 'true'
-        image = image.process method
-      else
-        image = image.process method, val
-      end
-    end
-    
-    image
-  end
-  
   before do
-    dragonfly.datastore.configure do |d|
+    Magickly::App.dragonfly.datastore.configure do |d|
       # pass cookies to subsequent request
       d.cookie_str = request.env["rack.request.cookie_string"]
     end
@@ -54,7 +31,7 @@ class MagicklyApp < Sinatra::Base
     src = params['src']
     
     if src
-      image = magickify(src, @options)
+      image = Magickly::App.process_src(src, @options)
       image.to_response(env)
     else
       # display demo page
