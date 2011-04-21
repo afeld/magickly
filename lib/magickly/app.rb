@@ -54,3 +54,14 @@ module Magickly
     run! if __FILE__ == $0
   end
 end
+
+class MagicklyApp < Magickly::App
+  # <b>DEPRECATED:</b> Please use <tt>Magickly::App</tt> instead.
+  def self.run
+    warn "This has been deprecated - please use Magickly::App.run"
+    super
+  end
+  
+  # start the server if ruby file executed directly
+  run! if __FILE__ == $0
+end

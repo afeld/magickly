@@ -7,16 +7,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_st
 Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
 
-class MagicklyApp < Magickly::App
-  def self.run
-    warn "This has been deprecated - please use Magickly::App.run"
-    super
-  end
-  
-  # start the server if ruby file executed directly
-  run! if __FILE__ == $0
-end
-
 module Magickly
   @filters = []
   
