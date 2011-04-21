@@ -10,6 +10,10 @@ Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 module Magickly
   @filters = []
   
+  # fallback for Dragonfly v0.8.2 and below
+  dragonfly_processor = Dragonfly::ImageMagick::Processor rescue Dragonfly::Processing::ImageMagickProcessor
+  @dragonfly_processor_methods = dragonfly_processor.instance_methods(false)
+  
   @dragonfly = Dragonfly[:images].configure_with(:imagemagick)
   @dragonfly.configure do |c|
     c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
@@ -35,7 +39,10 @@ module Magickly
     
     def process_image(image, options={})
       options.each do |method, val|
-        if val == 'true'
+        if !@dragonfly_processor_methods.include?(method)
+          # might be an app-defined dragonfly shortcut
+          image = image.send(method, val)
+        elsif val == 'true'
           image = image.process method
         else
           image = image.process method, val

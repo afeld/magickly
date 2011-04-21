@@ -61,7 +61,4 @@ class MagicklyApp < Magickly::App
     warn "This has been deprecated - please use Magickly::App.run"
     super
   end
-  
-  # start the server if ruby file executed directly
-  run! if __FILE__ == $0
 end

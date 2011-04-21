@@ -17,6 +17,6 @@ describe Magickly do
   end
   
   describe ".process_image" do
-    
+    it "doesn't modify the image if given no options"
   end
 end

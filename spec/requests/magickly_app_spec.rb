@@ -8,6 +8,11 @@ describe Magickly::App do
   end
   
   describe "GET /" do
+    def setup_image
+      @image_url = "http://www.foo.com/imagemagick.png"
+      @image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
+      stub_request(:get, @image_url).to_return(:body => File.new(@image_path))
+    end
     
     it "should display the demo page for no params" do
       get '/'
@@ -16,33 +21,43 @@ describe Magickly::App do
     end
     
     it "retrieves an image with no options" do
-      image_url = "http://www.foo.com/imagemagick.png"
-      image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
-      stub_request(:get, image_url).to_return(:body => File.new(image_path))
+      setup_image
       
-      get "/?src=#{image_url}"
+      get "/?src=#{@image_url}"
       
-      a_request(:get, image_url).should have_been_made.once
+      a_request(:get, @image_url).should have_been_made.once
       last_response.should be_ok
       
       # check that the returned file is identical to the original
-      last_response.body.should eq IO.read(image_path)
+      last_response.body.should eq IO.read(@image_path)
     end
     
     it "resizes an image" do
-      image_url = "http://www.foo.com/imagemagick.png"
-      image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
-      stub_request(:get, image_url).to_return(:body => File.new(image_path))
+      setup_image
       width = 100
       
-      get "/?src=#{image_url}&resize=#{width}x"
+      get "/?src=#{@image_url}&resize=#{width}x"
       
-      a_request(:get, image_url).should have_been_made.once
+      a_request(:get, @image_url).should have_been_made.once
       last_response.should be_ok
-      
       ImageSize.new(last_response.body).get_width.should eq width
     end
     
+    it "should use my Dragonfly shortcut with one argument" do
+      setup_image
+      width = 100
+      shortcut = :filter_with_one_argument
+      Magickly.dragonfly.configure do |c|
+        c.job shortcut do |size|
+          process :thumb, size
+        end
+      end
+      
+      get "/?src=#{@image_url}&#{shortcut}=#{width}x"
+      
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
+    end
   end
   
   describe "GET /filters" do
