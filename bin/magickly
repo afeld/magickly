@@ -9,4 +9,4 @@ rescue LoadError => e
   require 'magickly'
 end
 
-MagicklyApp.run!
+Magickly::App.run!

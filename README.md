@@ -53,7 +53,7 @@ As an example, to have magickly accessible at `/images` in a Rails app:
     gem 'magickly', '~> 0.1'
     
     # config/routes.rb
-    match '/magickly', :to => MagicklyApp, :anchor => false
+    match '/magickly', :to => Magickly::App, :anchor => false
 
 For more info, see [Rails Routing from the Outside In](http://guides.rubyonrails.org/routing.html#routing-to-rack-applications) or Michael Raidel's [Mount Rails apps in Rails 3](http://inductor.induktiv.at/blog/2010/05/23/mount-rack-apps-in-rails-3/).
 

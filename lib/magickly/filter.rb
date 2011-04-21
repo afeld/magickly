@@ -1,7 +1,6 @@
 require 'active_support/core_ext/string'
 
 module Magickly
-  # attr_accessor :filters
   @filters = []
   
   def self.filters

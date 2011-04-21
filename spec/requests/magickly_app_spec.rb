@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-describe MagicklyApp do
+describe Magickly::App do
   include Rack::Test::Methods
   
   def app
-    MagicklyApp
+    Magickly::App
   end
   
   describe "GET /" do
@@ -86,5 +86,23 @@ describe MagicklyApp do
       get "/filters/stub_filter"
       last_response.body.should eq 'called!'
     end
+  end
+end
+
+describe MagicklyApp do
+  include Rack::Test::Methods
+  
+  def app
+    MagicklyApp
+  end
+  
+  describe "backward compatibility test" do
+    
+    it "should display the demo page for no params" do
+      get '/'
+      last_response.should be_ok
+      # TODO test that it renders the view
+    end
+    
   end
 end
