@@ -1,12 +1,6 @@
 require 'active_support/core_ext/string'
 
 module Magickly
-  @filters = []
-  
-  def self.filters
-    @filters
-  end
-  
   class Filter
     class << self
       def inherited(subclass)
