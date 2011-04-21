@@ -15,8 +15,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "magickly"
   gem.homepage = "http://github.com/afeld/magickly"
   gem.license = "MIT"
-  gem.summary = %Q{Imagemagick as a service}
-  gem.description = %Q{A simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
+  gem.summary = %Q{image manipulation as a (plugin-able) service}
+  gem.description = %Q{A service for image manipulation - built as an extensible wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   gem.email = "aidan.feldman@gmail.com"
   gem.authors = ["Aidan Feldman"]
   gem.executables = ['magickly']
