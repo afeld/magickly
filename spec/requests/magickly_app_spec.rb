@@ -49,7 +49,7 @@ describe Magickly::App do
       shortcut = :filter_with_no_arguments
       Magickly.dragonfly.configure do |c|
         c.job shortcut do
-          process :thumb, "#{width}x"
+          process :convert, "-filter Gaussian -resize #{width}x"
         end
       end
       
