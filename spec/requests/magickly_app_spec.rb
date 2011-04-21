@@ -43,6 +43,22 @@ describe Magickly::App do
       ImageSize.new(last_response.body).get_width.should eq width
     end
     
+    it "should use my Dragonfly shortcut with no arguments" do
+      setup_image
+      width = 100
+      shortcut = :filter_with_no_arguments
+      Magickly.dragonfly.configure do |c|
+        c.job shortcut do
+          process :thumb, "#{width}x"
+        end
+      end
+      
+      get "/?src=#{@image_url}&#{shortcut}=true"
+      
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
+    end
+    
     it "should use my Dragonfly shortcut with one argument" do
       setup_image
       width = 100
