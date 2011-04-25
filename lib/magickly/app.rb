@@ -15,7 +15,7 @@ module Magickly
       @options = ActiveSupport::OrderedHash.new
       request.query_string.split('&').each do |e|
         k,v = e.split('=')
-        @options[k] = v unless RESERVED_PARAMS.include?(k)
+        @options[k] = URI.unescape(v) unless RESERVED_PARAMS.include?(k)
       end
     end
     
