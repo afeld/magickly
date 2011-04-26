@@ -1,5 +1,25 @@
 require 'spec_helper'
 
 describe Dragonfly::DataStorage::RemoteDataStore do
+  describe '#retrieve' do
+    it "should successfully make requests" do
+      url = "http://www.foo.com/iamgemagick.png"
+      stub_request(:get, url)
+      datastore = Dragonfly::DataStorage::RemoteDataStore.new
+      
+      datastore.retrieve url
+      a_request(:get, url).should have_been_made.once
+    end
+    
+    it "should return the image" do
+      url = "http://www.foo.com/imagemagick.png"
+      image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
+      stub_request(:get, url).to_return(:body => File.new(image_path))
+      datastore = Dragonfly::DataStorage::RemoteDataStore.new
+      
+      image,extra = datastore.retrieve(url)
+      image.should eq IO.read(image_path)
+    end
+  end
 end
 
