@@ -3,6 +3,9 @@ Magickly.dragonfly.configure do |c|
     process :convert, "-filter Gaussian -resize #{size}"
   end
   
+  # Dragonfly currently chokes on this command - see pull request #73:
+  # https://github.com/markevans/dragonfly/pull/73
+  #
   # c.job :tilt_shift do |coefficients|
   #   if coefficients == 'true'
   #     coefficients = "2,-2,0.5"
