@@ -38,21 +38,6 @@ module Magickly
       end
     end
     
-    get '/filters' do
-      Magickly.filters.inspect
-    end
-    
-    get '/filters/*' do
-      klass = params[:splat].first.classify.constantize rescue nil
-      
-      if klass
-        klass.call(params)
-      else
-        status 404
-        "filter does not exist"
-      end
-    end
-    
     # start the server if ruby file executed directly
     run! if __FILE__ == $0
   end

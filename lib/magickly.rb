@@ -8,8 +8,6 @@ Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
 
 module Magickly
-  @filters = []
-  
   # fallback for Dragonfly v0.8.2 and below
   dragonfly_processor = Dragonfly::ImageMagick::Processor rescue Dragonfly::Processing::ImageMagickProcessor
   @dragonfly_processor_methods = dragonfly_processor.instance_methods(false)
@@ -21,10 +19,6 @@ module Magickly
   end
   
   class << self
-    def filters
-      @filters
-    end
-    
     def dragonfly
       @dragonfly
     end

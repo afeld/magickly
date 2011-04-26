@@ -88,49 +88,6 @@ describe Magickly::App do
       ImageSize.new(last_response.body).get_width.should eq width
     end
   end
-  
-  describe "GET /filters" do
-    it "should return the list of filters" do
-      get "/filters"
-      last_response.should be_ok
-      last_response.body.should eq Magickly.filters.inspect
-    end
-    
-    it "should return my filter" do
-      expect { AppSpecFilter }.to raise_error(NameError)
-      get "/filters"
-      last_response.body.should_not include 'app_spec_filter'
-      
-      class AppSpecFilter < Magickly::Filter
-      end
-      
-      get "/filters"
-      last_response.should be_ok
-      filters = Kernel.eval(last_response.body)
-      filters.should be_a Array
-      filters.should include 'app_spec_filter'
-    end
-  end
-  
-  describe "GET /filters/*name" do
-    it "should fail for a non-existent filter" do
-      expect { NonExistentFilter }.to raise_error(NameError)
-      
-      get "/filters/non_existent_filter"
-      last_response.should_not be_ok
-    end
-    
-    it "should succeed for an existent filter" do
-      get "/filters/stub_filter"
-      last_response.should be_ok
-    end
-    
-    it "should use .call on the filter" do
-      StubFilter.should_receive(:call).and_return('called!')
-      get "/filters/stub_filter"
-      last_response.body.should eq 'called!'
-    end
-  end
 end
 
 describe MagicklyApp do

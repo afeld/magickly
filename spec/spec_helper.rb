@@ -17,8 +17,3 @@ RSpec.configure do |config|
   
 end
 
-class StubFilter < Magickly::Filter
-  def self.call(options={})
-    "all good"
-  end
-end
