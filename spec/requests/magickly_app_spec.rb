@@ -8,18 +8,12 @@ describe Magickly::App do
   end
   
   describe "GET /" do
-    def setup_image
-      @image_base_url = 'http://www.foo.com'
+    def setup_image(host='http://www.foo.com')
       @image_filename = 'imagemagick.png'
-      @image_url = "#{@image_base_url}/#{@image_filename}"
+      @image_url = "#{host}/#{@image_filename}"
       @image_path = File.join(File.dirname(__FILE__), '..', 'support', @image_filename)
       stub_request(:get, @image_url).to_return(:body => File.new(@image_path))
     end
-    
-    before do
-      Magickly.dragonfly.datastore.base_uri = nil
-    end
-    
     
     it "should display the demo page for no params" do
       get '/'
@@ -40,7 +34,7 @@ describe Magickly::App do
     end
     
     it "retrieves an image at a relative URI" do
-      setup_image
+      setup_image "http://#{Rack::Test::DEFAULT_HOST}"
       
       get "/?src=/#{@image_filename}"
       

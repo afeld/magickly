@@ -23,7 +23,10 @@ module Magickly
       src = params['src']
       
       if src
-        image = Magickly.process_src(src, @options)
+        uri = Addressable::URI.parse(src)
+        uri.site ||= Addressable::URI.parse(request.url).site
+        
+        image = Magickly.process_src(uri.to_s, @options)
         image.to_response(env)
       else
         # display demo page

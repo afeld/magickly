@@ -65,6 +65,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport (>= 2.0.0)
+  addressable (~> 2.2)
   dragonfly (~> 0.8.2)
   haml (~> 3.0.25)
   httparty (~> 0.7.3)

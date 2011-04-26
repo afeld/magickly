@@ -7,26 +7,14 @@ module Dragonfly
     class RemoteDataStore
       include Configurable
       
-      class Fetcher
-        include HTTParty
-      end
-      
       configurable_attr :cookie_str
       
-      def base_uri=(uri)
-        Fetcher.base_uri uri
-      end
-
-      def base_uri
-        Fetcher.base_uri
-      end
-
       def store(temp_object, opts={})
         raise "Sorry friend, this datastore is read-only."
       end
 
       def retrieve(uid)
-        response = Fetcher.get uid, :headers => {'cookie' => cookie_str || ''}
+        response = HTTParty.get uid, :headers => {'cookie' => cookie_str || ''}
         unless response.ok?
           #raise Forbidden if response.code == 403
           raise DataNotFound
