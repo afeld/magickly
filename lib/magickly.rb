@@ -46,7 +46,9 @@ module Magickly
       image
     end
   end
-  
-  # start the server if ruby file executed directly
-  App.run! if __FILE__ == $0
 end
+
+require File.expand_path(File.join(File.dirname(__FILE__), 'shortcuts'))
+
+# start the server if ruby file executed directly
+Magickly::App.run! if __FILE__ == $0
