@@ -4,6 +4,10 @@ A service for image manipulation - built as a simple wrapper of Imagemagick whic
 
 Say the base URL is the hosted version of this app, [magickly.heroku.com](http://magickly.heroku.com).  The image URL is appended to the query string as a `src=`, followed by any of the supported operations below.  Multiple operations can be combined, and will be applied in order.
 
+If no query params are provided, a simple sandbox page is displayed.  Try it here:
+
+[magickly.heroku.com](http://magickly.heroku.com)
+
 ## Parameters
 
 *See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.Processing.html#ImageMagickProcessor) for more details about the permitted* `geometry` *values.*
