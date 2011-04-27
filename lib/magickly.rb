@@ -33,7 +33,7 @@ module Magickly
     
     def process_image(image, options={})
       options.each do |method, val|
-        if !@dragonfly_processor_methods.include?(method)
+        if !@dragonfly_processor_methods.include?(method.to_sym)
           # might be an app-defined dragonfly shortcut
           image = image.send(method, val)
         elsif val == 'true'
