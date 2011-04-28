@@ -30,7 +30,7 @@ describe Magickly::App do
       last_response.should be_ok
       
       # check that the returned file is identical to the original
-      last_response.body.should eq IO.read(@image_path)
+      compare_binary(last_response.body, IO.read(@image_path))
     end
     
     it "retrieves an image at a relative URI" do
@@ -42,7 +42,7 @@ describe Magickly::App do
       last_response.should be_ok
       
       # check that the returned file is identical to the original
-      last_response.body.should eq IO.read(@image_path)
+      compare_binary(last_response.body, IO.read(@image_path))
     end
     
     it "resizes an image" do

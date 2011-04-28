@@ -17,3 +17,14 @@ RSpec.configure do |config|
   
 end
 
+def compare_binary(one, two)
+  if String.instance_methods.include?(:encoding)
+    # Ruby 1.9
+    unless one.encoding == two.encoding
+      one = one.force_encoding("UTF-8")
+      two = two.force_encoding("UTF-8")
+    end
+  end
+  
+  one.should eq two
+end
