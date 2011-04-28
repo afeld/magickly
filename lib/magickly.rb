@@ -2,6 +2,7 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/ordered_hash'
 
 require 'sinatra/base'
+require 'addressable/uri'
 require 'dragonfly'
 require File.expand_path(File.join(File.dirname(__FILE__), 'dragonfly', 'data_storage', 'remote_data_store'))
 Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
