@@ -4,7 +4,6 @@ source 'http://rubygems.org'
 #   gem 'activesupport', '>= 2.3.5'
 
 gem 'sinatra', '~> 1.2.1', :require => 'sinatra/base'
-gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~> 0.8'
 gem 'addressable', '~> 2.2', :require => 'addressable/uri'
 

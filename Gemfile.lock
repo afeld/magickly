@@ -23,8 +23,6 @@ GEM
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
     rack (1.2.2)
-    rack-cache (1.0)
-      rack (>= 0.4)
     rack-test (0.5.7)
       rack (>= 1.0)
     rake (0.8.7)
@@ -71,7 +69,6 @@ DEPENDENCIES
   httparty (~> 0.7.3)
   imagesize (~> 0.1)
   jeweler (~> 1.5)
-  rack-cache
   rack-test
   rcov
   rspec (~> 2.4)
