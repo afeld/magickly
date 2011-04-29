@@ -23,6 +23,8 @@ module Magickly
       src = params['src']
       
       if src
+        # process image
+        
         uri = Addressable::URI.parse(src)
         uri.site ||= Addressable::URI.parse(request.url).site
         
@@ -43,8 +45,8 @@ module Magickly
   end
 end
 
+# <b>DEPRECATED:</b> Please use <tt>Magickly::App</tt> instead.
 class MagicklyApp < Magickly::App
-  # <b>DEPRECATED:</b> Please use <tt>Magickly::App</tt> instead.
   def self.run
     warn "This has been deprecated - please use Magickly::App.run"
     super

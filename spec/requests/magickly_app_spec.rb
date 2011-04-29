@@ -33,6 +33,18 @@ describe Magickly::App do
       compare_binary(last_response.body, IO.read(@image_path))
     end
     
+    it "should ignore unused params" do
+      setup_image
+      
+      get "/?src=#{@image_url}&bad_param=666"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      
+      # check that the returned file is identical to the original
+      compare_binary(last_response.body, IO.read(@image_path))
+    end
+    
     it "retrieves an image at a relative URI" do
       setup_image "http://#{Rack::Test::DEFAULT_HOST}"
       
