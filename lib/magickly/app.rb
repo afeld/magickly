@@ -38,7 +38,8 @@ module Magickly
       else
         # display demo page
         
-        @methods = Magickly.jobs | Magickly.processor_methods
+        # get combined list of jobs and processor methods
+        @methods = (Magickly.jobs | Magickly.processor_methods).sort
         haml :index
       end
     end
