@@ -28,5 +28,5 @@ group :development, :test do
 end
 
 group :production do
-  gem 'newrelic_rpm', :require => 'newrelic_rpm' if ENV['NEW_RELIC_ID']
+  gem 'newrelic_rpm', :require => false
 end

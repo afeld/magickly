@@ -22,6 +22,7 @@ GEM
     linecache (0.43)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
+    newrelic_rpm (2.14.1)
     rack (1.2.2)
     rack-test (0.5.7)
       rack (>= 1.0)
@@ -69,6 +70,7 @@ DEPENDENCIES
   httparty (~> 0.7.3)
   imagesize (~> 0.1)
   jeweler (~> 1.5)
+  newrelic_rpm
   rack-test
   rcov
   rspec (~> 2.4)

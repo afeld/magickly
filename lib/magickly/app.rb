@@ -6,6 +6,11 @@ module Magickly
     set :root, File.join(File.dirname(__FILE__), '..')
     set :homepage, "http://github.com/afeld/magickly"
     
+    configure :production do
+      require 'newrelic_rpm' if ENV['NEW_RELIC_ID']
+    end
+    
+    
     before do
       Magickly.dragonfly.datastore.configure do |d|
         # pass cookies to subsequent request
