@@ -1,4 +1,5 @@
 require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/module/method_names'
 require 'active_support/ordered_hash'
 
 require 'sinatra/base'
@@ -15,11 +16,17 @@ module Magickly
     c.log = Logger.new($stdout)
   end
   
-  DRAGONFLY_PROCESSOR_FUNCTIONS = @dragonfly.processor.functions.keys
-  
   class << self
     def dragonfly
       @dragonfly
+    end
+    
+    def processor_methods
+      @processor_methods ||= dragonfly.processor.functions.keys.map{|k| k.to_s }
+    end
+    
+    def jobs
+      dragonfly.job_definitions.instance_method_names
     end
     
     def process_src(src, options={})
@@ -32,13 +39,16 @@ module Magickly
     
     def process_image(image, options={})
       options.each do |method, val|
-        if !DRAGONFLY_PROCESSOR_FUNCTIONS.include?(method.to_sym)
-          # might be an app-defined dragonfly shortcut
+        method = method.to_s
+        if processor_methods.include?(method)
+          if val == 'true'
+            image = image.process method
+          else
+            image = image.process method, val
+          end
+        elsif jobs.include?(method)
+          # note: might be an app-defined dragonfly shortcut
           image = image.send(method, val)
-        elsif val == 'true'
-          image = image.process method
-        else
-          image = image.process method, val
         end
       end
       

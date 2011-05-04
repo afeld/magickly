@@ -1,6 +1,14 @@
 require 'spec_helper'
 
 describe Magickly do
+  describe ".jobs" do
+    it "should return an array of job names" do
+      jobs = Magickly.jobs
+      jobs.should be_kind_of Array
+      jobs.each{|j| j.should be_kind_of String }
+    end
+  end
+  
   describe ".process_src" do
     it "retrieves an image with no options" do
       image_url = "http://www.foo.com/imagemagick.png"

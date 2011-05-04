@@ -38,9 +38,7 @@ module Magickly
       else
         # display demo page
         
-        # fallback for Dragonfly v0.8.2 and below
-        klass = Dragonfly::ImageMagick::Processor rescue Dragonfly::Processing::ImageMagickProcessor
-        @methods = klass.instance_methods(false)
+        @methods = Magickly.jobs | Magickly.processor_methods
         haml :index
       end
     end
