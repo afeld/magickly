@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 #   gem 'activesupport', '>= 2.3.5'
 
 gem 'sinatra', '~> 1.2.1', :require => 'sinatra/base'
-gem 'dragonfly', '~> 0.8'
+gem 'dragonfly', '~> 0.9.1'
 gem 'addressable', '~> 2.2', :require => 'addressable/uri'
 
 gem 'haml', '~> 3.0.25'

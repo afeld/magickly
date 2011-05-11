@@ -1,3 +1,7 @@
+# 1.1.2
+
+* get job/processor commands from Dragonfly (new in v0.9.1)
+
 # 1.1.1 (4/28/11)
 
 * cross-compatibility fix for Ruby 1.8/1.9 regarding the checking of available methods from the Processor

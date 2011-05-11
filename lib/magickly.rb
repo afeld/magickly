@@ -21,14 +21,6 @@ module Magickly
       @dragonfly
     end
     
-    def processor_methods
-      @processor_methods ||= dragonfly.processor.functions.keys.map{|k| k.to_s }
-    end
-    
-    def jobs
-      dragonfly.job_definitions.instance_method_names
-    end
-    
     def process_src(src, options={})
       raise ArgumentError.new("src needed") if src.blank?
       escaped_src = URI.escape(src)
@@ -39,14 +31,14 @@ module Magickly
     
     def process_image(image, options={})
       options.each do |method, val|
-        method = method.to_s
-        if processor_methods.include?(method)
+        method = method.to_sym
+        if Magickly.dragonfly.processor_methods.include?(method)
           if val == 'true'
             image = image.process method
           else
             image = image.process method, val
           end
-        elsif jobs.include?(method)
+        elsif Magickly.dragonfly.job_methods.include?(method)
           # note: might be an app-defined dragonfly shortcut
           image = image.send(method, val)
         end

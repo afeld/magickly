@@ -39,7 +39,7 @@ module Magickly
         # display demo page
         
         # get combined list of jobs and processor methods
-        @methods = (Magickly.jobs | Magickly.processor_methods).sort
+        @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
         haml :index
       end
     end
