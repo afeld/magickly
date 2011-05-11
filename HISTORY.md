@@ -1,5 +1,8 @@
 # 1.1.2
 
+* remove rack-cache - this is not the responsibility of the gem
+* use NewRelic, if configured
+* ignore params that do not correspond to jobs or processor methods
 * get job/processor commands from Dragonfly (new in v0.9.1)
 
 # 1.1.1 (4/28/11)
