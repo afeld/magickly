@@ -1,4 +1,6 @@
-# 1.1.2
+This gem respects [semantic versioning](http://semver.org/).
+
+# 1.1.2 (5/16/11)
 
 * remove rack-cache - this is not the responsibility of the gem
 * use NewRelic, if configured

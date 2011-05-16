@@ -88,7 +88,7 @@ The app can be accessed at [http://localhost:4567](http://localhost:4567)
 As an example, to have magickly accessible at `/magickly` in a Rails app:
 
     # Gemfile
-    gem 'magickly', '~> 0.1'
+    gem 'magickly', '~> 1.1'
     
     # config/routes.rb
     match '/magickly', :to => Magickly::App, :anchor => false
