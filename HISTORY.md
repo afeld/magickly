@@ -4,6 +4,7 @@
 * use NewRelic, if configured
 * ignore params that do not correspond to jobs or processor methods
 * get job/processor commands from Dragonfly (new in v0.9.1)
+* enable tilt_shift shortcut (possible after `convert` argument order change in Dragonfly v0.9.0)
 
 # 1.1.1 (4/28/11)
 
