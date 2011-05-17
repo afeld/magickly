@@ -10,7 +10,7 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 ## Parameters
 
-*See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.Processing.html#ImageMagickProcessor) for more details about the permitted* `geometry` *values.*
+*See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.ImageMagick.html) for more details about the permitted* `geometry` *values.*
 
 ### src=*url* (required)
 
@@ -67,7 +67,7 @@ In addition to the available listed above, custom "shortcuts" can be created to 
 
 which can then be used with the query string `?src=...&resize_with_blur=200x`.  Note that magickly will pass the value of the query param to the block as a single string.
 
-See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.GeneralUsage.html#Shortcuts) for more info on "shortcuts".
+See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.GeneralUsage.html#Shortcuts) for more info on "shortcuts", and the [shortcuts.rb](https://github.com/afeld/magickly/blob/master/lib/shortcuts.rb) file for examples.
 
 ## Installation
 
