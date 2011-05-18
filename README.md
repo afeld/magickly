@@ -16,6 +16,14 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 The URL of the original image.
 
+### brightness_contrast=*brightness* x *contrast*
+
+*brightness* and *contrast* are percentage change, between -100 and 100.  For example, to increase contrast by 20% but leave brightness the same, use `brightness_contrast=0x20`.
+
+![tanned imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50)
+
+[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50)
+
 ### flip=true
 
 ![flipped imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true)
