@@ -1,4 +1,8 @@
 Magickly.dragonfly.configure do |c|
+  c.job :brightness_contrast do |val|
+    process :convert, "-brightness-contrast #{val}"
+  end
+  
   c.job :resize_with_blur do |size|
     process :convert, "-filter Gaussian -resize #{size}"
   end
