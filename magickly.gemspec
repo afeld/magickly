@@ -5,14 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = %q{magickly}
-  s.version = "1.1.2"
+  s.version = "1.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Aidan Feldman}]
-  s.date = %q{2011-05-16}
+  s.authors = ["Aidan Feldman"]
+  s.date = %q{2011-05-26}
+  s.default_executable = %q{magickly}
   s.description = %q{A service for image manipulation - built as an extensible wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   s.email = %q{aidan.feldman@gmail.com}
-  s.executables = [%q{magickly}]
+  s.executables = ["magickly"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -44,16 +45,10 @@ Gem::Specification.new do |s|
     "spec/unit/remote_data_store_spec.rb"
   ]
   s.homepage = %q{http://github.com/afeld/magickly}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.2}
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.6.2}
   s.summary = %q{image manipulation as a (plugin-able) service}
-  s.test_files = [
-    "spec/requests/magickly_app_spec.rb",
-    "spec/spec_helper.rb",
-    "spec/unit/magickly_spec.rb",
-    "spec/unit/remote_data_store_spec.rb"
-  ]
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
@@ -62,7 +57,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sinatra>, ["~> 1.2.1"])
       s.add_runtime_dependency(%q<dragonfly>, ["~> 0.9.1"])
       s.add_runtime_dependency(%q<addressable>, ["~> 2.2"])
-      s.add_runtime_dependency(%q<haml>, ["~> 3.0.25"])
+      s.add_runtime_dependency(%q<haml>, ["~> 3.0"])
       s.add_runtime_dependency(%q<httparty>, ["~> 0.7.3"])
       s.add_runtime_dependency(%q<activesupport>, [">= 2.0.0"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5"])
@@ -71,13 +66,11 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, ["~> 2.4"])
       s.add_development_dependency(%q<webmock>, ["~> 1.6"])
       s.add_development_dependency(%q<imagesize>, ["~> 0.1"])
-      s.add_development_dependency(%q<ruby-debug19>, [">= 0"])
-      s.add_development_dependency(%q<ruby-debug>, [">= 0"])
     else
       s.add_dependency(%q<sinatra>, ["~> 1.2.1"])
       s.add_dependency(%q<dragonfly>, ["~> 0.9.1"])
       s.add_dependency(%q<addressable>, ["~> 2.2"])
-      s.add_dependency(%q<haml>, ["~> 3.0.25"])
+      s.add_dependency(%q<haml>, ["~> 3.0"])
       s.add_dependency(%q<httparty>, ["~> 0.7.3"])
       s.add_dependency(%q<activesupport>, [">= 2.0.0"])
       s.add_dependency(%q<jeweler>, ["~> 1.5"])
@@ -86,14 +79,12 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<rspec>, ["~> 2.4"])
       s.add_dependency(%q<webmock>, ["~> 1.6"])
       s.add_dependency(%q<imagesize>, ["~> 0.1"])
-      s.add_dependency(%q<ruby-debug19>, [">= 0"])
-      s.add_dependency(%q<ruby-debug>, [">= 0"])
     end
   else
     s.add_dependency(%q<sinatra>, ["~> 1.2.1"])
     s.add_dependency(%q<dragonfly>, ["~> 0.9.1"])
     s.add_dependency(%q<addressable>, ["~> 2.2"])
-    s.add_dependency(%q<haml>, ["~> 3.0.25"])
+    s.add_dependency(%q<haml>, ["~> 3.0"])
     s.add_dependency(%q<httparty>, ["~> 0.7.3"])
     s.add_dependency(%q<activesupport>, [">= 2.0.0"])
     s.add_dependency(%q<jeweler>, ["~> 1.5"])
@@ -102,8 +93,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rspec>, ["~> 2.4"])
     s.add_dependency(%q<webmock>, ["~> 1.6"])
     s.add_dependency(%q<imagesize>, ["~> 0.1"])
-    s.add_dependency(%q<ruby-debug19>, [">= 0"])
-    s.add_dependency(%q<ruby-debug>, [">= 0"])
   end
 end
 
