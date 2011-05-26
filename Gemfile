@@ -19,6 +19,9 @@ group :development do
 end
 
 group :development, :test do
+  # rake 0.9.0 breaks w/ ActiveSupport
+  gem 'rake', '~> 0.8.7'
+  
   gem 'rack-test'
   gem 'rspec', '~> 2.4'
   gem 'webmock', '~> 1.6'
