@@ -1,5 +1,10 @@
 This gem respects [semantic versioning](http://semver.org/).
 
+# 1.1.3 (5/26/11)
+
+* make tilt-shift faster
+* add brightness_contrast shortcut
+
 # 1.1.2 (5/16/11)
 
 * remove rack-cache - this is not the responsibility of the gem
