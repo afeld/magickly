@@ -1,4 +1,4 @@
-require 'httparty'
+require 'typhoeus'
 
 module Dragonfly
   module DataStorage
@@ -14,17 +14,15 @@ module Dragonfly
       end
 
       def retrieve(uid)
-        response = HTTParty.get uid, :headers => {'cookie' => cookie_str || ''}
-        unless response.ok?
+        response = Typhoeus::Request.get uid, :headers => { 'Cookie' => cookie_str || '' }
+        unless response.success?
           #raise Forbidden if response.code == 403
           raise DataNotFound
         end
         
-        content = response.body
-        extra_data = {}
         [
-          content,            # either a File, String or Tempfile
-          extra_data          # Hash with optional keys :meta, :name, :format
+          response.body,      # either a File, String or Tempfile
+          {}                  # Hash with optional keys :meta, :name, :format
         ]
       end
 
