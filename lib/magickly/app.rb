@@ -29,11 +29,8 @@ module Magickly
       
       if src
         # process image
-        
-        uri = Addressable::URI.parse(src)
-        uri.site ||= Addressable::URI.parse(request.url).site
-        
-        image = Magickly.process_src(uri.to_s, @options)
+        url = uri_to_url(src)
+        image = Magickly.process_src(url, @options)
         image.to_response(env)
       else
         # display demo page
@@ -42,6 +39,13 @@ module Magickly
         @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
         haml :index
       end
+    end
+    
+    
+    def uri_to_url(uri)
+      url = Addressable::URI.parse(uri)
+      url.site ||= Addressable::URI.parse(request.url).site
+      url.to_s
     end
     
     # start the server if ruby file executed directly
