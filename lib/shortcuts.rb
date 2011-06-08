@@ -18,8 +18,13 @@ Magickly.dragonfly.configure do |c|
     process :convert, action
   end
   
+  c.job :color_palette_swatch do
+    process :convert, "-resize 600x600 -colors #{Magickly::COLOR_PALETTE_SIZE} -unique-colors -scale 10000%"
+    encode :gif
+  end
+  
   c.analyser.add :color_palette do |temp_object|
-    output = `convert #{temp_object.path} -resize 600x600 -colors 5 -format %c -depth 8 histogram:info:-`
+    output = `convert #{temp_object.path} -resize 600x600 -colors #{Magickly::COLOR_PALETTE_SIZE} -format %c -depth 8 histogram:info:-`
     output.split('#').drop(1).map{|val| val[0...6] }
   end
 end
