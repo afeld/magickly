@@ -37,6 +37,8 @@ module Magickly
         
         # get combined list of jobs and processor methods
         @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
+        @methods.map!{|m| m.to_s }
+        @methods.sort!
         haml :index
       end
     end
