@@ -3,6 +3,7 @@ This gem respects [semantic versioning](http://semver.org/).
 # HEAD
 
 * add /analyze endpoint
+* add color_palette analyzer
 
 # 1.1.3 (5/26/11)
 
