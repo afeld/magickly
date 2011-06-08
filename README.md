@@ -85,6 +85,8 @@ See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.Gen
 
 ## Installation
 
+Requires Imagemagick >= v6.2.4.
+
     $ gem install magickly
 
 ## Running the App

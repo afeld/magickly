@@ -13,6 +13,7 @@ module Magickly
   @dragonfly.configure do |c|
     c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
     c.log = Logger.new($stdout)
+    c.log_commands = true
   end
   
   class << self
