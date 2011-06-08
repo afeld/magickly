@@ -46,7 +46,8 @@ module Magickly
       if src
         url = uri_to_url(src)
         image = Magickly.process_src(url, @options)
-        image.send(method.to_sym).to_s
+        output = image.send(method.to_sym)
+        output.is_a?(String) ? output : output.to_json
       else
         status 400
         "Please provide an image URL with the src parameter."
