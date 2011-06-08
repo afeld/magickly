@@ -1,4 +1,4 @@
-# magickly
+# magickly [![Build Status](http://travis-ci.org/afeld/magickly.png)](http://travis-ci.org/afeld/magickly)
 
 A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
 
