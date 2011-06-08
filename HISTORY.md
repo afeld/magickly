@@ -1,5 +1,9 @@
 This gem respects [semantic versioning](http://semver.org/).
 
+# HEAD
+
+* add /analyze endpoint
+
 # 1.1.3 (5/26/11)
 
 * make tilt-shift faster

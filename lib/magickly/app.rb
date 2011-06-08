@@ -41,6 +41,18 @@ module Magickly
       end
     end
     
+    get '/analyze/:name' do |method|
+      src = params[:src]
+      if src
+        url = uri_to_url(src)
+        image = Magickly.process_src(url, @options)
+        image.send(method.to_sym)
+      else
+        status 400
+        "Please provide an image URL with the src parameter."
+      end
+    end
+    
     
     def uri_to_url(uri)
       url = Addressable::URI.parse(uri)

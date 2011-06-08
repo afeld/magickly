@@ -7,14 +7,14 @@ describe Magickly::App do
     Magickly::App
   end
   
+  def setup_image(host='http://www.foo.com')
+    @image_filename = 'imagemagick.png'
+    @image_url = "#{host}/#{@image_filename}"
+    @image_path = File.join(File.dirname(__FILE__), '..', 'support', @image_filename)
+    stub_request(:get, @image_url).to_return(:body => File.new(@image_path))
+  end
+  
   describe "GET /" do
-    def setup_image(host='http://www.foo.com')
-      @image_filename = 'imagemagick.png'
-      @image_url = "#{host}/#{@image_filename}"
-      @image_path = File.join(File.dirname(__FILE__), '..', 'support', @image_filename)
-      stub_request(:get, @image_url).to_return(:body => File.new(@image_path))
-    end
-    
     it "should display the demo page for no params" do
       get '/'
       last_response.should be_ok
@@ -98,6 +98,18 @@ describe Magickly::App do
       
       last_response.should be_ok
       ImageSize.new(last_response.body).get_width.should eq width
+    end
+  end
+  
+  describe "GET /analyze" do
+    it "retrieves the mime_type of an image" do
+      setup_image
+      
+      get "/analyze/mime_type?src=#{@image_url}"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      last_response.body.should eq 'image/png'
     end
   end
 end
