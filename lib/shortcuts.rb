@@ -8,14 +8,16 @@ Magickly.dragonfly.configure do |c|
   end
   
   c.job :tilt_shift do |coefficients|
-    if coefficients == 'true'
-      # use default polynomial coefficients
-      coefficients = '4,-4,1'
-    end
+    coefficients = '4,-4,1' if coefficients == 'true'
     
     # note: can be made faster by decreasing sigma passed to option:compose:args
     action = "\\( +clone -sparse-color Barycentric '0,0 black 0,%h white' -function polynomial #{coefficients} \\) -compose Blur -set option:compose:args 8 -composite"
     process :convert, action
+  end
+  
+  c.job :halftone do |threshold|
+    threshold = 50 if threshold == 'true'
+    process :convert, "-white-threshold #{threshold}% -gaussian-blur 2 -ordered-dither 6x1"
   end
   
   ## thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick) for the following: ##
