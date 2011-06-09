@@ -9,7 +9,7 @@ Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
 
 module Magickly
-  COLOR_PALETTE_SIZE = 5
+  DEFAULT_PALETTE_COLOR_COUNT = 5
   
   @dragonfly = Dragonfly[:images].configure_with(:imagemagick)
   @dragonfly.configure do |c|

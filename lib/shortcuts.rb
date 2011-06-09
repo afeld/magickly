@@ -19,12 +19,13 @@ Magickly.dragonfly.configure do |c|
   end
   
   c.job :color_palette_swatch do
-    process :convert, "-resize 600x600 -colors #{Magickly::COLOR_PALETTE_SIZE} -unique-colors -scale 10000%"
+    process :convert, "-resize 600x600 -colors #{Magickly::DEFAULT_PALETTE_COLOR_COUNT} -unique-colors -scale 10000%"
     encode :gif
   end
   
-  c.analyser.add :color_palette do |temp_object|
-    output = `convert #{temp_object.path} -resize 600x600 -colors #{Magickly::COLOR_PALETTE_SIZE} -format %c -depth 8 histogram:info:-`
+  c.analyser.add :color_palette do |temp_object, num_colors|
+    num_colors = num_colors.blank? ? Magickly::DEFAULT_PALETTE_COLOR_COUNT : num_colors.to_i
+    output = `convert #{temp_object.path} -resize 600x600 -colors #{num_colors} -format %c -depth 8 histogram:info:-`
     
     palette = []
     output.scan(/\s+(\d+):[^\n]+#([0-9A-Fa-f]{6})/) do |count, hex|
