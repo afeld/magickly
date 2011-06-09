@@ -1,5 +1,6 @@
 Magickly.dragonfly.configure do |c|
   c.job :brightness_contrast do |val|
+    raise ArgumentError, "argument must be of the format '<int>[%]x<int>[%]'" unless val =~ /^\d+%?(x\d+%?)?$/
     process :convert, "-brightness-contrast #{val}"
   end
   
@@ -9,6 +10,7 @@ Magickly.dragonfly.configure do |c|
   
   c.job :tilt_shift do |coefficients|
     coefficients = '4,-4,1' if coefficients == 'true'
+    raise ArgumentError, "coefficients must be of the format '<decimal>,<decimal>,<decimal>'" unless coefficients =~ /^(-?\d+(\.\d+)?,){2}-?\d+(\.\d+)?$/
     
     # note: can be made faster by decreasing sigma passed to option:compose:args
     action = "\\( +clone -sparse-color Barycentric '0,0 black 0,%h white' -function polynomial #{coefficients} \\) -compose Blur -set option:compose:args 8 -composite"
@@ -18,7 +20,7 @@ Magickly.dragonfly.configure do |c|
   # thanks to http://www.melissaevans.com/tutorials/pop-art-inspired-by-lichtenstein
   c.job :halftone do |threshold|
     threshold = 50 if threshold == 'true'
-    process :convert, "-white-threshold #{threshold}% -gaussian-blur 2 -ordered-dither 6x1"
+    process :convert, "-white-threshold #{threshold.to_i}% -gaussian-blur 2 -ordered-dither 6x1"
   end
   
   
