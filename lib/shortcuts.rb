@@ -18,8 +18,10 @@ Magickly.dragonfly.configure do |c|
     process :convert, action
   end
   
-  c.job :color_palette_swatch do
-    process :convert, "-resize 600x600 -colors #{Magickly::DEFAULT_PALETTE_COLOR_COUNT} -unique-colors -scale 10000%"
+  c.job :color_palette_swatch do |count|
+    count = Magickly::DEFAULT_PALETTE_COLOR_COUNT if count == 'true'
+    
+    process :convert, "-resize 600x600 -colors #{count} -unique-colors -scale 10000%"
     encode :gif
   end
   
