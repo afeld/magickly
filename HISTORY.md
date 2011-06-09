@@ -3,7 +3,10 @@ This gem respects [semantic versioning](http://semver.org/).
 # HEAD
 
 * add /analyze endpoint
-* add color_palette analyzer
+* added shortcuts:
+    * color_palette (analyzer)
+    * halftone
+    * two_color
 
 # 1.1.3 (5/26/11)
 
