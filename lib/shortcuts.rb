@@ -18,6 +18,14 @@ Magickly.dragonfly.configure do |c|
     process :convert, action
   end
   
+  ## thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick) for the following: ##
+  
+  c.job :two_color do
+    process :convert, "-background black -flatten +matte +dither -colors 2 -colorspace gray -contrast-stretch 0"
+  end
+  
+  #########################################################################################
+  
   c.job :color_palette_swatch do |count|
     count = Magickly::DEFAULT_PALETTE_COLOR_COUNT if count == 'true'
     
