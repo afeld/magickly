@@ -25,6 +25,11 @@ Magickly.dragonfly.configure do |c|
   
   c.analyser.add :color_palette do |temp_object|
     output = `convert #{temp_object.path} -resize 600x600 -colors #{Magickly::COLOR_PALETTE_SIZE} -format %c -depth 8 histogram:info:-`
-    output.split('#').drop(1).map{|val| val[0...6] }
+    
+    palette = []
+    output.scan(/\s+(\d+):[^\n]+#([0-9A-Fa-f]{6})/) do |count, hex|
+      palette << { :count => count.to_i, :hex => hex }
+    end
+    palette
   end
 end
