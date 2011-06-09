@@ -2,6 +2,8 @@ This gem respects [semantic versioning](http://semver.org/).
 
 # HEAD
 
+[commits](https://github.com/afeld/magickly/compare/v1.1.3...master)
+
 * add /analyze endpoint
 * added shortcuts:
     * color_palette (analyzer)
@@ -10,10 +12,14 @@ This gem respects [semantic versioning](http://semver.org/).
 
 # 1.1.3 (5/26/11)
 
+[commits](https://github.com/afeld/magickly/compare/v1.1.2...v1.1.3)
+
 * make tilt-shift faster
 * add brightness_contrast shortcut
 
 # 1.1.2 (5/16/11)
+
+[commits](https://github.com/afeld/magickly/compare/v1.1.1...v1.1.2)
 
 * remove rack-cache - this is not the responsibility of the gem
 * use NewRelic, if configured
@@ -23,10 +29,14 @@ This gem respects [semantic versioning](http://semver.org/).
 
 # 1.1.1 (4/28/11)
 
+[commits](https://github.com/afeld/magickly/compare/v1.1.0...v1.1.1)
+
 * cross-compatibility fix for Ruby 1.8/1.9 regarding the checking of available methods from the Processor
 * Addressable now required properly when included as a gem
 
 # 1.1.0 (4/26/11)
+
+[commits](https://github.com/afeld/magickly/compare/v1.0.0...v1.1.0)
 
 * make underlying Dragonfly application accessible for external configuration
 * added some example Dragonfly shortcuts
