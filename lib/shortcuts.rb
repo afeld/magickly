@@ -15,10 +15,12 @@ Magickly.dragonfly.configure do |c|
     process :convert, action
   end
   
+  # thanks to http://www.melissaevans.com/tutorials/pop-art-inspired-by-lichtenstein
   c.job :halftone do |threshold|
     threshold = 50 if threshold == 'true'
     process :convert, "-white-threshold #{threshold}% -gaussian-blur 2 -ordered-dither 6x1"
   end
+  
   
   ## thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick) for the following: ##
   
@@ -27,6 +29,7 @@ Magickly.dragonfly.configure do |c|
   end
   
   #########################################################################################
+  
   
   c.job :color_palette_swatch do |count|
     count = Magickly::DEFAULT_PALETTE_COLOR_COUNT if count == 'true'
