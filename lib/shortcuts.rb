@@ -26,6 +26,20 @@ Magickly.dragonfly.configure do |c|
   
   ## thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick) for the following: ##
   
+  c.job :glow do |args|
+    if args == 'true'
+      amount = 1.2
+      softening = 20
+    elsif args =~ /^(\d+\.\d+?),(\d+)$/ && $1.to_f >= 1.0 && $2.to_i >= 0
+      amount = $1
+      softening = $2
+    else
+      raise ArgumentError, "args must be of the form <amount(float)>,<softening(int)>"
+    end
+    
+    process :convert, "\\( +clone -evaluate multiply #{amount} -blur 0x#{softening} \\) -compose plus -composite"
+  end
+  
   c.job :two_color do
     process :convert, "-background black -flatten +matte +dither -colors 2 -colorspace gray -contrast-stretch 0"
   end
