@@ -1,6 +1,6 @@
 Magickly.dragonfly.configure do |c|
   c.job :brightness_contrast do |val|
-    raise ArgumentError, "argument must be of the format '<int>[%]x<int>[%]'" unless val =~ /^\d+%?(x\d+%?)?$/
+    raise ArgumentError, "argument must be of the format '<int>[%]x<int>[%]'" unless val =~ /^-?\d+%?(x-?\d+%?)?$/
     process :convert, "-brightness-contrast #{val}"
   end
   

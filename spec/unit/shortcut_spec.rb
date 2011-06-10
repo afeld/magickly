@@ -18,6 +18,10 @@ describe "Dragonfly shortcuts" do
     it "should succeed for a valid argument" do
       @image.brightness_contrast('10x10')
     end
+    
+    it "should succeed for negative values" do
+      @image.brightness_contrast('-80x-80')
+    end
   end
   
   describe :color_palette do
