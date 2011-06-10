@@ -14,7 +14,7 @@ module Dragonfly
       end
 
       def retrieve(uid)
-        response = HTTParty.get uid, :headers => {'cookie' => cookie_str || ''}
+        response = HTTParty.get uid, :headers => {'cookie' => cookie_str || ''}, :timeout => 3
         unless response.ok?
           #raise Forbidden if response.code == 403
           raise DataNotFound
