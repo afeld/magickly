@@ -11,7 +11,7 @@ Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 module Magickly
   DEFAULT_PALETTE_COLOR_COUNT = 5
   
-  @dragonfly = Dragonfly[:images].configure_with(:imagemagick)
+  @dragonfly = Dragonfly[:magickly].configure_with(:imagemagick)
   @dragonfly.configure do |c|
     c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
     c.log = Logger.new($stdout)
