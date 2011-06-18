@@ -4,9 +4,12 @@ This gem respects [semantic versioning](http://semver.org/).
 
 [commits](https://github.com/afeld/magickly/compare/v1.1.3...master)
 
-* add /analyze endpoint
+* add /analyze and /analyze/:analyzer endpoints
+* fix for negative values for brightness_contrast
+* validation & specs for existing shortcuts
 * added shortcuts:
     * color_palette (analyzer)
+    * glow
     * halftone
     * two_color
 
