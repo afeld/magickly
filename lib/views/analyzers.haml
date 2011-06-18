@@ -1,0 +1,3 @@
+- @analyzers.each do |analyzer|
+  %a{:href => "/analyze/#{analyzer}?src=#{Magickly::App::DEMO_IMAGE}"}= analyzer
+  %br

@@ -1,6 +1,7 @@
 module Magickly
   class App < Sinatra::Base
     RESERVED_PARAMS = ['src']
+    DEMO_IMAGE = 'http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png'
     
     enable :logging
     set :root, File.join(File.dirname(__FILE__), '..')
@@ -41,6 +42,11 @@ module Magickly
         @methods.sort!
         haml :index
       end
+    end
+    
+    get '/analyze' do
+      @analyzers = Magickly.dragonfly.analyser.functions.keys
+      haml :analyzers
     end
     
     get '/analyze/:name' do |method|
