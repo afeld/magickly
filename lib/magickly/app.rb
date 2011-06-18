@@ -44,7 +44,7 @@ module Magickly
     end
     
     get '/analyze' do
-      @analyzers = Magickly.dragonfly.analyser.functions.keys
+      @analyzers = Magickly.dragonfly.analyser_methods
       @analyzers.sort_by!{|m| m.to_s }
       haml :analyzers
     end
