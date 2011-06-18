@@ -125,6 +125,17 @@ describe Magickly::App do
       json.should be_an Array
       json.size.should eq 5
     end
+    
+    it "should handle analyzer methods where the question mark is missing" do
+      Magickly.dragonfly.analyser_methods.map{|m| m.to_s }.should include 'landscape?'
+      setup_image
+      
+      get "/analyze/landscape?src=#{@image_url}"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      last_response.body.should =~ /false/
+    end
   end
 end
 

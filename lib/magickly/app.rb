@@ -54,7 +54,14 @@ module Magickly
       if src
         url = uri_to_url(src)
         image = Magickly.process_src(url, @options)
-        output = image.send(method.to_sym)
+        
+        begin
+          output = image.send(method.to_sym)
+        rescue NoMethodError
+          method = method.to_s + '?'
+          output = image.send(method.to_sym)
+        end
+        
         output.is_a?(String) ? output : output.to_json
       else
         status 400
