@@ -1,11 +1,11 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (3.0.8)
+    activesupport (3.0.9)
     addressable (2.2.6)
     crack (0.1.8)
     diff-lcs (1.1.2)
-    dragonfly (0.9.3)
+    dragonfly (0.9.4)
       rack
     git (1.2.5)
     haml (3.1.2)
@@ -16,8 +16,8 @@ GEM
       bundler (~> 1.0)
       git (>= 1.2.5)
       rake
-    json (1.5.1)
-    newrelic_rpm (3.0.1)
+    json (1.5.2)
+    newrelic_rpm (3.1.0)
     rack (1.3.0)
     rack-test (0.6.0)
       rack (>= 1.0)
