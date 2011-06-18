@@ -38,14 +38,14 @@ module Magickly
         
         # get combined list of jobs and processor methods
         @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
-        @methods.map!{|m| m.to_s }
-        @methods.sort!
+        @methods.sort_by!{|m| m.to_s }
         haml :index
       end
     end
     
     get '/analyze' do
       @analyzers = Magickly.dragonfly.analyser.functions.keys
+      @analyzers.sort_by!{|m| m.to_s }
       haml :analyzers
     end
     
