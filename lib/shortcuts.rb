@@ -24,9 +24,17 @@ Magickly.dragonfly.configure do |c|
   end
   
   ## thanks to https://github.com/soveran/lomo
-  c.job :lomo do
+  c.job :lomo do |modulate_params|
+    if modulate_params == 'true'
+      modulate_params = '100,150'
+    elsif modulate_params =~ /^\d+,\d+$/
+      # valid params
+    else
+      raise ArgumentError, "modulate_params must be of the format '<int>,<int>'"
+    end
+    
     lomo_mask = File.join(File.dirname(__FILE__), 'images', 'lomo_mask.png')
-    process :convert, "-set origsize '%wx%h' \\( +clone -unsharp 1 -contrast -contrast -modulate 100,150 \\( #{lomo_mask} -resize #{@job.width}x#{@job.height}\\! \\) -compose overlay -composite \\) -compose multiply -composite"
+    process :convert, "\\( +clone -unsharp 1 -contrast -contrast -modulate #{modulate_params} \\( #{lomo_mask} -resize #{@job.width}x#{@job.height}\\! \\) -compose overlay -composite \\) -compose multiply -composite"
   end
   
   
