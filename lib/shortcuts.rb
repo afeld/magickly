@@ -23,6 +23,12 @@ Magickly.dragonfly.configure do |c|
     process :convert, "-white-threshold #{threshold.to_i}% -gaussian-blur 2 -ordered-dither 6x1"
   end
   
+  ## thanks to https://github.com/soveran/lomo
+  c.job :lomo do
+    lomo_mask = File.join(File.dirname(__FILE__), 'images', 'lomo_mask.png')
+    process :convert, "-set origsize '%wx%h' \\( +clone -unsharp 1 -contrast -contrast -modulate 100,150 \\( #{lomo_mask} -resize #{@job.width}x#{@job.height}\\! \\) -compose overlay -composite \\) -compose multiply -composite"
+  end
+  
   
   ## thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick) for the following: ##
   

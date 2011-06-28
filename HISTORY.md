@@ -11,6 +11,7 @@ This gem respects [semantic versioning](http://semver.org/).
     * color_palette (analyzer)
     * glow
     * halftone
+    * lomo
     * two_color
 
 # 1.1.3 (5/26/11)
