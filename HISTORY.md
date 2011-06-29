@@ -1,8 +1,8 @@
 This gem respects [semantic versioning](http://semver.org/).
 
-# HEAD
+# 1.2.0 (6/28/11)
 
-[commits](https://github.com/afeld/magickly/compare/v1.1.3...master)
+[commits](https://github.com/afeld/magickly/compare/v1.1.3...v1.2.0)
 
 * add /analyze and /analyze/:analyzer endpoints
 * fix for negative values for brightness_contrast
