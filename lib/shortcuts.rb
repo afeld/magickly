@@ -20,7 +20,7 @@ Magickly.dragonfly.configure do |c|
   # thanks to http://www.melissaevans.com/tutorials/pop-art-inspired-by-lichtenstein
   c.job :halftone do |threshold|
     threshold = 50 if threshold == 'true'
-    process :convert, "-white-threshold #{threshold.to_i}% -gaussian-blur 2 -ordered-dither 6x1"
+    process :convert, "-white-threshold #{threshold.to_i}% -gaussian-blur 2 -ordered-dither 8x1"
   end
   
   # thanks to http://www.photoshopsupport.com/tutorials/or/cross-processing.html
