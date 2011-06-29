@@ -13,6 +13,7 @@ This gem respects [semantic versioning](http://semver.org/).
     * glow
     * halftone
     * lomo
+    * saturation
     * two_color
 
 # 1.1.3 (5/26/11)

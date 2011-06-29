@@ -4,6 +4,11 @@ Magickly.dragonfly.configure do |c|
     process :convert, "-brightness-contrast #{val}"
   end
   
+  c.job :saturation do |percentage|
+    raise ArgumentError, "percentage must be a positive integer" unless percentage =~ /^\d+$/
+    process :convert, "-modulate 100,#{percentage}"
+  end
+  
   c.job :resize_with_blur do |size|
     process :convert, "-filter Gaussian -resize #{size}"
   end
