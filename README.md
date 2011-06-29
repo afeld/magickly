@@ -126,6 +126,14 @@ where *threshold* is a value between 0 and 100.
 
 [http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
 
+## Analyzers
+
+Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:
+
+[magickly.heroku.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png](http://magickly.heroku.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
+
+To get the list of available analyzers, visit [magickly.heroku.com/analyze](http://magickly.heroku.com/analyze)
+
 ## Customization
 
 In addition to the available parameters listed above, custom "shortcuts" can be created to perform arbitrary imagemagick operations.  For example, to create a shortcut called `resize_with_blur`:
