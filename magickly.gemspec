@@ -5,15 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{magickly}
-  s.version = "1.1.3"
+  s.version = "1.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Aidan Feldman"]
-  s.date = %q{2011-05-26}
-  s.default_executable = %q{magickly}
+  s.authors = [%q{Aidan Feldman}]
+  s.date = %q{2011-06-29}
   s.description = %q{A service for image manipulation - built as an extensible wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   s.email = %q{aidan.feldman@gmail.com}
-  s.executables = ["magickly"]
+  s.executables = [%q{magickly}]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
@@ -31,23 +30,27 @@ Gem::Specification.new do |s|
     "VERSION",
     "bin/magickly",
     "config.ru",
+    "lib/dragonfly/app.rb",
     "lib/dragonfly/data_storage/remote_data_store.rb",
+    "lib/images/lomo_mask.png",
     "lib/magickly.rb",
     "lib/magickly/app.rb",
     "lib/public/imagemagick.png",
     "lib/shortcuts.rb",
+    "lib/views/analyzers.haml",
     "lib/views/index.haml",
     "magickly.gemspec",
     "spec/requests/magickly_app_spec.rb",
     "spec/spec_helper.rb",
     "spec/support/imagemagick.png",
     "spec/unit/magickly_spec.rb",
-    "spec/unit/remote_data_store_spec.rb"
+    "spec/unit/remote_data_store_spec.rb",
+    "spec/unit/shortcut_spec.rb"
   ]
   s.homepage = %q{http://github.com/afeld/magickly}
-  s.licenses = ["MIT"]
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.6.2}
+  s.licenses = [%q{MIT}]
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.5}
   s.summary = %q{image manipulation as a (plugin-able) service}
 
   if s.respond_to? :specification_version then
@@ -60,6 +63,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<haml>, ["~> 3.0"])
       s.add_runtime_dependency(%q<httparty>, ["~> 0.7.3"])
       s.add_runtime_dependency(%q<activesupport>, [">= 2.0.0"])
+      s.add_runtime_dependency(%q<json>, ["~> 1.5"])
       s.add_development_dependency(%q<jeweler>, ["~> 1.5"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<rack-test>, [">= 0"])
@@ -73,6 +77,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<haml>, ["~> 3.0"])
       s.add_dependency(%q<httparty>, ["~> 0.7.3"])
       s.add_dependency(%q<activesupport>, [">= 2.0.0"])
+      s.add_dependency(%q<json>, ["~> 1.5"])
       s.add_dependency(%q<jeweler>, ["~> 1.5"])
       s.add_dependency(%q<rcov>, [">= 0"])
       s.add_dependency(%q<rack-test>, [">= 0"])
@@ -87,6 +92,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<haml>, ["~> 3.0"])
     s.add_dependency(%q<httparty>, ["~> 0.7.3"])
     s.add_dependency(%q<activesupport>, [">= 2.0.0"])
+    s.add_dependency(%q<json>, ["~> 1.5"])
     s.add_dependency(%q<jeweler>, ["~> 1.5"])
     s.add_dependency(%q<rcov>, [">= 0"])
     s.add_dependency(%q<rack-test>, [">= 0"])
