@@ -9,6 +9,7 @@ This gem respects [semantic versioning](http://semver.org/).
 * validation & specs for existing shortcuts
 * added shortcuts:
     * color_palette (analyzer)
+    * cross_process
     * glow
     * halftone
     * lomo

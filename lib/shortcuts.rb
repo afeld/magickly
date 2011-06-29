@@ -23,6 +23,11 @@ Magickly.dragonfly.configure do |c|
     process :convert, "-white-threshold #{threshold.to_i}% -gaussian-blur 2 -ordered-dither 6x1"
   end
   
+  # thanks to http://www.photoshopsupport.com/tutorials/or/cross-processing.html
+  c.job :cross_process do
+    process :convert, "-channel Red -sigmoidal-contrast 6,50% -channel Blue -level 25%\\! -channel Green -sigmoidal-contrast 5,45% \\( +clone +matte -fill yellow -colorize 4% \\) -compose overlay -composite"
+  end
+  
   ## thanks to https://github.com/soveran/lomo
   c.job :lomo do |modulate_params|
     if modulate_params == 'true'
