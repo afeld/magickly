@@ -8,6 +8,34 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 [magickly.heroku.com](http://magickly.heroku.com)
 
+## Installation
+
+Requires Imagemagick >= v6.2.4.
+
+    $ gem install magickly
+
+## Running the App
+
+A few options:
+
+### A. Run the app directly
+
+    $ magickly
+
+The app can be accessed at [http://localhost:4567](http://localhost:4567)
+
+### B. Use as an endpoint in another Rack app
+
+As an example, to have magickly accessible at `/magickly` in a Rails app:
+
+    # Gemfile
+    gem 'magickly', '~> 1.1'
+    
+    # config/routes.rb
+    match '/magickly', :to => Magickly::App, :anchor => false
+
+For more info, see [Rails Routing from the Outside In](http://guides.rubyonrails.org/routing.html#routing-to-rack-applications) or Michael Raidel's [Mount Rails apps in Rails 3](http://inductor.induktiv.at/blog/2010/05/23/mount-rack-apps-in-rails-3/).
+
 ## Parameters
 
 *See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.ImageMagick.html) for more details about the permitted* `geometry` *values.*
@@ -92,7 +120,7 @@ where *threshold* is a value between 0 and 100.
 
 ## Customization
 
-In addition to the available listed above, custom "shortcuts" can be created to perform arbitrary imagemagick operations.  For example, to create a shortcut called `resize_with_blur`:
+In addition to the available parameters listed above, custom "shortcuts" can be created to perform arbitrary imagemagick operations.  For example, to create a shortcut called `resize_with_blur`:
 
     # somewhere in your app configuration, i.e. config/initializers/magickly.rb for a Rails 3 app
     Magickly.dragonfly.configure do |c|
@@ -104,34 +132,6 @@ In addition to the available listed above, custom "shortcuts" can be created to 
 which can then be used with the query string `?src=...&resize_with_blur=200x`.  Note that magickly will pass the value of the query param to the block as a single string.
 
 See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.GeneralUsage.html#Shortcuts) for more info on "shortcuts", and the [shortcuts.rb](https://github.com/afeld/magickly/blob/master/lib/shortcuts.rb) file for examples.
-
-## Installation
-
-Requires Imagemagick >= v6.2.4.
-
-    $ gem install magickly
-
-## Running the App
-
-A few options:
-
-### A. Run the app directly
-
-    $ magickly
-
-The app can be accessed at [http://localhost:4567](http://localhost:4567)
-
-### B. Use as an endpoint in another Rack app
-
-As an example, to have magickly accessible at `/magickly` in a Rails app:
-
-    # Gemfile
-    gem 'magickly', '~> 1.1'
-    
-    # config/routes.rb
-    match '/magickly', :to => Magickly::App, :anchor => false
-
-For more info, see [Rails Routing from the Outside In](http://guides.rubyonrails.org/routing.html#routing-to-rack-applications) or Michael Raidel's [Mount Rails apps in Rails 3](http://inductor.induktiv.at/blog/2010/05/23/mount-rack-apps-in-rails-3/).
 
 ## Contributing to magickly
  
