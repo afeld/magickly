@@ -57,4 +57,26 @@ describe "Dragonfly shortcuts" do
       @image.tilt_shift('2,-1,0.5')
     end
   end
+  
+  describe :lomo do
+    it "should throw an error for no arguments" do
+      expect { @image.lomo }.to raise_error(ArgumentError)
+    end
+    
+    it "should throw an error for a empty string" do
+      expect { @image.lomo('') }.to raise_error(ArgumentError)
+    end
+    
+    it "should succeed for when set to true" do
+      @image.lomo('true')
+    end
+    
+    it "should succeed for valid coefficients" do
+      @image.lomo('100,120')
+    end
+    
+    it "should throw an error for negative values" do
+      expect { @image.lomo('-80,-80') }.to raise_error(ArgumentError)
+    end
+  end
 end
