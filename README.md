@@ -149,6 +149,10 @@ which can then be used with the query string `?src=...&resize_with_blur=200x`.  
 
 See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.GeneralUsage.html#Shortcuts) for more info on "shortcuts", and the [shortcuts.rb](https://github.com/afeld/magickly/blob/master/lib/shortcuts.rb) file for examples.
 
+## Disclaimer
+
+The hosted version of the app ([magickly.jux.com](http://magickly.jux.com)) is a single app instance intended for demonstration purposes - if you are going to be making a large number of API calls to it or would like to use it in production, please let us know :-)
+
 ## Contributing to magickly
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
