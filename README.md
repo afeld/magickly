@@ -2,11 +2,11 @@
 
 A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
 
-Say the base URL is the hosted version of this app, [magickly.heroku.com](http://magickly.heroku.com).  The image URL is appended to the query string as a `src=`, followed by any of the supported operations below.  Multiple operations can be combined, and will be applied in order.
+Say the base URL is the hosted version of this app, [magickly.jux.com](http://magickly.jux.com).  The image URL is appended to the query string as a `src=`, followed by any of the supported operations below.  Multiple operations can be combined, and will be applied in order.
 
 If no query params are provided, a simple sandbox page is displayed.  Try it here:
 
-[magickly.heroku.com](http://magickly.heroku.com)
+[magickly.jux.com](http://magickly.jux.com)
 
 ## Installation
 
@@ -48,91 +48,91 @@ The URL of the original image.
 
 *brightness* and *contrast* are percentage change, between -100 and 100.  For example, to increase contrast by 20% but leave brightness unchanged, use `brightness_contrast=0x20`.
 
-![tanned imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50)
+![tanned imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&brightness_contrast=-10x50)
 
 ### flip=true
 
-![flipped imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true)
+![flipped imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flip=true)
 
 ### flop=true
 
-![flopped imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flop=true)
+![flopped imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flop=true)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flop=true](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flop=true)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flop=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&flop=true)
 
 ### glow=*amount*,*softness*
 
 where `amount` is a float >= 1.0, and `softness` is an int >= 0.
 
-![glowing imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&glow=1.2,20)
+![glowing imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&glow=1.2,20)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&glow=1.2,20](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&glow=1.2,20)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&glow=1.2,20](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&glow=1.2,20)
 
 ### greyscale=true
 
-![flopped imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&greyscale=true)
+![flopped imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&greyscale=true)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&greyscale=true](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&greyscale=true)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&greyscale=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&greyscale=true)
 
 ### halftone=*threshold*
 
 where *threshold* is a value between 0 and 100.
 
-![halftone imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60)
+![halftone imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60)
 
 ### resize=*geometry*
 
-![resized imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100)
+![resized imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100)
 
 ### rotate=*degrees*
 
-![rotated imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&rotate=45)
+![rotated imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&rotate=45)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&rotate=45](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&rotate=45)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&rotate=45](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&rotate=45)
 
 ### saturation=*percentage*
 
 *percentage* is the percentage of variation: a positive integer.  100 means no change.  For example, to increase saturation by 50%, use `saturation=150`.
 
-![saturated imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&saturation=150)
+![saturated imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&saturation=150)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&saturation=150](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&saturation=150)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&saturation=150](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&saturation=150)
 
 ### tilt_shift=true
 
-![tilt-shifted imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&tilt_shift=true)
+![tilt-shifted imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&tilt_shift=true)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&tilt_shift=true](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&tilt_shift=true)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&tilt_shift=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&tilt_shift=true)
 
 ### thumb=*geometry*
 
-![thumbnail of imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23)
+![thumbnail of imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23)
 
 (note: the `%23` in the geometry string above is an encoded '`#`', which tells Dragonfly to fill the dimensions and crop)
 
 ### two_color=true
 
-![two color imagemagick logo](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
+![two color imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
 
-[http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true](http://magickly.heroku.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
 
 ## Analyzers
 
 Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:
 
-[magickly.heroku.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png](http://magickly.heroku.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
+[magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
 
-To get the list of available analyzers, visit [magickly.heroku.com/analyze](http://magickly.heroku.com/analyze)
+To get the list of available analyzers, visit [magickly.jux.com/analyze](http://magickly.jux.com/analyze)
 
 ## Customization
 
