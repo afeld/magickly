@@ -11,6 +11,14 @@ module Magickly
       require 'newrelic_rpm' if ENV['NEW_RELIC_ID']
     end
     
+    before do
+      app_host = ENV['MAGICKLY_APP_DOMAIN']
+      if app_host && request.host != app_host
+        request_host_with_port = request.env['HTTP_HOST']
+        redirect request.url.sub(request_host_with_port, app_host), 301
+      end
+    end
+    
     
     before do
       Magickly.dragonfly.datastore.configure do |d|
