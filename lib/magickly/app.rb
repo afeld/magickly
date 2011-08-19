@@ -47,14 +47,14 @@ module Magickly
         # get combined list of jobs and processor methods
         @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
         @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
-        haml :index
+        erb :index
       end
     end
     
     get '/analyze' do
       @analyzers = Magickly.dragonfly.analyser_methods
       @analyzers.sort!{|m1, m2| m1.to_s <=> m2.to_s }
-      haml :analyzers
+      erb :analyzers
     end
     
     get '/analyze/:name' do |method|
