@@ -3,6 +3,8 @@
 <head>
   <title>Magickly</title>
   <link href="style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script type="text/javascript" src="magickly_demo.js"></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
     _gaq.push(['_setAccount', 'UA-22837777-1']);
@@ -16,27 +18,35 @@
   </script>
 </head>
 <body>
-  <a href="http://github.com/afeld/magickly">
+  <a href="https://github.com/afeld/magickly/blob/master/README.md">
     <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/bec6c51521dcc8148146135149fe06a9cc737577/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub">
   </a>
   <div id="container">
     <div id="logo">
-      <a href="http://www.jux.com"><img src="images/logo.jpg"></a>
+      <a href="http://www.jux.com"><img width='822' height='244' src="images/logo.jpg"></a>
     </div>
     <div id="about"><p>About: A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem. Say the base URL is the hosted version of this app, magickly.jux.com. The image URL is appended to the query string as a src=, followed by any of the supported operations below. Multiple operations can be combined, and will be applied in order.If no query params are provided, a simple sandbox page is displayed.</p></div>
     <div id="main">
-      <p>Paste in your url ___________________________________________________________________________________________</p>
-      <div id="checkbox">
-        <p>Check the effects you want:<br /></p>
+      <p>Paste in your url <input id="input-url" type="text" value="<%= Magickly::App::DEMO_IMAGE %>"/></p>
+      <div id="toggle-effects">
+        <p>
+          Check the effects you want:<br />
+          <% %w(flip flop greyscale tilt_shift two_color).each do |effect| %>
+            <input type="checkbox" class="effect" name="<%= effect %>"/>
+            <label for="<%= effect %>"><%= effect %></label>
+            <br/>
+          <% end %>
+        </p>
       </div>
-      <div id="sliders">
+      <div id="adjustable-effects">
         <p>Also, mess with sliders:</p>
       </div>
       <div id="result">
         <p>Here's the result:</p>
         <div id="result_container">
+          <img id="result-image" src="<%= Magickly::App::DEMO_IMAGE %>"/>
         </div>
-        <p>Sweet! Copy the result url:</p>
+        <p>Sweet! Copy the result url: <input id="result-url" type="text" value="<%= Magickly::App::DEMO_IMAGE %>"/></p>
 
       </div>
       <div id="footer">

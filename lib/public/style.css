@@ -30,14 +30,14 @@ p {
 #main {
   position: absolute;
 }
-#checkbox{
+#toggle-effects {
   float: left;
   width: 410px;
   min-height: 215px;
   background-color: yellow;
   display:block;	
 }
-#sliders{
+#adjustable-effects {
   float: right;
   width: 410px;
   min-height: 215px;	
