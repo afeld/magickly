@@ -12,20 +12,19 @@ module Magickly
     end
     
     before do
+      # redirect to MAGICKLY_APP_DOMAIN, if specified
       app_host = ENV['MAGICKLY_APP_DOMAIN']
       if app_host && request.host != app_host
         request_host_with_port = request.env['HTTP_HOST']
         redirect request.url.sub(request_host_with_port, app_host), 301
       end
-    end
-    
-    
-    before do
+      
       Magickly.dragonfly.datastore.configure do |d|
         # pass cookies to subsequent request
         d.cookie_str = request.env["rack.request.cookie_string"]
       end
       
+      # parse query params so they are ordered
       @options = ActiveSupport::OrderedHash.new
       request.query_string.split('&').each do |e|
         k,v = e.split('=')
