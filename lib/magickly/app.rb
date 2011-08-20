@@ -1,7 +1,7 @@
 module Magickly
   class App < Sinatra::Base
     RESERVED_PARAMS = ['src']
-    DEMO_IMAGE = 'http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png'
+    DEMO_IMAGE = 'http://farm4.static.flickr.com/3351/3450592233_c29fde01ef_z.jpg'
     
     enable :logging
     set :root, File.join(File.dirname(__FILE__), '..')
