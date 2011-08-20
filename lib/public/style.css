@@ -44,6 +44,9 @@ p {
   background-color: pink;
   display:block;	
 }
+#adjustable-effects .slider {
+  width: 250px;
+}
 #result{
   height:auto;
   width: 410px;

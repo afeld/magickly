@@ -2,8 +2,10 @@
 <html>
 <head>
   <title>Magickly</title>
+  <link href="jquery-ui.smoothness.css" rel="stylesheet" type="text/css">
   <link href="style.css" rel="stylesheet" type="text/css">
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
   <script type="text/javascript" src="magickly_demo.js"></script>
   <script type="text/javascript">
     var _gaq = _gaq || [];
@@ -40,6 +42,13 @@
       </div>
       <div id="adjustable-effects">
         <p>Also, mess with sliders:</p>
+        <% %w(halftone).each do |effect| %>
+          <div>
+            <input id="<%= effect %>-toggle" type="checkbox" class="effect slider-toggle" name="<%= effect %>"/>
+            <label for="<%= effect %>"><%= effect %></label>
+            <div id="<%= effect %>-slider" class="effect slider"></div>
+          </div>
+        <% end %>
       </div>
       <div id="result">
         <p>Here's the result:</p>
