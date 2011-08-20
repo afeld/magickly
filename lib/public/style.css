@@ -30,6 +30,11 @@ p {
 #main {
   position: absolute;
 }
+#readme-link {
+  width: 788px;
+  font-size: 2em;
+  text-align: center;
+}
 #toggle-effects {
   float: left;
   width: 410px;

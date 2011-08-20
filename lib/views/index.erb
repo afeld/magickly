@@ -27,41 +27,11 @@
     <div id="logo">
       <a href="http://www.jux.com"><img width='822' height='244' src="images/logo.jpg"></a>
     </div>
-    <div id="about"><p>About: A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem. Say the base URL is the hosted version of this app, magickly.jux.com. The image URL is appended to the query string as a src=, followed by any of the supported operations below. Multiple operations can be combined, and will be applied in order.If no query params are provided, a simple sandbox page is displayed.</p></div>
+    <div id="about"><p>Magickly is a web service for image manipulation, built as a wrapper of Imagemagick.  This allows developers to apply effects to one (or hundreds) of photos, without any fancy plugins or complex client code.  It's as easy as providing your source image and the list of transformations.</p></div>
     <div id="main">
-      <p>Paste in your url <input id="input-url" type="text" value="<%= Magickly::App::DEMO_IMAGE %>"/></p>
-      <div id="toggle-effects">
-        <p>
-          Check the effects you want:<br />
-          <% %w(flip flop greyscale tilt_shift two_color).each do |effect| %>
-            <input type="checkbox" class="effect" name="<%= effect %>"/>
-            <label for="<%= effect %>"><%= effect %></label>
-            <br/>
-          <% end %>
-        </p>
-      </div>
-      <div id="adjustable-effects">
-        <p>Also, mess with sliders:</p>
-        <% %w(halftone).each do |effect| %>
-          <div>
-            <input id="<%= effect %>-toggle" type="checkbox" class="effect slider-toggle" name="<%= effect %>"/>
-            <label for="<%= effect %>"><%= effect %></label>
-            <div id="<%= effect %>-slider" class="effect slider"></div>
-          </div>
-        <% end %>
-      </div>
-      <div id="result">
-        <p>Here's the result:</p>
-        <div id="result_container">
-          <img id="result-image" src="<%= Magickly::App::DEMO_IMAGE %>"/>
-        </div>
-        <p>Sweet! Copy the result url: <input id="result-url" type="text" value="<%= Magickly::App::DEMO_IMAGE %>"/></p>
-
-      </div>
-      <div id="footer">
-        <span id="left_foot"></span>
-        <span id="right_foot">Made with love by <a href="http://www.jux.com">Jux.com</a></span>
-      </div> <!--end footer -->
+      <p id="readme-link">
+        Click <a href="https://github.com/afeld/magickly/blob/master/README.md">here</a> to learn more.
+      </p>
     </div> <!--end main -->
   </div> <!-- end container -->
 </body>
