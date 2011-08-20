@@ -1,0 +1,6 @@
+<% @analyzers.each do |analyzer| %>
+  <a href="/analyze/<%= analyzer.to_s.chomp('?') %>?src=<%= Magickly::App::DEMO_IMAGE %>">
+    <%= analyzer %>
+  </a>
+  <br/>
+<% end %>
