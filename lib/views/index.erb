@@ -3,10 +3,26 @@
 <head>
   <title>Magickly</title>
   <link href="style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-22837777-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
 </head>
 <body>
+  <a href="http://github.com/afeld/magickly">
+    <img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/bec6c51521dcc8148146135149fe06a9cc737577/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub">
+  </a>
   <div id="container">
-    <div id="logo"><img src="images/logo.jpg"></div>
+    <div id="logo">
+      <a href="http://www.jux.com"><img src="images/logo.jpg"></a>
+    </div>
     <div id="about"><p>About: A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the Dragonfly gem. Say the base URL is the hosted version of this app, magickly.jux.com. The image URL is appended to the query string as a src=, followed by any of the supported operations below. Multiple operations can be combined, and will be applied in order.If no query params are provided, a simple sandbox page is displayed.</p></div>
     <div id="main">
       <p>Paste in your url ___________________________________________________________________________________________</p>
@@ -24,8 +40,8 @@
 
       </div>
       <div id="footer">
-        <span id="left_foot">Check out the GitHub Page</span>
-        <span id="right_foot">Made with love, by: Jux.com</span>
+        <span id="left_foot"></span>
+        <span id="right_foot">Made with love by <a href="http://www.jux.com">Jux.com</a></span>
       </div> <!--end footer -->
     </div> <!--end main -->
   </div> <!-- end container -->
