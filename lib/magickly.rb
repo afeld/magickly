@@ -3,13 +3,16 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/ordered_hash'
 
 require 'sinatra/base'
-require 'sinatra/synchrony'
+unless RUBY_VERSION.start_with? '1.8'
+  require 'sinatra/synchrony'
+  Sinatra::Synchrony.overload_tcpsocket!
+end
+
 require 'addressable/uri'
 require 'dragonfly'
 Dir["#{File.dirname(__FILE__)}/dragonfly/**/*.rb"].each {|file| require file }
 Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
-Sinatra::Synchrony.overload_tcpsocket!
 
 module Magickly
   DEFAULT_PALETTE_COLOR_COUNT = 5

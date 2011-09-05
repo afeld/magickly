@@ -8,7 +8,7 @@ require 'sinatra'
 require 'webmock/rspec'
 require 'image_size'
 
-Sinatra::Synchrony.patch_tests!
+Sinatra::Synchrony.patch_tests! unless RUBY_VERSION.start_with? '1.8'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
