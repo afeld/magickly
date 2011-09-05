@@ -59,7 +59,7 @@ GEM
       sinatra (>= 1.0)
     tilt (1.3.3)
     webmock (1.7.6)
-      addressable (~> 2.2, > 2.2.5)
+      addressable (> 2.2.5, ~> 2.2)
       crack (>= 0.1.7)
 
 PLATFORMS

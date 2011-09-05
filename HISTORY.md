@@ -1,8 +1,8 @@
 This gem respects [semantic versioning](http://semver.org/).
 
-# HEAD
+# 1.3.0 (9/5/11)
 
-[commits](https://github.com/afeld/magickly/compare/v1.2.0...master)
+[commits](https://github.com/afeld/magickly/compare/v1.2.0...v1.3.0)
 
 * added asynchronous support when using Ruby 1.9 or JRuby
 * reduced gem dependencies
