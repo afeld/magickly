@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'json'
 
 describe Magickly::App do
   include Rack::Test::Methods
@@ -121,7 +120,7 @@ describe Magickly::App do
       a_request(:get, @image_url).should have_been_made.once
       last_response.should be_ok
       last_response.body.should_not be_empty
-      json = JSON.parse(last_response.body)
+      json = ActiveSupport::JSON.decode(last_response.body)
       json.should be_an Array
       json.size.should eq 5
     end
