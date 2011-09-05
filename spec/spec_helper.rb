@@ -1,3 +1,5 @@
+ENV['RACK_ENV'] = 'test'
+
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 require 'magickly'
@@ -5,6 +7,8 @@ require 'rack/test'
 require 'sinatra'
 require 'webmock/rspec'
 require 'image_size'
+
+Sinatra::Synchrony.patch_tests!
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
