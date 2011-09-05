@@ -19,7 +19,6 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{A service for image manipulation - built as an extensible wrapper of Imagemagick which handles caching, c/o the Dragonfly gem.}
   gem.email = "aidan.feldman@gmail.com"
   gem.authors = ["Aidan Feldman"]
-  gem.executables = ['magickly']
   gem.files.include '.gemtest'
   # Include your dependencies below. Runtime dependencies are required when using your gem,
   # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
@@ -42,8 +41,8 @@ end
 task :default => :spec
 task :test => :spec
 
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
+require 'rdoc/task'
+RDoc::Task.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
