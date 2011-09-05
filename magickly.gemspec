@@ -12,7 +12,6 @@ Gem::Specification.new do |s|
   s.date = "2011-09-05"
   s.description = "A service for image manipulation - built as an extensible wrapper of Imagemagick which handles caching, c/o the Dragonfly gem."
   s.email = "aidan.feldman@gmail.com"
-  s.executables = ["magickly"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
