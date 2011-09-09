@@ -21,7 +21,12 @@ module Magickly
   @dragonfly.configure do |c|
     c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
     c.log = Logger.new($stdout)
-    c.log_commands = true
+    
+    begin
+      c.log_commands = true
+    rescue Dragonfly::Configurable::BadConfigAttribute
+      # seems this config param was removed from Dragonfly ~v0.98
+    end
   end
   
   class << self
