@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'sinatra', '~> 1.2', :require => 'sinatra/base'
-gem 'dragonfly', '~> 0.9.1'
+gem 'dragonfly', '~> 0.9.5'
 gem 'addressable', '~> 2.2', :require => 'addressable/uri'
 
 gem 'haml', '~> 3.0'
