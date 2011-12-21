@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'json'
+require 'uri'
 
 describe Magickly::App do
   include Rack::Test::Methods
@@ -11,6 +12,7 @@ describe Magickly::App do
   def setup_image(host='http://www.foo.com')
     @image_filename = 'imagemagick.png'
     @image_url = "#{host}/#{@image_filename}"
+    @escaped_image_url = URI.escape @image_url, URI::REGEXP::PATTERN::RESERVED
     @image_path = File.join(File.dirname(__FILE__), '..', 'support', @image_filename)
     stub_request(:get, @image_url).to_return(:body => File.new(@image_path))
   end
@@ -94,12 +96,27 @@ describe Magickly::App do
           process :thumb, size
         end
       end
-      
+
       get "/?src=#{@image_url}&#{shortcut}=#{width}x"
       
       last_response.should be_ok
       ImageSize.new(last_response.body).get_width.should eq width
     end
+  end
+
+  describe "GET /q" do
+
+    it "resizes an image" do
+      setup_image
+      width = 100
+
+      get "/q/src/#{@escaped_image_url}/resize/#{width}x"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
+    end
+
   end
   
   describe "GET /analyze" do

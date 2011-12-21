@@ -11,7 +11,6 @@ module Magickly
       require 'newrelic_rpm' if ENV['NEW_RELIC_ID']
     end
     
-    
     before do
       @options = ActiveSupport::OrderedHash.new
       request.query_string.split('&').each do |e|
@@ -21,21 +20,21 @@ module Magickly
     end
     
     get '/' do
-      src = params['src']
-      
-      if src
-        # process image
-        url = uri_to_url(src)
-        image = Magickly.process_src(url, @options)
-        image.to_response(env)
-      else
-        # display demo page
-        
-        # get combined list of jobs and processor methods
-        @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
-        @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
-        haml :index
+      process_src_or_display_demo params[:src], @options
+    end
+
+    get '/q/*' do 
+      src = nil
+      opts = ActiveSupport::OrderedHash.new
+      splat = request.path_info.sub /^\/q\//, ''
+      splat.split('/').each_slice(2) do |k, v|
+        if RESERVED_PARAMS.include? k
+          src = URI.unescape(v) if k == 'src'
+        else
+          opts[k] = URI.unescape(v)
+        end
       end
+      process_src_or_display_demo src, opts
     end
     
     get '/analyze' do
@@ -63,7 +62,22 @@ module Magickly
         "Please provide an image URL with the src parameter."
       end
     end
-    
+
+    def process_src_or_display_demo src, options
+      if src
+        # process image
+        url = uri_to_url src
+        image = Magickly.process_src(url, options)
+        image.to_response(env)
+      else
+        # display demo page
+        
+        # get combined list of jobs and processor methods
+        @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
+        @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
+        haml :index
+      end
+    end
     
     def uri_to_url(uri)
       url = Addressable::URI.parse(uri)
