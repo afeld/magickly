@@ -13,11 +13,6 @@ module Magickly
     
     
     before do
-      Magickly.dragonfly.datastore.configure do |d|
-        # pass cookies to subsequent request
-        d.cookie_str = request.env["rack.request.cookie_string"]
-      end
-      
       @options = ActiveSupport::OrderedHash.new
       request.query_string.split('&').each do |e|
         k,v = e.split('=')
