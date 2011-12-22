@@ -29,7 +29,12 @@ module Magickly
       splat = request.path_info.sub /^\/q\//, ''
       splat.split('/').each_slice(2) do |k, v|
         if RESERVED_PARAMS.include? k
-          src = URI.unescape(v) if k == 'src'
+          if k == 'src'
+            src = URI.unescape(v)
+            # slashes come in double-escaped by Apache so we
+            # need to unescape again
+            src = URI.unescape(src) if src =~ /%2F/
+          end
         else
           opts[k] = URI.unescape(v)
         end
