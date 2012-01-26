@@ -88,6 +88,12 @@ where *threshold* is a value between 0 and 100.
 
 [http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60)
 
+### jcn=true
+
+![JCN imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&jcn=true)
+
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&jcn=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&jcn=true)
+
 ### resize=*geometry*
 
 ![resized imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100)

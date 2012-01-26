@@ -46,6 +46,12 @@ Magickly.dragonfly.configure do |c|
     lomo_mask = File.join(File.dirname(__FILE__), 'images', 'lomo_mask.png')
     process :convert, "\\( +clone -unsharp 1 -contrast -contrast -modulate #{modulate_params} \\( #{lomo_mask} -resize #{@job.width}x#{@job.height}\\! \\) -compose overlay -composite \\) -compose multiply -composite"
   end
+
+  # thanks to Jesse Chan-Norris - http://jcn.me/
+  c.job :jcn do
+    process :greyscale
+    @job = @job.halftone(99)
+  end
   
   
   ## thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick) for the following: ##

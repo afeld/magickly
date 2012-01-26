@@ -8,6 +8,7 @@ This gem respects [semantic versioning](http://semver.org/).
 * removed async support (for now) - needs more extensive testing
 * made compatible w/ Dragonfly 0.9.8+
 * added /q syntax as alternative to query params (tolsen)
+* added JCN effect
 
 # 1.2.1 (12/21/11)
 
