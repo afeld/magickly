@@ -1,5 +1,4 @@
 require 'spec_helper'
-# require 'json'
 require 'uri'
 
 describe Magickly::App do

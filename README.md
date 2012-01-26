@@ -128,6 +128,22 @@ where *threshold* is a value between 0 and 100.
 
 [http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
 
+## Alternate Syntax
+
+Some CDNs are jerks and don't respect query params on resources (_ahem_ CLOUDFRONT _ahem_) when caching.  To use this syntax:
+
+* replace the question mark that starts the query string (`?`) with `q/`
+* replace the ampersands (`&`) and equals signs (`=`) with forward slashes (`/`)
+* make sure the `src` is encoded - this can be done in Javascript with `encodeURIComponent()`
+
+Therefore, instead of
+
+	http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100
+	
+the new URL would be
+
+	http://magickly.jux.com/q/src/http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F0d%2FImagemagick-logo.png%2F200px-Imagemagick-logo.png/thumb/200x100
+
 ## Analyzers
 
 Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:

@@ -1,5 +1,14 @@
 This gem respects [semantic versioning](http://semver.org/).
 
+# HEAD
+
+[commits](https://github.com/afeld/magickly/compare/v1.3.0...master)
+
+* SECURITY: don't pass cookies to image request (tolsen)
+* removed async support (for now) - needs more extensive testing
+* made compatible w/ Dragonfly 0.9.8+
+* added /q syntax as alternative to query params (tolsen)
+
 # 1.2.1 (12/21/11)
 
 [commits](https://github.com/afeld/magickly/compare/v1.2.0...v1.2.1)
