@@ -1,6 +1,6 @@
 This gem respects [semantic versioning](http://semver.org/).
 
-# 1.3.0 (9/5/11)
+# 1.3.0 (9/5/11) - YANKED
 
 [commits](https://github.com/afeld/magickly/compare/v1.2.0...v1.3.0)
 
