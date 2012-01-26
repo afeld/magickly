@@ -1,5 +1,11 @@
 This gem respects [semantic versioning](http://semver.org/).
 
+# 1.2.1 (12/21/11)
+
+[commits](https://github.com/afeld/magickly/compare/v1.2.0...v1.2.1)
+
+* made compatible w/ Dragonfly v0.9.8 (tolsen)
+
 # 1.3.0 (9/5/11) - YANKED
 
 [commits](https://github.com/afeld/magickly/compare/v1.2.0...v1.3.0)
