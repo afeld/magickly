@@ -10,7 +10,7 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 ## Installation
 
-Requires Ruby 1.8.7 or 1.9.2, and Imagemagick >= v6.2.4.
+[Compatible](http://travis-ci.org/#!/afeld/magickly) with Ruby 1.8.7, 1.9.2 or 1.9.3.  Requires Imagemagick >= v6.2.4.
 
     $ gem install magickly
 
