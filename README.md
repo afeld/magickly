@@ -16,7 +16,7 @@ Requires Ruby 1.8.7 or 1.9.2, and Imagemagick >= v6.2.4.
 
 ## Running the App
 
-For Ruby 1.9.2, you will need to use an Eventmachine-compatible server, i.e. [Thin](http://code.macournoyer.com/thin/) or [Rainbows](http://rainbows.rubyforge.org/).  A few options:
+A few options:
 
 ### A. Run the app directly
 
