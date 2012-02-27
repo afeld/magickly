@@ -6,7 +6,7 @@ require 'sinatra/base'
 require 'addressable/uri'
 require 'dragonfly'
 Dir["#{File.dirname(__FILE__)}/dragonfly/**/*.rb"].each {|file| require file }
-Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
+Dir["#{File.dirname(__FILE__)}/magickly/**/*.rb"].each {|file| require file }
 
 
 module Magickly
@@ -35,21 +35,13 @@ module Magickly
     end
     
     def process_image(image, options={})
-      options.each do |method, val|
-        method = method.to_sym
-        if Magickly.dragonfly.processor_methods.include?(method)
-          if val == 'true'
-            image = image.process method
-          else
-            image = image.process method, val
-          end
-        elsif Magickly.dragonfly.job_methods.include?(method)
-          # note: might be an app-defined dragonfly shortcut
-          image = image.send(method, val)
-        end
+
+      convert = options.inject(nil) do |prev, (k, v)|
+        factory = Magickly.get_convert_factory k.to_sym
+        factory.nil? ? prev : factory.new_convert(image, v, prev)
       end
-      
-      image
+
+      convert.nil? ? image : convert.execute
     end
   end
 end
