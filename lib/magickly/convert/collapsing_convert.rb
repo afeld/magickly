@@ -2,6 +2,8 @@ module Magickly
 
   class CollapsingConvert
 
+    # Hack: include these modules to get Utils#identify() 
+    include Dragonfly::Configurable
     include Dragonfly::ImageMagick::Utils
 
     # image: dragonfly image
