@@ -18,8 +18,8 @@ module Magickly
       "-resize 600x600 -colors #{count} -unique-colors -scale 10000%"
     end
 
-    c.identity do |count, prev_identity|
-      prev_identity.merge :width => 600, :height => 600
+    c.identity do |count, convert|
+      convert.pre_identify.merge :width => 600, :height => 600
     end
 
     c.format = :gif
@@ -84,8 +84,9 @@ module Magickly
       "-resize #{geometry}"
     end
 
-    c.identity do |geometry, prev_identity|
-      current_identity.merge resized_dimensions(prev_identity[:width], prev_identity[:height], geometry)
+    c.identity do |geometry, convert|
+      identity = convert.pre_identify
+      identity.merge resized_dimensions(identity[:width], identity[:height], geometry)
     end
   end
 
@@ -120,7 +121,8 @@ module Magickly
       end
     end
 
-    c.identity do |geometry, prev_identity|
+    c.identity do |geometry, convert|
+      prev_identity = convert.pre_identify
       width, height = prev_identity.values_at :width, :height
       case geometry
       when Dragonfly::ImageMagick::Processor::RESIZE_GEOMETRY

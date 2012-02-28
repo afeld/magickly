@@ -6,6 +6,9 @@ module Magickly
     include Dragonfly::Configurable
     include Dragonfly::ImageMagick::Utils
 
+    attr_reader :image
+    attr_accessor :notes
+
     # image: dragonfly image
     # options:
     #  convert_args_generator (Proc)
@@ -18,6 +21,7 @@ module Magickly
       @convert_args_generator, @format, @identity_modifier, @previous, @value =
         options.values_at(:convert_args_generator, :format, :identity_modifier,
                           :previous, :value)
+      @notes = {}
     end
 
     def current_args
@@ -59,7 +63,7 @@ module Magickly
       return @post_identity if @post_identify
 
       if @identity_modifier
-        @post_identity = @identity_modifier.call @value, pre_identify
+        @post_identity = @identity_modifier.call @value, self
       else
         # No identity changes for this convert
         @post_identity = pre_identify
