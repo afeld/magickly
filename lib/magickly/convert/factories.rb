@@ -13,7 +13,7 @@ module Magickly
                              "argument must be of the format '<int>[%]x<int>[%]'")
 
   add_convert_factory :color_palette_swatch do |c|
-    c.convert_args do |count, identifier|
+    c.convert_args do |count, convert|
       count = Magickly::DEFAULT_PALETTE_COLOR_COUNT if count == 'true'
       "-resize 600x600 -colors #{count} -unique-colors -scale 10000%"
     end
@@ -34,7 +34,7 @@ module Magickly
 
   # thanks to Fred Weinhaus (http://www.fmwconcepts.com/imagemagick)
   add_convert_factory :glow do |c|
-    c.convert_args do |value, identifier|
+    c.convert_args do |value, convert|
       if value == 'true'
         amount = 1.2
         softening = 20
@@ -55,7 +55,7 @@ module Magickly
 
   # thanks to http://www.melissaevans.com/tutorials/pop-art-inspired-by-lichtenstein
   add_convert_factory :halftone do |c|
-    c.convert_args do |threshold, identifier|
+    c.convert_args do |threshold, convert|
       threshold = 50 if threshold == 'true'
       "-white-threshold #{threshold.to_i}% -gaussian-blur 2 -ordered-dither 8x1"
     end
@@ -66,21 +66,21 @@ module Magickly
 
   ## thanks to https://github.com/soveran/lomo
   add_convert_factory :lomo do |c|
-    c.convert_args do |modulate_params, identifier|
+    c.convert_args do |modulate_params, convert|
       if modulate_params == 'true'
         modulate_params = '100,150'
       elsif modulate_params !~ /^\d+,\d+$/
         raise ArgumentError, "modulate_params must be of the format '<int>,<int>'"
       end
 
-      width, height = identifier.call.values_at :width, :height
+      width, height = convert.pre_identify.values_at :width, :height
       
       "\\( +clone -unsharp 1 -contrast -contrast -modulate #{modulate_params} \\( #{LOMO_MASK_PATH} -resize #{width}x#{height}\\! \\) -compose overlay -composite \\) -compose multiply -composite"
     end
   end
 
   add_convert_factory :resize do |c|
-    c.convert_args do |geometry, identifier|
+    c.convert_args do |geometry, convert|
       "-resize #{geometry}"
     end
 
@@ -94,7 +94,7 @@ module Magickly
   add_simple_convert_factory :rotate, "-rotate", true
 
   add_convert_factory :saturation do |c|
-    c.convert_args do |percentage, identifier|
+    c.convert_args do |percentage, convert|
       raise ArgumentError, "percentage must be a positive integer" unless percentage =~ /^\d+$/
       "-modulate 100,#{percentage}"
     end
@@ -102,7 +102,7 @@ module Magickly
 
   # Adapted from dragonfly
   add_convert_factory :thumb do |c|
-    c.convert_args do |geometry, identifier|
+    c.convert_args do |geometry, convert|
       case geometry
       when Dragonfly::ImageMagick::Processor::RESIZE_GEOMETRY
         "-resize #{geometry}"
@@ -134,7 +134,7 @@ module Magickly
   end
 
   add_convert_factory :tilt_shift do |c|
-    c.convert_args do |coefficients, identifier|
+    c.convert_args do |coefficients, convert|
       coefficients = '4,-4,1' if coefficients == 'true'
       raise ArgumentError, "coefficients must be of the format '<decimal>,<decimal>,<decimal>'" unless coefficients =~ /^(-?\d+(\.\d+)?,){2}-?\d+(\.\d+)?$/
     

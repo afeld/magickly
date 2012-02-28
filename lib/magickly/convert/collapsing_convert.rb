@@ -22,7 +22,7 @@ module Magickly
 
     def current_args
       args = @previous.nil? ? "" : "#{@previous.current_args} "
-      args += @convert_args_generator.call(@value, lambda { self.pre_convert_identify })
+      args += @convert_args_generator.call(@value, self)
       args
     end
 
@@ -40,33 +40,36 @@ module Magickly
       end
     end
 
-    def post_convert_identify
-      return @post_convert_identity if @post_convert_identify
-
-      if @identity_modifier
-        @post_convert_identity = @identity_modifier.call @value, pre_convert_identify
-      else
-        # No identity changes for this convert
-        @post_convert_identity = pre_convert_identify
-      end
-
-      @post_convert_identity = @post_convert_identity.merge :format => @format
-      
-      @post_convert_identity
-    end
-
-    def pre_convert_identify
-      return @pre_convert_identity if @pre_convert_identity
+    def pre_identify
+      return @pre_identity if @pre_identity
       if @previous.nil?
         # We are the first convert.  We need to get the
         # identity data directly from the source image
         raise "Neither previous nor image set" if @image.nil?
-        @pre_convert_identity = identify @image
+        @pre_identity = identify @image
       else
-        @pre_convert_identity = @previous.post_convert_identify
+        @pre_identity = @previous.post_identify
       end
-      @pre_convert_identity
+      @pre_identity
     end
+
+    protected
+    
+    def post_identify
+      return @post_identity if @post_identify
+
+      if @identity_modifier
+        @post_identity = @identity_modifier.call @value, pre_identify
+      else
+        # No identity changes for this convert
+        @post_identity = pre_identify
+      end
+
+      @post_identity = @post_identity.merge :format => @format if @format
+      
+      @post_identity
+    end
+
 
   end
   
