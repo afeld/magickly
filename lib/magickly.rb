@@ -6,7 +6,8 @@ require 'sinatra/base'
 require 'addressable/uri'
 require 'dragonfly'
 Dir["#{File.dirname(__FILE__)}/dragonfly/**/*.rb"].each {|file| require file }
-Dir["#{File.dirname(__FILE__)}/magickly/**/*.rb"].each {|file| require file }
+
+Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
 
 module Magickly
