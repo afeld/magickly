@@ -36,13 +36,37 @@ module Magickly
     
     def process_image(image, options={})
 
+      skipped_options = {}
+
       convert = options.inject(nil) do |prev, (k, v)|
         factory = Magickly.get_convert_factory k.to_sym
-        factory.nil? ? prev : factory.new_convert(image, v, prev)
+        if factory.nil?
+          skipped_options[k] = v
+          prev
+        else
+          factory.new_convert(image, v, prev)
+        end
       end
 
-      convert.nil? ? image : convert.execute
+      image = convert.nil? ? image : convert.execute
+
+      # Handle any remaining options not handled by single convert
+      skipped_options.each do |method, val|
+        method = method.to_sym
+        if Magickly.dragonfly.processor_methods.include?(method)
+          if val == 'true'
+            image = image.process method
+          else
+            image = image.process method, val
+          end
+        elsif Magickly.dragonfly.job_methods.include?(method)
+          # note: might be an app-defined dragonfly shortcut
+          image = image.send(method, val)
+        end
+      end
+      image
     end
+    
   end
 end
 
