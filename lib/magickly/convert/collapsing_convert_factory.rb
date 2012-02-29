@@ -34,7 +34,7 @@ module Magickly
 
   class CollapsingConvertFactory
 
-    attr_accessor :convert_args_generator, :format, :identity_modifier
+    attr_accessor :convert_args_generator, :force_format, :identity_modifier, :need_format
 
     def configure
       yield self if block_given?
@@ -55,10 +55,11 @@ module Magickly
     def new_convert image, value, previous = nil
       CollapsingConvert.new(image,
                             :convert_args_generator => @convert_args_generator,
-                            :format => @format,
                             :identity_modifier => @identity_modifier,
                             :value => value,
-                            :previous => previous)
+                            :previous => previous,
+                            :force_format => @force_format,
+                            :need_format => @need_format)
     end
 
   end

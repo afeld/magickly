@@ -19,10 +19,10 @@ module Magickly
     end
 
     c.identity do |count, convert|
-      convert.pre_identify.merge :width => 600, :height => 600
+      convert.pre_identify.merge :width => 600, :height => 600, :format => :gif
     end
 
-    c.format = :gif
+    c.force_format = :gif
   end
 
   # thanks to http://www.photoshopsupport.com/tutorials/or/cross-processing.html

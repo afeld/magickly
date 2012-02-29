@@ -15,12 +15,13 @@ module Magickly
     #  identity_modifier (Proc)
     #  previous (CollapsingConvert)
     #  value (String)
+    #  force_format (Symbol): format to be forced regardless of original's format (identify unnecessary)
+    #  need_format (Boolean): signals that an identify will be necessary to determine format
     def initialize image, options
       @image = image
       raise "must set image" unless @image
-      @convert_args_generator, @format, @identity_modifier, @previous, @value =
-        options.values_at(:convert_args_generator, :format, :identity_modifier,
-                          :previous, :value)
+      @convert_args_generator, @identity_modifier, @previous, @value, @force_format, @need_format =
+        options.values_at(:convert_args_generator, :identity_modifier, :previous, :value, :force_format, :need_format)
       @notes = {}
     end
 
@@ -35,11 +36,14 @@ module Magickly
     end
 
     def format
-      if @format
-        @format
+      if @force_format
+        @force_format
+      elsif @need_format
+        post_identify[:format]
       elsif @previous
         @previous.format
       else
+        # Assume format is not changing (prevents unnecessary identify)
         nil
       end
     end
@@ -69,8 +73,6 @@ module Magickly
         @post_identity = pre_identify
       end
 
-      @post_identity = @post_identity.merge :format => @format if @format
-      
       @post_identity
     end
 

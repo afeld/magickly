@@ -102,6 +102,8 @@ module Magickly
     def round_off float
       (float + 0.5).to_i
     end
+
+    extend self
     
   end
 end
