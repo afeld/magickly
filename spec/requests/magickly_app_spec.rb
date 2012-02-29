@@ -80,7 +80,33 @@ describe Magickly::App do
       last_response.should be_ok
       ImageSize.new(last_response.body).get_width.should eq width
     end
-      
+
+    (%w(auth_orient color_palette_swatch cross_process flip flop glow) +
+     %w(greyscale grayscale halftone jcn lomo tilt_shift two_color)).each do |effect|
+      it "runs the effect #{effect}" do
+        setup_image
+
+        get "/?src=#{@image_url}&#{effect}=true"
+        a_request(:get, @image_url).should have_been_made.once
+        last_response.should be_ok
+      end
+    end
+
+    {
+      :brightness_contrast => '50x50',
+      :resize_with_blur => '100x',
+      :rotate => '90',
+      :saturation => '20'
+    }.each do |effect, value|
+      it "runs the effect #{effect} with value #{value}" do
+        setup_image
+
+        get "/?src=#{@image_url}&#{effect}=#{value}"
+        a_request(:get, @image_url).should have_been_made.once
+        last_response.should be_ok
+      end
+    end
+
     it "should use my Dragonfly shortcut with no arguments" do
       setup_image
       width = 100
