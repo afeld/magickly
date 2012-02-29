@@ -43,7 +43,7 @@ module Magickly
           x_scale = $1.to_f
           y_scale = $2.to_f
           [round_off(width * x_scale), round_off(height * y_scale)]
-        when /^(\d+)$/
+        when /^(\d+)x?$/
           new_height =  ($1.to_f * height) / width
           [$1.to_i, round_off(new_height)]
         when /^x(\d+)$/
@@ -55,10 +55,29 @@ module Magickly
           resized_dimensions_preserving_aspect_ratio width, height, $1, $2, :min
         when /^(\d+)x(\d+)!$/
           [$1, $2]
-        when /^(\d+)x(\d+)>$/
-          new_width = $1.to_i
-          new_height = $2.to_i
-          if (width > new_width || height > new_height)
+        when /^(\d+)?x?(\d+)?>$/
+          new_width = $1.nil? ? nil : $1.to_i
+          new_height = $2.nil? ? nil : $2.to_i
+
+          if new_width.nil?
+            
+            if new_height.nil?
+              raise "unrecognized argument for -resize: #{geometry}"
+            elsif height > new_height
+              [round_off((width.to_f * new_height) / height), new_height]
+            else
+              [width, height]
+            end
+            
+          elsif new_height.nil?
+            
+            if width > new_width
+              [new_width, round_off((height.to_f * new_width) / width)]
+            else
+              [width, height]
+            end
+          
+          elsif (width > new_width || height > new_height)
             resized_dimensions_preserving_aspect_ratio width, height, new_width, new_height, :max
           else
             [width, height]
@@ -78,7 +97,7 @@ module Magickly
           new_height = new_area / new_width
           [round_off(new_width), round_off(new_height)]
         else
-          raise "unrecognized argument for -resize: #{value}"
+          raise "unrecognized argument for -resize: #{geometry}"
         end
       { :width => new_width, :height => new_height }
     end

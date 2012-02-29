@@ -2,7 +2,7 @@ module Magickly
 
   extend Magickly::ConvertHelpers
 
-  LOMO_MASK_PATH = File.join(File.dirname(__FILE__), 'images', 'lomo_mask.png')
+  LOMO_MASK_PATH = File.join(File.dirname(__FILE__), '..', '..', 'images', 'lomo_mask.png')
 
   add_simple_convert_factory :auto_orient, "-auto-orient"
 
@@ -122,13 +122,13 @@ module Magickly
     end
 
     c.identity do |geometry, convert|
-      prev_identity = convert.pre_identify
-      width, height = prev_identity.values_at :width, :height
+      identity = convert.pre_identify
+      width, height = identity.values_at :width, :height
       case geometry
       when Dragonfly::ImageMagick::Processor::RESIZE_GEOMETRY
-        current_identity.merge resized_dimensions(width, height, value)
+        identity.merge resized_dimensions(width, height, geometry)
       when Dragonfly::ImageMagick::Processor::CROPPED_RESIZE_GEOMETRY, Dragonfly::ImageMagick::Processor::CROP_GEOMETRY
-        current_identity.merge :width => $1, :height => $2
+        identity.merge :width => $1, :height => $2
       else raise ArgumentError, "Didn't recognise the geometry string #{geometry}"
       end
     end
