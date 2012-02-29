@@ -81,40 +81,36 @@ describe Magickly::App do
       ImageSize.new(last_response.body).get_width.should eq width
     end
       
-    pending do
-      
-      it "should use my Dragonfly shortcut with no arguments" do
-        setup_image
-        width = 100
-        shortcut = :filter_with_no_arguments
-        Magickly.dragonfly.configure do |c|
-          c.job shortcut do
-            process :convert, "-filter Gaussian -resize #{width}x"
-          end
+    it "should use my Dragonfly shortcut with no arguments" do
+      setup_image
+      width = 100
+      shortcut = :filter_with_no_arguments
+      Magickly.dragonfly.configure do |c|
+        c.job shortcut do
+          process :convert, "-filter Gaussian -resize #{width}x"
         end
-        
-        get "/?src=#{@image_url}&#{shortcut}=true"
-        
-        last_response.should be_ok
-        ImageSize.new(last_response.body).get_width.should eq width
       end
       
-      it "should use my Dragonfly shortcut with one argument" do
-        setup_image
-        width = 100
-        shortcut = :filter_with_one_argument
-        Magickly.dragonfly.configure do |c|
-          c.job shortcut do |size|
-            process :thumb, size
-          end
+      get "/?src=#{@image_url}&#{shortcut}=true"
+      
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
+    end
+    
+    it "should use my Dragonfly shortcut with one argument" do
+      setup_image
+      width = 100
+      shortcut = :filter_with_one_argument
+      Magickly.dragonfly.configure do |c|
+        c.job shortcut do |size|
+          process :thumb, size
         end
-
-        get "/?src=#{@image_url}&#{shortcut}=#{width}x"
-        
-        last_response.should be_ok
-        ImageSize.new(last_response.body).get_width.should eq width
       end
 
+      get "/?src=#{@image_url}&#{shortcut}=#{width}x"
+      
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
     end
 
     describe "GET /q" do
