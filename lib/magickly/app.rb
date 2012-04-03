@@ -83,7 +83,16 @@ module Magickly
         # process image
         url = uri_to_url src
         image = Magickly.process_src(url, options)
-        image.to_response(env)
+        
+        status, headers, body = image.to_response(env)
+
+        if options['download'].try(:downcase) == 'true'
+          filename = image.uid ? File.basename(image.uid) : "picture.#{image.format}"
+          headers = headers.merge('Content-Disposition' => "attachment; filename=\"#{filename}\"",
+                                  'Content-Type' => 'application/octet-stream')
+        end
+
+        [status, headers, body]
       else
         # display demo page
         
