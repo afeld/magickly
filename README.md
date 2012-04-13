@@ -10,21 +10,20 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 ## Installation
 
-Requires Ruby 1.8.7 or 1.9.2, and Imagemagick >= v6.2.4.
+Requires Ruby 1.9.2 or 1.9.3, and Imagemagick >= v6.2.4.
 
     $ gem install magickly
 
 ## Running the App
 
-For Ruby 1.9.2, you will need to use an Eventmachine-compatible server, i.e. [Thin](http://code.macournoyer.com/thin/) or [Rainbows](http://rainbows.rubyforge.org/).  A few options:
+A few options:
 
 ### A. Run the app directly
 
     # in the app directory:
-    $ gem install thin
-    $ thin start
+    $ rackup
 
-The app can be accessed at [http://localhost:3000](http://localhost:3000).  To deploy to Heroku's Cedar stack (or another server using Foreman), see the [cedar](https://github.com/afeld/magickly/tree/cedar) branch.
+The app can be accessed at [http://localhost:9292](http://localhost:9292).  To deploy to Heroku's Cedar stack (or another server using Foreman), see the [cedar](https://github.com/afeld/magickly/tree/cedar) branch.
 
 ### B. Use as an endpoint in another Rack app
 
