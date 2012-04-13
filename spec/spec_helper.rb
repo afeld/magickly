@@ -11,6 +11,7 @@ require 'image_size'
 # Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
 
 set :environment, :test
+Bundler.require(:default, :test)
 
 RSpec.configure do |config|
   
