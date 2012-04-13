@@ -51,7 +51,7 @@ module Magickly
           [round_off(new_width), $1.to_i]
         when /^(\d+)x(\d+)$/
           resized_dimensions_preserving_aspect_ratio width, height, $1, $2, :max
-        when /^(\d+)x(\d+)^$/
+        when /^(\d+)x(\d+)\^$/
           resized_dimensions_preserving_aspect_ratio width, height, $1, $2, :min
         when /^(\d+)x(\d+)!$/
           [$1, $2]
