@@ -13,8 +13,11 @@ end
 
 group :development, :test do
   gem 'debugger'
-  gem 'rack-test'
   gem 'rspec', '~> 2.4'
+end
+
+group :test do
+  gem 'rack-test'
   gem 'webmock', '~> 1.6'
   gem 'imagesize', '~> 0.1'
 end
