@@ -4,6 +4,8 @@ module Magickly
 
   LOMO_MASK_PATH = File.join(File.dirname(__FILE__), '..', '..', 'images', 'lomo_mask.png')
 
+  THUMB_FOCUS_GEOMETRY = /^(\d+)x(\d+)#(\d+),(\d+)$/
+
   add_simple_convert_factory :auto_orient, "-auto-orient"
 
   add_simple_convert_factory(:brightness_contrast,
@@ -117,6 +119,17 @@ module Magickly
                   :y => $4,
                   :gravity => $5
                   )
+      when THUMB_FOCUS_GEOMETRY
+        identity = convert.pre_identify
+        
+        resize_and_crop_with_focus_args(
+          container_width: $1.to_i,
+          container_height: $2.to_i,
+          focus_x: $3.to_f,
+          focus_y: $4.to_f,
+          orig_width: identity[:width],
+          orig_height: identity[:height],
+        )
       else raise ArgumentError, "Didn't recognise the geometry string #{geometry}"
       end
     end
@@ -127,12 +140,11 @@ module Magickly
       case geometry
       when Dragonfly::ImageMagick::Processor::RESIZE_GEOMETRY
         identity.merge resized_dimensions(width, height, geometry)
-      when Dragonfly::ImageMagick::Processor::CROPPED_RESIZE_GEOMETRY, Dragonfly::ImageMagick::Processor::CROP_GEOMETRY
+      when Dragonfly::ImageMagick::Processor::CROPPED_RESIZE_GEOMETRY, Dragonfly::ImageMagick::Processor::CROP_GEOMETRY, THUMB_FOCUS_GEOMETRY
         identity.merge :width => $1, :height => $2
       else raise ArgumentError, "Didn't recognise the geometry string #{geometry}"
       end
     end
-    
   end
 
   add_convert_factory :tilt_shift do |c|

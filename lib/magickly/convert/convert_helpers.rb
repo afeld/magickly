@@ -33,6 +33,43 @@ module Magickly
       crop_args opts
     end
 
+    def resize_and_crop_with_focus_args opts = {}
+      original_aspect_ratio = opts[:orig_width] / opts[:orig_height].to_f
+      stretched_width = opts[:container_width]
+      stretched_height = stretched_width / original_aspect_ratio
+
+      # calculate offset from center
+      x = stretched_width * (opts[:focus_x] - 50) / 100.0
+      y = stretched_height * (opts[:focus_y] - 50) / 100.0
+
+      new_center_x = stretched_width * opts[:focus_x] / 100
+      new_center_y = stretched_height * opts[:focus_y] / 100
+      min_edge_x = opts[:container_width] / 2
+      min_edge_y = opts[:container_height] / 2
+
+      ## THIS PART IS WRONG ##
+      if new_center_x < min_edge_x
+        x = min_edge_x
+      elsif new_center_x > (stretched_width - min_edge_x)
+        x = stretched_width - min_edge_x
+      end
+
+      if new_center_y < min_edge_y
+        y = min_edge_y
+      elsif new_center_y > (stretched_height - min_edge_y)
+        y = stretched_height - min_edge_y
+      end
+      #########################
+
+      resize_and_crop_args(
+        width: opts[:container_width],
+        height: opts[:container_height],
+        gravity: 'c',
+        x: x,
+        y: y
+      )
+    end
+
     def resized_dimensions width, height, geometry
       new_width, new_height =
         case geometry

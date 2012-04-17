@@ -81,6 +81,19 @@ describe Magickly::App do
       ImageSize.new(last_response.body).get_width.should eq width
     end
 
+    it "crops an image using thumb with a focus" do
+      setup_image
+      width = 100
+      
+      get "/?src=#{@image_url}&thumb=#{width}x50%2310,10"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      image_size = ImageSize.new(last_response.body)
+      image_size.get_width.should eq width
+      image_size.get_height.should eq height
+    end
+
     (%w(auth_orient color_palette_swatch cross_process flip flop glow) +
      %w(greyscale grayscale halftone jcn lomo tilt_shift two_color)).each do |effect|
       it "runs the effect #{effect}" do
