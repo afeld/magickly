@@ -10,7 +10,7 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 Blog post about how it's used at Jux:
 
-[https://aidan.jux.com/nerdery/310516](aidan.jux.com/nerdery/310516)
+[aidan.jux.com/nerdery/310516](https://aidan.jux.com/nerdery/310516)
 
 ## Installation
 
