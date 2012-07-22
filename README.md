@@ -1,12 +1,16 @@
 # ![Magickly - image manipulation as a (plugin-able) service](http://magickly.jux.com/images/logo.jpg)
 
-Built as a simple wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
+Built as a practical wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
 
 Say the base URL is the hosted version of this app, [magickly.jux.com](http://magickly.jux.com).  The image URL is appended to the query string as a `src=`, followed by any of the supported operations below.  Multiple operations can be combined, and will be applied in order.
 
 If no query params are provided, a simple sandbox page is displayed.  Try it here:
 
 [magickly.jux.com](http://magickly.jux.com)
+
+Blog post about how it's used at Jux:
+
+[https://aidan.jux.com/nerdery/310516](aidan.jux.com/nerdery/310516)
 
 ## Installation
 
