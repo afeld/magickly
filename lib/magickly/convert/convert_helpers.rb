@@ -34,40 +34,49 @@ module Magickly
     end
 
     def resize_and_crop_with_focus_args opts = {}
-      original_aspect_ratio = opts[:orig_width] / opts[:orig_height].to_f
-      stretched_width = opts[:container_width]
-      stretched_height = stretched_width / original_aspect_ratio
+      optimized_width = opts[:container_width]
+      optimized_height = opts[:container_height]
 
-      # calculate offset from center
-      x = stretched_width * (opts[:focus_x] - 50) / 100.0
-      y = stretched_height * (opts[:focus_y] - 50) / 100.0
+      optimized_aspect_ratio = optimized_width.to_f / optimized_height
+      original_aspect_ratio = opts[:orig_width].to_f / opts[:orig_height]
 
-      new_center_x = stretched_width * opts[:focus_x] / 100
-      new_center_y = stretched_height * opts[:focus_y] / 100
-      min_edge_x = opts[:container_width] / 2
-      min_edge_y = opts[:container_height] / 2
+      command = "-resize #{optimized_width}x#{optimized_height}^"
+      
+      # check if it fits perfectly, where no cropping would be necessary
+      if original_aspect_ratio != optimized_aspect_ratio
+        # crop off the long edge, respecting center
+        center_x = opts[:focus_x] || 0.5
+        center_y = opts[:focus_y] || 0.5
+        command += " -thumbnail #{optimized_width}x#{optimized_height}"
 
-      ## THIS PART IS WRONG ##
-      if new_center_x < min_edge_x
-        x = min_edge_x
-      elsif new_center_x > (stretched_width - min_edge_x)
-        x = stretched_width - min_edge_x
+        if original_aspect_ratio > optimized_aspect_ratio  # too wide
+          resized_width = optimized_height * original_aspect_ratio
+          left_edge = ((resized_width * center_x) - (optimized_width / 2)).to_i
+          max_left_edge = (resized_width - optimized_width).to_i
+          left_edge = if left_edge < 0
+                        0
+                      elsif left_edge > max_left_edge
+                        max_left_edge
+                      else
+                        left_edge
+                      end
+          command += "+#{left_edge}+0"
+        else # too tall
+          resized_height = optimized_width / original_aspect_ratio
+          top_edge = ((resized_height * center_y) - (optimized_height / 2)).to_i
+          max_top_edge = (resized_height - optimized_height).to_i
+          top_edge = if top_edge < 0
+                       0
+                     elsif top_edge > max_top_edge
+                       max_top_edge
+                     else
+                       top_edge
+                     end
+          command += "+0+#{top_edge}"
+        end
       end
 
-      if new_center_y < min_edge_y
-        y = min_edge_y
-      elsif new_center_y > (stretched_height - min_edge_y)
-        y = stretched_height - min_edge_y
-      end
-      #########################
-
-      resize_and_crop_args(
-        width: opts[:container_width],
-        height: opts[:container_height],
-        gravity: 'c',
-        x: x,
-        y: y
-      )
+      command
     end
 
     def resized_dimensions width, height, geometry

@@ -32,7 +32,9 @@ module Magickly
     end
 
     def execute
-      @image.convert current_args, format
+      args = current_args
+      puts args
+      @image.convert args, format
     end
 
     def format

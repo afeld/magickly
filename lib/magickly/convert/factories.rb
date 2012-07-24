@@ -121,6 +121,7 @@ module Magickly
                   )
       when THUMB_FOCUS_GEOMETRY
         identity = convert.pre_identify
+        puts identity
         
         resize_and_crop_with_focus_args(
           container_width: $1.to_i,

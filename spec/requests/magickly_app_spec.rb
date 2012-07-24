@@ -81,6 +81,20 @@ describe Magickly::App do
       ImageSize.new(last_response.body).get_width.should eq width
     end
 
+    it "crops an image using thumb with a resize+thumb" do
+      setup_image
+      width = 100
+      
+      # resize=100x50^&thumb=100x50+0+10
+      get "/?src=#{@image_url}&resize=100x50%5E&thumb=100x50%2B0%2B10"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      image_size = ImageSize.new(last_response.body)
+      image_size.get_width.should eq 100
+      image_size.get_height.should eq 50
+    end
+
     it "crops an image using thumb with a focus" do
       setup_image
       width = 100
@@ -90,8 +104,8 @@ describe Magickly::App do
       a_request(:get, @image_url).should have_been_made.once
       last_response.should be_ok
       image_size = ImageSize.new(last_response.body)
-      image_size.get_width.should eq width
-      image_size.get_height.should eq height
+      image_size.get_width.should eq 100
+      image_size.get_height.should eq 50
     end
 
     (%w(auth_orient color_palette_swatch cross_process flip flop glow) +
