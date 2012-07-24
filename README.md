@@ -1,6 +1,6 @@
-# magickly [![Build Status](http://travis-ci.org/afeld/magickly.png)](http://travis-ci.org/afeld/magickly)
+# ![Magickly - image manipulation as a (plugin-able) service](http://magickly.jux.com/images/logo.jpg)
 
-A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
+Built as a practical wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
 
 Say the base URL is the hosted version of this app, [magickly.jux.com](http://magickly.jux.com).  The image URL is appended to the query string as a `src=`, followed by any of the supported operations below.  Multiple operations can be combined, and will be applied in order.
 
@@ -8,9 +8,13 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 [magickly.jux.com](http://magickly.jux.com)
 
+Blog post about how it's used at Jux:
+
+[aidan.jux.com/nerdery/310516](https://aidan.jux.com/nerdery/310516)
+
 ## Installation
 
-Requires Ruby 1.9.2 or 1.9.3, and Imagemagick >= v6.2.4.
+[Compatible](http://travis-ci.org/#!/afeld/magickly) with Ruby 1.8.7, 1.9.2 and 1.9.3.  Requires Imagemagick >= v6.2.4.
 
     $ gem install magickly
 
@@ -45,7 +49,7 @@ For more info, see [Rails Routing from the Outside In](http://guides.rubyonrails
 
 The URL of the original image.
 
-### brightness_contrast=*brightness* x *contrast*
+### brightness_contrast=*br.* x *con.*
 
 *brightness* and *contrast* are percentage change, between -100 and 100.  For example, to increase contrast by 20% but leave brightness unchanged, use `brightness_contrast=0x20`.
 
@@ -153,7 +157,7 @@ the new URL would be
 
 Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:
 
-[magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
+[magickly.jux.com/analyze/number_of_colors?src=...](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
 
 To get the list of available analyzers, visit [magickly.jux.com/analyze](http://magickly.jux.com/analyze)
 
