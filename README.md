@@ -154,7 +154,7 @@ the new URL would be
 
 Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:
 
-[magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
+[magickly.jux.com/analyze/number_of_colors?src=...](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
 
 To get the list of available analyzers, visit [magickly.jux.com/analyze](http://magickly.jux.com/analyze)
 
