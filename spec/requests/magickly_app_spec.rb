@@ -83,7 +83,6 @@ describe Magickly::App do
 
     it "crops an image using thumb with a resize+thumb" do
       setup_image
-      width = 100
       
       # resize=100x50^&thumb=100x50+0+10
       get "/?src=#{@image_url}&resize=100x50%5E&thumb=100x50%2B0%2B10"
@@ -97,9 +96,8 @@ describe Magickly::App do
 
     it "crops an image using thumb with a focus" do
       setup_image
-      width = 100
       
-      get "/?src=#{@image_url}&thumb=#{width}x50%2310,10"
+      get "/?src=#{@image_url}&thumb=100x50%2310,10"
       
       a_request(:get, @image_url).should have_been_made.once
       last_response.should be_ok

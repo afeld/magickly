@@ -47,7 +47,7 @@ module Magickly
         # crop off the long edge, respecting center
         center_x = opts[:focus_x] || 0.5
         center_y = opts[:focus_y] || 0.5
-        command += " -thumbnail #{optimized_width}x#{optimized_height}"
+        command += " -crop #{optimized_width}x#{optimized_height}"
 
         if original_aspect_ratio > optimized_aspect_ratio  # too wide
           resized_width = optimized_height * original_aspect_ratio
@@ -76,6 +76,7 @@ module Magickly
         end
       end
 
+      command += ' +repage'
       command
     end
 
