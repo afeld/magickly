@@ -129,7 +129,11 @@ where *threshold* is a value between 0 and 100.
 
 [http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100%23)
 
-(note: the `%23` in the geometry string above is an encoded '`#`', which tells Dragonfly to fill the dimensions and crop)
+(note: the `%23` in the geometry string above is an encoded '`#`', which tells Dragonfly to fill the dimensions and crop).  There is also an added geometry for doing cropping with a center: `WIDTHxHEIGHT#FOCUSX,FOCUSY`, where `FOCUSX` and `FOCUSY` are a percentage from the left and top respectively, between 0 and 100.  The photo will be resized and then cropped, trying to get that focus point as close to center as possible without leaving a gap.  For example if you wanted to crop around the wand, you would provide a focus point of `30,20`:
+
+![thumbnail with focus of imagemagick logo](/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=300x100%2330,20)
+
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=300x100%2330,20](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=300x100%2330,20)
 
 ### two_color=true
 
