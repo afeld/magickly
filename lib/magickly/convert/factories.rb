@@ -4,7 +4,7 @@ module Magickly
 
   LOMO_MASK_PATH = File.join(File.dirname(__FILE__), '..', '..', 'images', 'lomo_mask.png')
 
-  THUMB_FOCUS_GEOMETRY = /^(\d+)x(\d+)#(\d+),(\d+)$/
+  THUMB_FOCUS_GEOMETRY = /^(\d+)x(\d+)#(\d+(\.\d+)?),(\d+(\.\d+)?)$/
 
   add_simple_convert_factory :auto_orient, "-auto-orient"
 
@@ -126,7 +126,7 @@ module Magickly
           container_width: $1.to_i,
           container_height: $2.to_i,
           focus_x: $3.to_f / 100,
-          focus_y: $4.to_f / 100,
+          focus_y: $5.to_f / 100,
           orig_width: identity[:width],
           orig_height: identity[:height],
         )
