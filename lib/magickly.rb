@@ -14,17 +14,21 @@ module Magickly
   DEFAULT_PALETTE_COLOR_COUNT = 5
   
   class << self
+
+    @@dragonfly = Dragonfly[:magickly].configure_with(:imagemagick)
+    @@logger =
+      begin
+        Rails.logger
+      rescue NameError
+        Logger.new($stdout)
+      end
+    
     def dragonfly
-      @dragonfly ||= Dragonfly[:magickly].configure_with(:imagemagick)
+      @@dragonfly
     end
 
     def logger
-      @logger ||=
-        begin
-          Rails.logger
-        rescue NameError
-          Logger.new($stdout)
-        end
+      @@logger
     end
     
     def process_src(src, options={})
