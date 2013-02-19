@@ -1,6 +1,6 @@
-# magickly [![Build Status](http://travis-ci.org/afeld/magickly.png)](http://travis-ci.org/afeld/magickly)
+# ![Magickly - image manipulation as a (plugin-able) service](http://magickly.jux.com/images/logo.jpg)
 
-A service for image manipulation - built as a simple wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
+Built as a practical wrapper of Imagemagick which handles caching, c/o the [Dragonfly](http://markevans.github.com/dragonfly/) gem.
 
 Say the base URL is the hosted version of this app, [magickly.jux.com](http://magickly.jux.com).  The image URL is appended to the query string as a `src=`, followed by any of the supported operations below.  Multiple operations can be combined, and will be applied in order.
 
@@ -8,15 +8,19 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 [magickly.jux.com](http://magickly.jux.com)
 
+Blog post about how it's used at Jux:
+
+[aidan.jux.com/nerdery/310516](https://aidan.jux.com/nerdery/310516)
+
 ## Installation
 
-Requires Ruby 1.8.7 or 1.9.2, and Imagemagick >= v6.2.4.
+[Compatible](http://travis-ci.org/#!/afeld/magickly) with Ruby 1.8.7, 1.9.2 and 1.9.3.  Requires Imagemagick >= v6.2.4.
 
     $ gem install magickly
 
 ## Running the App
 
-For Ruby 1.9.2, you will need to use an Eventmachine-compatible server, i.e. [Thin](http://code.macournoyer.com/thin/) or [Rainbows](http://rainbows.rubyforge.org/).  A few options:
+A few options:
 
 ### A. Run the app directly
 
@@ -46,7 +50,7 @@ For more info, see [Rails Routing from the Outside In](http://guides.rubyonrails
 
 The URL of the original image.
 
-### brightness_contrast=*brightness* x *contrast*
+### brightness_contrast=*br.* x *con.*
 
 *brightness* and *contrast* are percentage change, between -100 and 100.  For example, to increase contrast by 20% but leave brightness unchanged, use `brightness_contrast=0x20`.
 
@@ -88,6 +92,12 @@ where *threshold* is a value between 0 and 100.
 
 [http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&halftone=60)
 
+### jcn=true
+
+![JCN imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&jcn=true)
+
+[http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&jcn=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&jcn=true)
+
 ### resize=*geometry*
 
 ![resized imagemagick logo](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&resize=100x100)
@@ -128,11 +138,27 @@ where *threshold* is a value between 0 and 100.
 
 [http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true](http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&two_color=true)
 
+## Alternate Syntax
+
+Some CDNs are jerks and don't respect query params on resources (_ahem_ CLOUDFRONT _ahem_) when caching.  To use this syntax:
+
+* replace the question mark that starts the query string (`?`) with `q/`
+* replace the ampersands (`&`) and equals signs (`=`) with forward slashes (`/`)
+* make sure the `src` is encoded - this can be done in Javascript with `encodeURIComponent()`
+
+Therefore, instead of
+
+	http://magickly.jux.com/?src=http://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Imagemagick-logo.png/200px-Imagemagick-logo.png&thumb=200x100
+	
+the new URL would be
+
+	http://magickly.jux.com/q/src/http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F0d%2FImagemagick-logo.png%2F200px-Imagemagick-logo.png/thumb/200x100
+
 ## Analyzers
 
 Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:
 
-[magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
+[magickly.jux.com/analyze/number_of_colors?src=...](http://magickly.jux.com/analyze/number_of_colors?src=http://upload.wikimedia.org/wikipedia/commons/0/0d/Imagemagick-logo.png)
 
 To get the list of available analyzers, visit [magickly.jux.com/analyze](http://magickly.jux.com/analyze)
 

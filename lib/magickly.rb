@@ -3,11 +3,6 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/ordered_hash'
 
 require 'sinatra/base'
-unless RUBY_VERSION.start_with? '1.8'
-  require 'sinatra/synchrony'
-  Sinatra::Synchrony.overload_tcpsocket!
-end
-
 require 'addressable/uri'
 require 'dragonfly'
 Dir["#{File.dirname(__FILE__)}/dragonfly/**/*.rb"].each {|file| require file }
@@ -21,7 +16,9 @@ module Magickly
   @dragonfly.configure do |c|
     c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
     c.log = Logger.new($stdout)
-    c.log_commands = true
+    
+    # seems this config param was removed from Dragonfly ~v0.9.8
+    # c.log_commands = true
   end
   
   class << self

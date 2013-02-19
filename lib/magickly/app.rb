@@ -1,7 +1,5 @@
 module Magickly
   class App < Sinatra::Base
-    register Sinatra::Synchrony unless RUBY_VERSION.start_with? '1.8'
-    
     RESERVED_PARAMS = ['src']
     DEMO_IMAGE = 'http://farm4.static.flickr.com/3351/3450592233_c29fde01ef_z.jpg'
     
@@ -21,11 +19,6 @@ module Magickly
         redirect request.url.sub(request_host_with_port, app_host), 301
       end
       
-      Magickly.dragonfly.datastore.configure do |d|
-        # pass cookies to subsequent request
-        d.cookie_str = request.env["rack.request.cookie_string"]
-      end
-      
       # parse query params so they are ordered
       @options = ActiveSupport::OrderedHash.new
       request.query_string.split('&').each do |e|
@@ -35,21 +28,28 @@ module Magickly
     end
     
     get '/' do
-      src = params['src']
+      process_src_or_display_demo params[:src], @options
+    end
+
+    get '/q/*' do 
+      src = nil
+      opts = ActiveSupport::OrderedHash.new
+      splat = request.path_info.sub /^\/q\//, ''
       
-      if src
-        # process image
-        url = uri_to_url(src)
-        image = Magickly.process_src(url, @options)
-        image.to_response(env)
-      else
-        # display demo page
-        
-        # get combined list of jobs and processor methods
-        @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
-        @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
-        erb :index
+      splat.split('/').each_slice(2) do |k, v|
+        if RESERVED_PARAMS.include? k
+          if k == 'src'
+            src = URI.unescape(v)
+            # slashes come in double-escaped by Apache so we
+            # need to unescape again
+            src = URI.unescape(src) if src =~ /%2F/
+          end
+        else
+          opts[k] = URI.unescape(v)
+        end
       end
+
+      process_src_or_display_demo src, opts
     end
     
     get '/analyze' do
@@ -77,7 +77,22 @@ module Magickly
         "Please provide an image URL with the src parameter."
       end
     end
-    
+
+    def process_src_or_display_demo src, options
+      if src
+        # process image
+        url = uri_to_url src
+        image = Magickly.process_src(url, options)
+        image.to_response(env)
+      else
+        # display demo page
+        
+        # get combined list of jobs and processor methods
+        @methods = ( Magickly.dragonfly.job_methods | Magickly.dragonfly.processor_methods )
+        @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
+        erb :index
+      end
+    end
     
     def uri_to_url(uri)
       url = Addressable::URI.parse(uri)

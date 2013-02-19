@@ -61,9 +61,12 @@ p {
 }
 
 #footer {
+  position: absolute;
+  bottom: 0;
   height:62px;
   width: 100%;
   display:block;
+  text-align: center;
   background: #242524;
   color: white;
   margin: 44px 0 0 0;

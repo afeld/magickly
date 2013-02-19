@@ -1,18 +1,17 @@
 source 'http://rubygems.org'
 
-gem 'sinatra', '~> 1.2.1', :require => 'sinatra/base'
+gem 'sinatra', '~> 1.2', :require => 'sinatra/base'
 gem 'sinatra-synchrony', '~> 0.2.0', :require => 'sinatra/synchrony', :platforms => [:ruby_19, :jruby]
 gem 'thin', '~> 1.2', :platforms => :ruby_19
 
-gem 'dragonfly', '~> 0.9.1'
+gem 'dragonfly', '~> 0.9.14'
 gem 'addressable', '~> 2.2', :require => 'addressable/uri'
 
-gem 'httparty', '~> 0.7.3'
+gem 'httparty', '~> 0.8.1'
 gem 'activesupport', '>= 2.0.0', :require => false
 
 group :development do
   gem 'jeweler', '~> 1.5'
-  gem 'rcov', '>= 0'
 end
 
 group :development, :test do
