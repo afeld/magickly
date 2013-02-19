@@ -34,7 +34,8 @@ module Magickly
     get '/q/*' do 
       src = nil
       opts = ActiveSupport::OrderedHash.new
-      splat = request.path_info.sub /^\/q\//, ''
+      path = env['servlet_request'].try(:get_request_uri) || request.path_info
+      splat = path.sub /^.*?\/q\//, ''
       
       splat.split('/').each_slice(2) do |k, v|
         if RESERVED_PARAMS.include? k

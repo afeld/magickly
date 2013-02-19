@@ -13,18 +13,22 @@ Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 module Magickly
   DEFAULT_PALETTE_COLOR_COUNT = 5
   
-  @dragonfly = Dragonfly[:magickly].configure_with(:imagemagick)
-  @dragonfly.configure do |c|
-    c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
-    c.log = Logger.new($stdout)
-    
-    # seems this config param was removed from Dragonfly ~v0.9.8
-    # c.log_commands = true
-  end
-  
   class << self
+
+    @@dragonfly = Dragonfly[:magickly].configure_with(:imagemagick)
+    @@logger =
+      begin
+        Rails.logger
+      rescue NameError
+        Logger.new($stdout)
+      end
+    
     def dragonfly
-      @dragonfly
+      @@dragonfly
+    end
+
+    def logger
+      @@logger
     end
     
     def process_src(src, options={})
@@ -69,6 +73,12 @@ module Magickly
     end
     
   end
+
+  dragonfly.configure do |c|
+    c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
+    c.log = logger
+  end
+  
 end
 
 require File.expand_path(File.join(File.dirname(__FILE__), 'shortcuts'))
