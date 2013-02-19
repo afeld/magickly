@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'sinatra', '~> 1.2', :require => 'sinatra/base'
-gem 'sinatra-synchrony', '~> 0.2.0', :require => 'sinatra/synchrony', :platforms => [:ruby_19, :jruby]
 gem 'thin', '~> 1.2', :platforms => :ruby_19
 
 gem 'dragonfly', '~> 0.9.14'
