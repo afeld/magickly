@@ -117,6 +117,23 @@ describe Magickly::App do
     end
 
   end
+
+  describe "GET /qe" do
+    
+    it "resized an image" do
+      setup_image
+      width = 100
+      
+      encoded = Base64.urlsafe_encode64 "src/#{@escaped_image_url}/resize/#{width}x"
+
+      get "/qe/#{encoded}"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
+    end
+
+  end
   
   describe "GET /analyze" do
     it "retrieves the mime_type of an image" do
