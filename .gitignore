@@ -1,5 +1,6 @@
 .project
 test_output/
+tmp/
 
 # rcov generated
 coverage

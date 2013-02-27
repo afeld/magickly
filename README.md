@@ -28,7 +28,9 @@ A few options:
     $ gem install thin
     $ thin start
 
-The app can be accessed at [http://localhost:3000](http://localhost:3000).  To deploy to Heroku's Cedar stack (or another server using Foreman), see the [cedar](https://github.com/afeld/magickly/tree/cedar) branch.
+The app can be accessed at [http://localhost:3000](http://localhost:3000).
+
+When running as an app, Rack::Cache is used to cache generated versions of images. These cached files and metadata are stored in the tmp/ directory and will get regenerated as necessary.
 
 ### B. Use as an endpoint in another Rack app
 

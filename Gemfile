@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-
 gem 'thin', '~> 1.2', :platforms => :ruby_19
+gem 'rack-cache', :require => 'rack/cache'
 
 group :development, :test do
   gem 'rack-test'
