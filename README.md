@@ -28,7 +28,7 @@ A few options:
     $ gem install thin
     $ thin start
 
-The app can be accessed at [http://localhost:3000](http://localhost:3000).  To deploy to Heroku's Cedar stack (or another server using Foreman), see the [cedar](https://github.com/afeld/magickly/tree/cedar) branch.
+The app can be accessed at [http://localhost:3000](http://localhost:3000).
 
 ### B. Use as an endpoint in another Rack app
 
