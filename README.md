@@ -14,7 +14,7 @@ Blog post about how it's used at Jux:
 
 ## Installation
 
-[Compatible](http://travis-ci.org/#!/afeld/magickly) with Ruby 1.8.7, 1.9.2 and 1.9.3.  Requires Imagemagick >= v6.2.4.
+[Compatible](http://travis-ci.org/#!/afeld/magickly) with Ruby 1.8.7, 1.9.2 and 1.9.3, and jRuby 1.8 and 1.9 mode.  Requires Imagemagick >= v6.2.4.
 
     $ gem install magickly
 
