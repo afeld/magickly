@@ -117,6 +117,28 @@ describe Magickly::App do
     end
 
   end
+
+  describe "GET /qe" do
+    
+    it "resized an image" do
+      setup_image
+      width = 100
+      
+      # This is just Base64.urlsafe_encode64 which is not available in ruby 1.8.7
+      encoded = ["src/#{@escaped_image_url}/resize/#{width}x"].pack("m0").tr("+/", "-_")
+
+      # Strip the newlines from the encoding since m0 should mean no newlines
+      # but doesn't seem to be doing that in ruby 1.8.7
+      encoded = encoded.tr("\n", "")
+
+      get "/qe/#{encoded}"
+      
+      a_request(:get, @image_url).should have_been_made.once
+      last_response.should be_ok
+      ImageSize.new(last_response.body).get_width.should eq width
+    end
+
+  end
   
   describe "GET /analyze" do
     it "retrieves the mime_type of an image" do

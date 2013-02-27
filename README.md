@@ -156,6 +156,18 @@ the new URL would be
 
 	http://magickly.jux.com/q/src/http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F0d%2FImagemagick-logo.png%2F200px-Imagemagick-logo.png/thumb/200x100
 
+## Encoded Syntax
+
+Sometimes, you just can't handle escaped entities in your URLs (Facebook's handling of OpenGraph tags, for example). In those cases, we provide a Base64 encoded syntax which is an extension of the path-based Alternate Syntax above. Once your path-based url is constructed (see "Alternate Syntax" above), simply pass everything after the `q/` through Base64.urlsafe_encode or the javascript btoa() function and send it to the `qe/` endpoint instead.
+
+Therefore, instead of
+
+	http://magickly.jux.com/q/src/http%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F0%2F0d%2FImagemagick-logo.png%2F200px-Imagemagick-logo.png/thumb/200x100
+
+the new URL would be
+
+	http://magickly.jux.com/qe/c3JjL2h0dHAlM0ElMkYlMkZ1cGxvYWQud2lraW1lZGlhLm9yZyUyRndpa2lwZWRpYSUyRmNvbW1vbnMlMkZ0aHVtYiUyRjAlMkYwZCUyRkltYWdlbWFnaWNrLWxvZ28ucG5nJTJGMjAwcHgtSW1hZ2VtYWdpY2stbG9nby5wbmcvdGh1bWIvMjAweDEwMA==
+
 ## Analyzers
 
 Magickly v1.2.0 introduces the ability to retrieve image properties via a REST API.  For example, to retrieve the number of colors in the photo, visit:

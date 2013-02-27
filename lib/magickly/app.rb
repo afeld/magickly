@@ -31,25 +31,16 @@ module Magickly
       process_src_or_display_demo params[:src], @options
     end
 
-    get '/q/*' do 
-      src = nil
-      opts = []
-      splat = request.path_info.sub /^\/q\//, ''
-      
-      splat.split('/').each_slice(2) do |k, v|
-        if RESERVED_PARAMS.include? k
-          if k == 'src'
-            src = URI.unescape(v)
-            # slashes come in double-escaped by Apache so we
-            # need to unescape again
-            src = URI.unescape(src) if src =~ /%2F/
-          end
-        else
-          opts << [k, URI.unescape(v)]
-        end
-      end
+    get '/q/*' do
+      process_path request.path_info.sub /^\/q\//, ''
+    end
 
-      process_src_or_display_demo src, opts
+    get '/qe/*' do
+      # This is just Base64.urlsafe_decode64 which is not available in ruby 1.8.7
+      decoded = request.path_info.sub /^\/qe\//, ''
+      decoded = decoded.tr("-_", "+/").unpack("m0").first
+
+      process_path decoded
     end
     
     get '/analyze' do
@@ -76,6 +67,26 @@ module Magickly
         status 400
         "Please provide an image URL with the src parameter."
       end
+    end
+
+    def process_path splat
+      src = nil
+      opts = []
+      
+      splat.split('/').each_slice(2) do |k, v|
+        if RESERVED_PARAMS.include? k
+          if k == 'src'
+            src = URI.unescape(v)
+            # slashes come in double-escaped by Apache so we
+            # need to unescape again
+            src = URI.unescape(src) if src =~ /%2F/
+          end
+        else
+          opts << [k, URI.unescape(v)]
+        end
+      end
+
+      process_src_or_display_demo src, opts
     end
 
     def process_src_or_display_demo src, options
