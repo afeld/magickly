@@ -30,6 +30,8 @@ A few options:
 
 The app can be accessed at [http://localhost:3000](http://localhost:3000).
 
+When running as an app, Rack::Cache is used to cache generated versions of images. These cached files and metadata are stored in the tmp/ directory and will get regenerated as necessary.
+
 ### B. Use as an endpoint in another Rack app
 
 As an example, to have magickly accessible at `/magickly` in a Rails app:
