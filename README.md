@@ -156,7 +156,7 @@ the new URL would be
 
 ## Encoded Syntax
 
-And sometimes, you just can't handle escaped entities in your URLs (Facebook's handling of OpenGraph tags, for example). In those cases, we provide a Base64 encoded syntax which is an extension of the Alternate Syntax above. Once your Alternate Syntax URL is constructed, Simply pass everything after the `q/` through Base64.urlsafe_encode and send it to the `qe/` endpoint instead.
+Sometimes, you just can't handle escaped entities in your URLs (Facebook's handling of OpenGraph tags, for example). In those cases, we provide a Base64 encoded syntax which is an extension of the path-based Alternate Syntax above. Once your path-based url is constructed (see "Alternate Syntax" above), simply pass everything after the `q/` through Base64.urlsafe_encode or the javascript btoa() function and send it to the `qe/` endpoint instead.
 
 Therefore, instead of
 
