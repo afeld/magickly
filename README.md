@@ -181,16 +181,6 @@ See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.Gen
 
 The hosted version of the app ([magickly.jux.com](http://magickly.jux.com)) is a single app instance intended for demonstration purposes - if you are going to be making a large number of API calls to it or would like to use it in production, please let us know :-)
 
-## Contributing to magickly
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
-
 ## Credits
 
 Created by [Aidan Feldman](http://www.aidanfeldman.com) at [Jux.com](http://www.jux.com).  Thanks to [Mark Evans](https://github.com/markevans) for all his hard work on [Dragonfly](http://markevans.github.com/dragonfly/).
