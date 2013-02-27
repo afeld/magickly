@@ -24,8 +24,4 @@ Gem::Specification.new do |s|
   s.add_dependency('addressable', ['~> 2.2'])
   s.add_dependency('httparty', ['~> 0.8'])
   s.add_dependency('activesupport', ['>= 2.0.0'])
-  s.add_development_dependency('rack-test', ['>= 0'])
-  s.add_development_dependency('rspec', ['~> 2.4'])
-  s.add_development_dependency('webmock', ['~> 1.6'])
-  s.add_development_dependency('imagesize', ['~> 0.1'])
 end
