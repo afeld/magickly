@@ -27,6 +27,7 @@ GEM
     imagesize (0.1.1)
     multi_json (1.6.1)
     multi_xml (0.5.3)
+    newrelic_rpm (3.5.7.59)
     rack (1.5.2)
     rack-protection (1.3.2)
       rack
@@ -55,6 +56,7 @@ PLATFORMS
 DEPENDENCIES
   imagesize (~> 0.1)
   magickly!
+  newrelic_rpm
   rack-test
   rspec (~> 2.4)
   webmock (~> 1.6)
