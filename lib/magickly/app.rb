@@ -36,7 +36,11 @@ module Magickly
     end
 
     get '/qe/*' do
-      process_path Base64.urlsafe_decode64(request.path_info.sub /^\/qe\//, '')
+      # This is just Base64.urlsafe_decode64 which is not available in ruby 1.8.7
+      decoded = request.path_info.sub /^\/qe\//, ''
+      decoded = decoded.tr("-_", "+/").unpack("m0").first
+
+      process_path decoded
     end
     
     get '/analyze' do
