@@ -33,7 +33,7 @@ module Magickly
 
     get '/q/*' do 
       src = nil
-      opts = ActiveSupport::OrderedHash.new
+      opts = []
       splat = request.path_info.sub /^\/q\//, ''
       
       splat.split('/').each_slice(2) do |k, v|
@@ -45,7 +45,7 @@ module Magickly
             src = URI.unescape(src) if src =~ /%2F/
           end
         else
-          opts[k] = URI.unescape(v)
+          opts << [k, URI.unescape(v)]
         end
       end
 
