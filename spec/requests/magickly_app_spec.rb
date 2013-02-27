@@ -124,7 +124,8 @@ describe Magickly::App do
       setup_image
       width = 100
       
-      encoded = Base64.urlsafe_encode64 "src/#{@escaped_image_url}/resize/#{width}x"
+      # This is just Base64.urlsafe_encode64 which is not available in ruby 1.8.7
+      encoded = ["src/#{@escaped_image_url}/resize/#{width}x"].pack("m0").tr("+/", "-_")
 
       get "/qe/#{encoded}"
       
