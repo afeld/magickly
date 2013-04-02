@@ -31,7 +31,8 @@ module Magickly
       process_src_or_display_demo params[:src], @options
     end
 
-    get '/q/*' do 
+    get '/q/*' do
+      t0 = Time.now
       src = nil
       opts = ActiveSupport::OrderedHash.new
       path = env['servlet_request'].try(:get_request_uri) || request.path_info
@@ -50,7 +51,9 @@ module Magickly
         end
       end
 
-      process_src_or_display_demo src, opts
+      result = process_src_or_display_demo src, opts
+      Magickly.logger.info "Magickly Path /q/#{splat} Time #{Time.now - t0}"
+      result
     end
     
     get '/analyze' do

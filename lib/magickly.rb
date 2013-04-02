@@ -15,20 +15,17 @@ module Magickly
   
   class << self
 
-    @@dragonfly = Dragonfly[:magickly].configure_with(:imagemagick)
-    @@logger =
-      begin
-        Rails.logger
-      rescue NameError
-        Logger.new($stdout)
-      end
-    
     def dragonfly
-      @@dragonfly
+      @dragonfly ||= Dragonfly[:magickly].configure_with(:imagemagick)
     end
 
     def logger
-      @@logger
+      @logger ||=
+        begin
+          Rails.logger
+        rescue NameError
+          Logger.new($stdout)
+        end
     end
     
     def process_src(src, options={})
