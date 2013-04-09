@@ -20,6 +20,21 @@ describe Dragonfly::DataStorage::RemoteDataStore do
       image,extra = datastore.retrieve(url)
       image.should eq IO.read(image_path)
     end
+
+    it "should fetch the image based on the url_host variable" do
+      path = "foo/bar/iamgemagick.png"
+      url_host = "http://www.foo.com/"
+      url = url_host + path
+      stub_request(:get, url)
+
+      datastore = Dragonfly::DataStorage::RemoteDataStore.new
+      datastore.configure do |c|
+        c.url_host = url_host
+      end
+
+      datastore.retrieve path
+      a_request(:get, url).should have_been_made.once
+    end
   end
 end
 

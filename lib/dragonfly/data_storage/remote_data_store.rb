@@ -1,4 +1,5 @@
 require 'httparty'
+require 'uri'
 
 module Dragonfly
   module DataStorage
@@ -6,13 +7,14 @@ module Dragonfly
     
     class RemoteDataStore
       include Configurable
-      
+      configurable_attr :url_host
+
       def store(temp_object, opts={})
         raise "Sorry friend, this datastore is read-only."
       end
 
       def retrieve(uid)
-        response = HTTParty.get uid, :timeout => 3
+        response = HTTParty.get URI::join(url_host.to_s, uid).to_s, :timeout => 3
         unless response.ok?
           #raise Forbidden if response.code == 403
           raise DataNotFound
