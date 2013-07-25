@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
     README.md
   )
   s.files = FileList['lib/**/*.rb', 'bin/*', '[A-Z]*', 'spec/**/*'].to_a
-  s.homepage = 'http://magickly.jux.com'
+  s.homepage = 'http://magickly.afeld.me'
   s.licenses = ['MIT']
   s.require_paths = ['lib']
   s.summary = "image manipulation as a (plugin-able) service"
