@@ -62,14 +62,14 @@ p {
 
 #footer {
   position: absolute;
+  left: 0;
+  right: 0;
   bottom: 0;
   height:62px;
-  width: 100%;
   display:block;
   text-align: center;
   background: #242524;
   color: white;
-  margin: 44px 0 0 0;
   padding: 4px 0 0 0;
 }
 #left_foot{
