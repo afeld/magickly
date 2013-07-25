@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3'
+
 gemspec
 
 gem 'thin', '~> 1.2', :platforms => :ruby_19
