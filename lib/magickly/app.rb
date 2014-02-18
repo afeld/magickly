@@ -6,6 +6,7 @@ module Magickly
     enable :logging
     set :root, File.join(File.dirname(__FILE__), '..')
     set :homepage, "http://github.com/afeld/magickly"
+    set :protection, :except => :path_traversal
     
     configure :production do
       require 'newrelic_rpm' if ENV['NEW_RELIC_ID']
