@@ -5,7 +5,7 @@ PATH
       activesupport (>= 2.0.0, < 4)
       addressable (~> 2.2)
       dragonfly (~> 0.9.14)
-      httparty (~> 0.8, < 0.12)
+      httparty (~> 0.13)
       sinatra (~> 1.2)
 
 GEM
@@ -21,11 +21,12 @@ GEM
     dragonfly (0.9.15)
       multi_json (~> 1.0)
       rack
-    httparty (0.11.0)
-      multi_json (~> 1.0)
+    httparty (0.13.0)
+      json (~> 1.8)
       multi_xml (>= 0.5.2)
     i18n (0.6.9)
     imagesize (0.1.1)
+    json (1.8.1)
     multi_json (1.8.4)
     multi_xml (0.5.5)
     newrelic_rpm (3.6.5.130)
