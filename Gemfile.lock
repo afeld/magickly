@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    magickly (1.4.0)
-      activesupport (>= 2.0.0)
+    magickly (2.0.1)
+      activesupport (>= 2.0.0, < 5)
       addressable (~> 2.2)
       dragonfly (~> 0.9.14)
       httparty (~> 0.13)
