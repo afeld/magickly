@@ -20,5 +20,5 @@ Gem::Specification.new do |s|
   s.add_dependency('dragonfly', ['~> 0.9.14'])
   s.add_dependency('addressable', ['~> 2.2'])
   s.add_dependency('httparty', ['~> 0.13'])
-  s.add_dependency('activesupport', ['>= 2.0.0', '< 4'])
+  s.add_dependency('activesupport', ['>= 2.0.0'])
 end

@@ -37,7 +37,7 @@ module Magickly
     end
 
     get '/qe/*' do
-      # This is just Base64.urlsafe_decode64 which is not available in ruby 1.8.7
+      # TODO use Base64.urlsafe_decode64
       decoded = request.path_info.sub /^\/qe\//, ''
       decoded = decoded.tr("-_", "+/").unpack("m0").first
 
