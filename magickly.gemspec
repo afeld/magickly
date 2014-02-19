@@ -1,6 +1,8 @@
+require_relative './lib/magickly/version'
+
 Gem::Specification.new do |s|
   s.name = 'magickly'
-  s.version = '1.4.0'
+  s.version = Magickly::VERSION
 
   s.authors = ['Aidan Feldman']
   s.date = '2013-02-27'
@@ -20,5 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency('dragonfly', ['~> 0.9.14'])
   s.add_dependency('addressable', ['~> 2.2'])
   s.add_dependency('httparty', ['~> 0.13'])
-  s.add_dependency('activesupport', ['>= 2.0.0'])
+  s.add_dependency('activesupport', ['>= 2.0.0', '< 5'])
 end
