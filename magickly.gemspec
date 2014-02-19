@@ -1,9 +1,10 @@
-# -*- encoding: utf-8 -*-
-require 'rake'
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'magickly/version'
 
 Gem::Specification.new do |s|
   s.name = 'magickly'
-  s.version = '1.4.0'
+  s.version = Magickly::VERSION
 
   s.authors = ['Aidan Feldman']
   s.date = '2013-02-27'
@@ -13,7 +14,7 @@ Gem::Specification.new do |s|
     LICENSE.txt
     README.md
   )
-  s.files = FileList['lib/**/*.rb', 'bin/*', '[A-Z]*', 'spec/**/*'].to_a
+  s.files = Dir['lib/**/*.rb', 'bin/*', '[A-Z]*', 'spec/**/*'].to_a
   s.homepage = 'http://magickly.afeld.me'
   s.licenses = ['MIT']
   s.require_paths = ['lib']
@@ -22,6 +23,6 @@ Gem::Specification.new do |s|
   s.add_dependency('sinatra', ['~> 1.2'])
   s.add_dependency('dragonfly', ['~> 0.9.14'])
   s.add_dependency('addressable', ['~> 2.2'])
-  s.add_dependency('httparty', ['~> 0.8'])
-  s.add_dependency('activesupport', ['>= 2.0.0'])
+  s.add_dependency('httparty', ['~> 0.13'])
+  s.add_dependency('activesupport', ['>= 2.0.0', '< 5'])
 end

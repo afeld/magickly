@@ -4,7 +4,7 @@ require 'magickly'
 require 'rack/test'
 require 'sinatra'
 require 'webmock/rspec'
-require 'image_size'
+require 'fastimage'
 
 # Requires supporting files with custom matchers and macros, etc,
 # in ./support/ and its subdirectories.
@@ -17,12 +17,10 @@ RSpec.configure do |config|
 end
 
 def compare_binary(one, two)
-  if String.instance_methods.include?(:encoding)
-    # Ruby 1.9
-    unless one.encoding == two.encoding
-      one = one.force_encoding("UTF-8")
-      two = two.force_encoding("UTF-8")
-    end
+  # Ruby 1.9
+  unless one.encoding == two.encoding
+    one = one.force_encoding("UTF-8")
+    two = two.force_encoding("UTF-8")
   end
   
   one.should eq two

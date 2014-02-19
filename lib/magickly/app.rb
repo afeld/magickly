@@ -6,6 +6,7 @@ module Magickly
     enable :logging
     set :root, File.join(File.dirname(__FILE__), '..')
     set :homepage, "http://github.com/afeld/magickly"
+    set :protection, :except => :path_traversal
     
     configure :production do
       require 'newrelic_rpm' if ENV['NEW_RELIC_ID']
@@ -36,7 +37,7 @@ module Magickly
     end
 
     get '/qe/*' do
-      # This is just Base64.urlsafe_decode64 which is not available in ruby 1.8.7
+      # TODO use Base64.urlsafe_decode64
       decoded = request.path_info.sub /^\/qe\//, ''
       decoded = decoded.tr("-_", "+/").unpack("m0").first
 
