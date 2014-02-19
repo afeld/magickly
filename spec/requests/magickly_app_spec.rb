@@ -19,7 +19,7 @@ describe Magickly::App do
   describe "GET /" do
     it "should display the demo page for no params" do
       get '/'
-      last_response.should be_ok
+      last_response.status.should eq(200)
       # TODO test that it renders the view
     end
     
@@ -29,7 +29,7 @@ describe Magickly::App do
       get "/?src=#{@image_url}"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       
       # check that the returned file is identical to the original
       compare_binary(last_response.body, IO.read(@image_path))
@@ -41,7 +41,7 @@ describe Magickly::App do
       get "/?src=#{@image_url}&bad_param=666"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       
       # check that the returned file is identical to the original
       compare_binary(last_response.body, IO.read(@image_path))
@@ -53,7 +53,7 @@ describe Magickly::App do
       get "/?src=/#{@image_filename}"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       
       # check that the returned file is identical to the original
       compare_binary(last_response.body, IO.read(@image_path))
@@ -66,7 +66,7 @@ describe Magickly::App do
       get "/?src=#{@image_url}&resize=#{width}x"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       ImageSize.new(last_response.body).get_width.should eq width
     end
     
@@ -82,7 +82,7 @@ describe Magickly::App do
       
       get "/?src=#{@image_url}&#{shortcut}=true"
       
-      last_response.should be_ok
+      last_response.status.should eq(200)
       ImageSize.new(last_response.body).get_width.should eq width
     end
     
@@ -98,7 +98,7 @@ describe Magickly::App do
 
       get "/?src=#{@image_url}&#{shortcut}=#{width}x"
       
-      last_response.should be_ok
+      last_response.status.should eq(200)
       ImageSize.new(last_response.body).get_width.should eq width
     end
   end
@@ -112,7 +112,7 @@ describe Magickly::App do
       get "/q/src/#{@escaped_image_url}/resize/#{width}x"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       ImageSize.new(last_response.body).get_width.should eq width
     end
 
@@ -134,7 +134,7 @@ describe Magickly::App do
       get "/qe/#{encoded}"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       ImageSize.new(last_response.body).get_width.should eq width
     end
 
@@ -147,7 +147,7 @@ describe Magickly::App do
       get "/analyze/mime_type?src=#{@image_url}"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       last_response.body.should eq 'image/png'
     end
     
@@ -157,7 +157,7 @@ describe Magickly::App do
       get "/analyze/color_palette?src=#{@image_url}"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       last_response.body.should_not be_empty
       json = ActiveSupport::JSON.decode(last_response.body)
       json.should be_an Array
@@ -171,7 +171,7 @@ describe Magickly::App do
       get "/analyze/landscape?src=#{@image_url}"
       
       a_request(:get, @image_url).should have_been_made.once
-      last_response.should be_ok
+      last_response.status.should eq(200)
       last_response.body.should =~ /false/
     end
   end
@@ -188,7 +188,7 @@ describe MagicklyApp do
     
     it "should display the demo page for no params" do
       get '/'
-      last_response.should be_ok
+      last_response.status.should eq(200)
       # TODO test that it renders the view
     end
     
