@@ -8,9 +8,10 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 
 [magickly.afeld.me](http://magickly.afeld.me)
 
-Blog post about how it's used at <a href="https://jux.com">Jux</a>:
+More insights:
 
-[aidan.jux.com/nerdery/310516](https://aidan.jux.com/nerdery/310516)
+* [Blog post](https://aidan.jux.com/nerdery/310516) about how it's used at <a href="https://jux.com">Jux</a>
+* [Talk](http://www.hakkalabs.co/articles/anatomy-ruby-gem-magickly) at [Anatomy of a Ruby Gem](http://www.meetup.com/Anatomy-of-a-Ruby-Gem/events/163904202/) ([slides](https://docs.google.com/presentation/d/1vuXqmMOssslx3nRxqWh1e3SgGN7_euYdVMIWm94DDPA/edit?usp=sharing))
 
 ## Installation
 
