@@ -1,6 +1,7 @@
 .project
 test_output/
 tmp/
+log/
 
 # rcov generated
 coverage
@@ -19,7 +20,7 @@ doc
 pkg
 *.gem
 
-# Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore: 
+# Have editor/IDE/OS specific files you need to ignore? Consider using a global gitignore:
 #
 # * Create a file at ~/.gitignore
 # * Include files you want ignored
