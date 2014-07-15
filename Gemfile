@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0' unless ENV['CI']
-
 gemspec
 
+gem 'rake'
 gem 'rack-cache', :require => 'rack/cache'
 
 group :development, :test do

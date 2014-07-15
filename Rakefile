@@ -1,9 +1,16 @@
+require 'rspec/core/rake_task'
+
+RSpec::Core::RakeTask.new(:spec)
+
+desc "Runs tests"
+task default: :spec
+
 desc "Runs a performance test of different sigma values to tilt_shift"
 task :blur_test do
   file = File.join(File.dirname(__FILE__), 'spec', 'support', 'imagemagick.png')
   dir = File.join(File.dirname(__FILE__), 'test_output')
   Dir.mkdir(dir)
-  
+
   (5..10).each do |sigma|
     print "sigma: #{sigma}   "
     out_file = File.join(dir, "blur_test-#{sigma}.png")
@@ -16,7 +23,7 @@ task :blur_test do
   end
 
   # RESULTS:
-  # 
+  #
   # radius: 5   time: 2.090919
   # radius: 6   time: 2.855877
   # radius: 7   time: 3.800624
