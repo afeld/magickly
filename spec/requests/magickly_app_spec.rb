@@ -28,7 +28,7 @@ describe Magickly::App do
   describe "GET /" do
     it "should display the demo page for no params" do
       get '/'
-      last_response.status.should eq(200)
+      expect(last_response.status).to eq(200)
       # TODO test that it renders the view
     end
 
@@ -37,8 +37,8 @@ describe Magickly::App do
 
       get "/?src=#{@image_url}"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
 
       # check that the returned file is identical to the original
       compare_binary(last_response.body, IO.read(@image_path))
@@ -49,8 +49,8 @@ describe Magickly::App do
 
       get "/?src=#{@image_url}&bad_param=666"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
 
       # check that the returned file is identical to the original
       compare_binary(last_response.body, IO.read(@image_path))
@@ -61,8 +61,8 @@ describe Magickly::App do
 
       get "/?src=/#{@image_filename}"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
 
       # check that the returned file is identical to the original
       compare_binary(last_response.body, IO.read(@image_path))
@@ -74,9 +74,9 @@ describe Magickly::App do
 
       file = get_image "/?src=#{@image_url}&resize=#{width}x"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
-      FastImage.size(file)[0].should eq(width)
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq(width)
     end
 
     it "should use my Dragonfly shortcut with no arguments" do
@@ -91,8 +91,8 @@ describe Magickly::App do
 
       file = get_image "/?src=#{@image_url}&#{shortcut}=true"
 
-      last_response.status.should eq(200)
-      FastImage.size(file)[0].should eq width
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq width
     end
 
     it "should use my Dragonfly shortcut with one argument" do
@@ -107,8 +107,8 @@ describe Magickly::App do
 
       file = get_image "/?src=#{@image_url}&#{shortcut}=#{width}x"
 
-      last_response.status.should eq(200)
-      FastImage.size(file)[0].should eq width
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq width
     end
   end
 
@@ -120,9 +120,9 @@ describe Magickly::App do
 
       file = get_image "/q/src/#{@escaped_image_url}/resize/#{width}x"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
-      FastImage.size(file)[0].should eq width
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq width
     end
 
   end
@@ -142,9 +142,9 @@ describe Magickly::App do
 
       file = get_image "/qe/#{encoded}"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
-      FastImage.size(file)[0].should eq width
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq width
     end
 
   end
@@ -155,9 +155,9 @@ describe Magickly::App do
 
       get "/analyze/mime_type?src=#{@image_url}"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
-      last_response.body.should eq 'image/png'
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to eq 'image/png'
     end
 
     it "retrieves the color palette of an image" do
@@ -165,23 +165,23 @@ describe Magickly::App do
 
       get "/analyze/color_palette?src=#{@image_url}"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
-      last_response.body.should_not be_empty
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to_not be_empty
       json = ActiveSupport::JSON.decode(last_response.body)
-      json.should be_an Array
-      json.size.should eq 5
+      expect(json).to be_an Array
+      expect(json.size).to eq 5
     end
 
     it "should handle analyzer methods where the question mark is missing" do
-      Magickly.dragonfly.analyser_methods.map{|m| m.to_s }.should include 'landscape?'
+      expect(Magickly.dragonfly.analyser_methods.map{|m| m.to_s }).to include 'landscape?'
       setup_image
 
       get "/analyze/landscape?src=#{@image_url}"
 
-      a_request(:get, @image_url).should have_been_made.once
-      last_response.status.should eq(200)
-      last_response.body.should =~ /false/
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(last_response.body).to include('false')
     end
   end
 end
@@ -197,7 +197,7 @@ describe MagicklyApp do
 
     it "should display the demo page for no params" do
       get '/'
-      last_response.status.should eq(200)
+      expect(last_response.status).to eq(200)
       # TODO test that it renders the view
     end
 
