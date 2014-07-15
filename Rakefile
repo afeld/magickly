@@ -9,7 +9,7 @@ desc "Runs a performance test of different sigma values to tilt_shift"
 task :blur_test do
   file = File.join(File.dirname(__FILE__), 'spec', 'support', 'imagemagick.png')
   dir = File.join(File.dirname(__FILE__), 'test_output')
-  Dir.mkdir(dir)
+  Dir.mkdir(dir) unless File.directory?(dir)
 
   (5..10).each do |sigma|
     print "sigma: #{sigma}   "
