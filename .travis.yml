@@ -1,7 +1,8 @@
 bundler_args: "--without development"
-script: "bundle exec rspec spec"
 rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
+  - 2.1.1
+  - 2.1.2
   - jruby-19mode
