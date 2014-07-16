@@ -8,7 +8,7 @@ describe Dragonfly::DataStorage::RemoteDataStore do
       datastore = Dragonfly::DataStorage::RemoteDataStore.new
       
       datastore.retrieve url
-      a_request(:get, url).should have_been_made.once
+      expect(a_request(:get, url)).to have_been_made.once
     end
     
     it "should return the image" do
@@ -18,7 +18,7 @@ describe Dragonfly::DataStorage::RemoteDataStore do
       datastore = Dragonfly::DataStorage::RemoteDataStore.new
       
       image,extra = datastore.retrieve(url)
-      image.should eq IO.read(image_path)
+      expect(image).to eq IO.read(image_path)
     end
 
     it "should fetch the image based on the url_host variable" do
@@ -33,7 +33,7 @@ describe Dragonfly::DataStorage::RemoteDataStore do
       end
 
       datastore.retrieve path
-      a_request(:get, url).should have_been_made.once
+      expect(a_request(:get, url)).to have_been_made.once
     end
   end
 end

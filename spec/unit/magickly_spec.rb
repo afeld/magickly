@@ -9,10 +9,10 @@ describe Magickly do
       
       returned_image = Magickly.process_src(image_url)
       
-      returned_image.should_not be_nil
+      expect(returned_image).to_not be_nil
       
       # check that the returned file is identical to the original
-      IO.read(returned_image.file.path).should eq IO.read(image_path)
+      expect(IO.read(returned_image.file.path)).to eq IO.read(image_path)
     end
   end
   
