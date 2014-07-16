@@ -13,7 +13,7 @@ require 'fastimage'
 set :environment, :test
 
 RSpec.configure do |config|
-  
+  config.raise_errors_for_deprecations!
 end
 
 def compare_binary(one, two)
@@ -22,6 +22,6 @@ def compare_binary(one, two)
     one = one.force_encoding("UTF-8")
     two = two.force_encoding("UTF-8")
   end
-  
-  one.should eq two
+
+  expect(one).to eq two
 end

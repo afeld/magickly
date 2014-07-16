@@ -27,20 +27,20 @@ describe "Dragonfly shortcuts" do
   describe :color_palette do
     it "should return an array" do
       palette = @image.color_palette
-      palette.should be_an Array
+      expect(palette).to be_an Array
     end
     
     it "should have the default number of colors" do
       palette = @image.color_palette
-      palette.length.should eq Magickly::DEFAULT_PALETTE_COLOR_COUNT
+      expect(palette.length).to eq Magickly::DEFAULT_PALETTE_COLOR_COUNT
     end
     
     it "should have the specified number of colors" do
       num_colors = 4
-      num_colors.should_not eq Magickly::DEFAULT_PALETTE_COLOR_COUNT
+      expect(num_colors).to_not eq Magickly::DEFAULT_PALETTE_COLOR_COUNT
       
       palette = @image.color_palette(num_colors)
-      palette.length.should eq num_colors
+      expect(palette.length).to eq num_colors
     end
   end
   
