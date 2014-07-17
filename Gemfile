@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
+gem 'dotenv'
+
 gem 'rake'
 gem 'rack-cache', :require => 'rack/cache'
 
