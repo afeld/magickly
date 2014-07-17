@@ -12,6 +12,6 @@ group :development, :test do
   gem 'fastimage'
 end
 
-group :production do
+group :production, :staging do
   gem 'newrelic_rpm', :require => false
 end
