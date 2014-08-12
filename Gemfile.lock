@@ -21,6 +21,9 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
     dragonfly (0.9.15)
       multi_json (~> 1.0)
       rack
@@ -72,6 +75,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   fastimage
   magickly!
   newrelic_rpm
