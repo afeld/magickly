@@ -19,17 +19,10 @@ module Magickly
         request_host_with_port = request.env['HTTP_HOST']
         redirect request.url.sub(request_host_with_port, app_host), 301
       end
-
-      # parse query params so they are ordered
-      @options = ActiveSupport::OrderedHash.new
-      request.query_string.split('&').each do |e|
-        k,v = e.split('=')
-        @options[k] = URI.unescape(v) unless RESERVED_PARAMS.include?(k)
-      end
     end
 
     get '/' do
-      process_src_or_display_demo params[:src], @options
+      process_src_or_display_demo params[:src], ordered_options
     end
 
     get '/q/*' do
@@ -54,7 +47,7 @@ module Magickly
       src = params[:src]
       if src
         url = uri_to_url(src)
-        image = Magickly.process_src(url, @options)
+        image = Magickly.process_src(url, ordered_options)
 
         begin
           output = image.send(method.to_sym)
@@ -104,6 +97,15 @@ module Magickly
         @methods.sort!{|m1, m2| m1.to_s <=> m2.to_s }
         erb :index
       end
+    end
+
+    def ordered_options
+      options = ActiveSupport::OrderedHash.new
+      request.query_string.split('&').each do |e|
+        k,v = e.split('=')
+        options[k] = URI.unescape(v) unless RESERVED_PARAMS.include?(k)
+      end
+      options
     end
 
     def uri_to_url(uri)
