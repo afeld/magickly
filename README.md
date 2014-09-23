@@ -195,3 +195,7 @@ See the [Dragonfly documentation](http://markevans.github.com/dragonfly/file.Gen
 ## Disclaimer
 
 The hosted version of the app ([magickly.afeld.me](http://magickly.afeld.me)) is a single app instance intended for demonstration purposes - if you are going to be making a large number of API calls to it or would like to use it in production, please let us know :-)
+
+## See Also
+
+* [Thumbor](http://thumbor.org/)
