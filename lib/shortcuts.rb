@@ -94,4 +94,8 @@ Magickly.dragonfly.configure do |c|
     end
     palette
   end
+
+  c.job :output do |val|
+    encode val.to_sym
+  end
 end
