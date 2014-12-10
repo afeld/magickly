@@ -11,29 +11,29 @@ Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
 module Magickly
   DEFAULT_PALETTE_COLOR_COUNT = 5
-  
+
   @dragonfly = Dragonfly[:magickly].configure_with(:imagemagick)
   @dragonfly.configure do |c|
     c.datastore = Dragonfly::DataStorage::RemoteDataStore.new
     c.log = Logger.new($stdout)
-    
+
     # seems this config param was removed from Dragonfly ~v0.9.8
     # c.log_commands = true
   end
-  
+
   class << self
     def dragonfly
       @dragonfly
     end
-    
+
     def process_src(src, options={})
       raise ArgumentError.new("src needed") if src.blank?
       escaped_src = URI.escape(src)
       image = Magickly.dragonfly.fetch(escaped_src)
-      
+
       process_image(image, options)
     end
-    
+
     def process_image(image, options={})
       options.each do |method, val|
         method = method.to_sym
@@ -48,7 +48,7 @@ module Magickly
           image = image.send(method, val)
         end
       end
-      
+
       image
     end
   end

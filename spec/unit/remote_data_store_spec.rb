@@ -6,17 +6,17 @@ describe Dragonfly::DataStorage::RemoteDataStore do
       url = "http://www.foo.com/iamgemagick.png"
       stub_request(:get, url)
       datastore = Dragonfly::DataStorage::RemoteDataStore.new
-      
+
       datastore.retrieve url
       expect(a_request(:get, url)).to have_been_made.once
     end
-    
+
     it "should return the image" do
       url = "http://www.foo.com/imagemagick.png"
       image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
       stub_request(:get, url).to_return(:body => File.new(image_path))
       datastore = Dragonfly::DataStorage::RemoteDataStore.new
-      
+
       image,extra = datastore.retrieve(url)
       expect(image).to eq IO.read(image_path)
     end

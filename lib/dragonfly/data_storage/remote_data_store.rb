@@ -4,7 +4,7 @@ require 'uri'
 module Dragonfly
   module DataStorage
     #class Forbidden < StandardError; end
-    
+
     class RemoteDataStore
       include Configurable
       configurable_attr :url_host
@@ -19,7 +19,7 @@ module Dragonfly
           #raise Forbidden if response.code == 403
           raise DataNotFound
         end
-        
+
         content = response.body
         extra_data = {}
         [
