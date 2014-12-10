@@ -79,6 +79,15 @@ describe Magickly::App do
       expect(FastImage.size(file)[0]).to eq(width)
     end
 
+    it "outputs an image in a new format" do
+      setup_image
+
+      file = get_image "/?src=#{@image_url}&output=gif"
+
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(FastImage.type(file)).to eq(:gif)
+    end
+
     it "should use my Dragonfly shortcut with no arguments" do
       setup_image
       width = 100
