@@ -136,6 +136,38 @@ describe Magickly::App do
 
   end
 
+  describe "GET /c/src/*" do
+
+    it "resizes an image" do
+      Magickly.origin_host = 'http://www.foo.com'
+      setup_image
+      width = 100
+
+      file = get_image "/c/src/#{@image_filename}?resize=#{width}x"
+
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq width
+    end
+
+  end
+
+  describe "GET /qc/*/src/*" do
+
+    it "resizes an image" do
+      Magickly.origin_host = 'http://www.foo.com'
+      setup_image
+      width = 100
+
+      file = get_image "/qc/resize/#{width}/flip/true/src/#{@image_filename}"
+
+      expect(a_request(:get, @image_url)).to have_been_made.once
+      expect(last_response.status).to eq(200)
+      expect(FastImage.size(file)[0]).to eq width
+    end
+
+  end
+
   describe "GET /qe" do
 
     it "resized an image" do
