@@ -11,7 +11,9 @@ If no query params are provided, a simple sandbox page is displayed.  Try it her
 More insights:
 
 * [Blog post](https://aidan.jux.com/nerdery/310516) about how it's used at <a href="https://jux.com">Jux</a>
-* [Talk](http://www.hakkalabs.co/articles/anatomy-ruby-gem-magickly) at [Anatomy of a Ruby Gem](http://www.meetup.com/Anatomy-of-a-Ruby-Gem/events/163904202/) ([slides](https://docs.google.com/presentation/d/1vuXqmMOssslx3nRxqWh1e3SgGN7_euYdVMIWm94DDPA/edit?usp=sharing))
+* Talk: *Magickly, Mustachio, & Stateless APIs* ([slides](https://docs.google.com/presentation/d/1vuXqmMOssslx3nRxqWh1e3SgGN7_euYdVMIWm94DDPA/edit?usp=sharing))
+    * [12-minute overview version](https://www.youtube.com/watch?v=X3VdlBDCJSA) at [Code Genius](http://code.genius.com/)
+    * [49-minute in-depth version](http://www.hakkalabs.co/articles/anatomy-ruby-gem-magickly) at [Anatomy of a Ruby Gem](http://www.meetup.com/Anatomy-of-a-Ruby-Gem/events/163904202/)
 
 ## Installation
 
