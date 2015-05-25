@@ -22,6 +22,14 @@ module Magickly
   end
 
   class << self
+    def origin_host
+      @origin_host
+    end
+
+    def origin_host=(s)
+      @origin_host = s
+    end
+
     def dragonfly
       @dragonfly
     end

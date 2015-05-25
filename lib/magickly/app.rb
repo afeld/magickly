@@ -29,6 +29,25 @@ module Magickly
       process_path request.path_info.sub /^\/q\//, ''
     end
 
+    get '/c/src/*' do
+      src = params[:splat].last
+      src = "#{Magickly.origin_host}/#{src}"
+      process_src_or_display_demo src, ordered_options
+    end
+
+    get '/qc/*/src/*' do
+      src = params[:splat].last
+      src = "#{Magickly.origin_host}/#{src}"
+      path = request.path_info
+
+      # Replace the qs argument with nothing
+      path.sub! /^\/qc\//, ''
+      # Replace the src with a fully qualified escaped url to allow for process path to work as is.
+      path.sub! /\/src\/.*/, "/src/#{CGI.escape(src)}"
+
+      process_path path
+    end
+
     get '/qe/*' do
       # TODO use Base64.urlsafe_decode64
       decoded = request.path_info.sub /^\/qe\//, ''
