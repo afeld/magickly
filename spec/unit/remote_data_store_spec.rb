@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Dragonfly::DataStorage::RemoteDataStore do
   describe '#retrieve' do
     it "should successfully make requests" do
@@ -37,4 +35,3 @@ describe Dragonfly::DataStorage::RemoteDataStore do
     end
   end
 end
-

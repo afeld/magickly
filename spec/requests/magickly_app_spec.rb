@@ -76,7 +76,7 @@ describe Magickly::App do
 
       expect(a_request(:get, @image_url)).to have_been_made.once
       expect(last_response.status).to eq(200)
-      expect(FastImage.size(file)[0]).to eq(width)
+      expect(file).to have_width(width)
     end
 
     it "outputs an image in a new format" do
@@ -101,7 +101,7 @@ describe Magickly::App do
       file = get_image "/?src=#{@image_url}&#{shortcut}=true"
 
       expect(last_response.status).to eq(200)
-      expect(FastImage.size(file)[0]).to eq width
+      expect(file).to have_width(width)
     end
 
     it "should use my Dragonfly shortcut with one argument" do
@@ -117,7 +117,7 @@ describe Magickly::App do
       file = get_image "/?src=#{@image_url}&#{shortcut}=#{width}x"
 
       expect(last_response.status).to eq(200)
-      expect(FastImage.size(file)[0]).to eq width
+      expect(file).to have_width(width)
     end
   end
 
@@ -131,7 +131,7 @@ describe Magickly::App do
 
       expect(a_request(:get, @image_url)).to have_been_made.once
       expect(last_response.status).to eq(200)
-      expect(FastImage.size(file)[0]).to eq width
+      expect(file).to have_width(width)
     end
 
   end
@@ -153,7 +153,7 @@ describe Magickly::App do
 
       expect(a_request(:get, @image_url)).to have_been_made.once
       expect(last_response.status).to eq(200)
-      expect(FastImage.size(file)[0]).to eq width
+      expect(file).to have_width(width)
     end
 
   end

@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Magickly do
   describe ".process_src" do
     it "retrieves an image with no options" do

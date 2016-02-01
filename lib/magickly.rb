@@ -5,6 +5,7 @@ require 'active_support/ordered_hash'
 require 'sinatra/base'
 require 'addressable/uri'
 require 'dragonfly'
+require 'rmagick'
 Dir["#{File.dirname(__FILE__)}/dragonfly/**/*.rb"].each {|file| require file }
 Dir["#{File.dirname(__FILE__)}/magickly/*.rb"].each {|file| require file }
 
