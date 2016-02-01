@@ -85,8 +85,7 @@ Magickly.dragonfly.configure do |c|
   c.analyser.add :color_palette do |temp_object, num_colors|
     num_colors = num_colors.blank? ? Magickly::DEFAULT_PALETTE_COLOR_COUNT : num_colors.to_i
 
-    list = Magick::ImageList.new(temp_object.path)
-    img = list.first
+    img = Magick::Image.from_blob(temp_object.data).first
     histogram = img.quantize(num_colors).color_histogram
 
     histogram.map do |pixel, frequency|
