@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe "Dragonfly shortcuts" do
   before do
     @image_path = File.join(File.dirname(__FILE__), '..', 'support', 'imagemagick.png')
