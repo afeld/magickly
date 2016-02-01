@@ -6,6 +6,7 @@ PATH
       addressable (~> 2.2)
       dragonfly (~> 0.9.14)
       httparty (~> 0.13)
+      rmagick (~> 2.15.4)
       sinatra (~> 1.2)
 
 GEM
@@ -45,6 +46,7 @@ GEM
     rack-test (0.6.3)
       rack (>= 1.0)
     rake (10.5.0)
+    rmagick (2.15.4)
     rspec (3.4.0)
       rspec-core (~> 3.4.0)
       rspec-expectations (~> 3.4.0)
