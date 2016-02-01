@@ -8,7 +8,7 @@ describe "Dragonfly shortcuts" do
 
   describe :brightness_contrast do
     it "should throw an error for no arguments" do
-      expect { @image.brightness_contrast }.to raise_error
+      expect { @image.brightness_contrast }.to raise_error(ArgumentError)
     end
 
     it "should throw an error for a empty string" do
@@ -46,7 +46,7 @@ describe "Dragonfly shortcuts" do
 
   describe :tilt_shift do
     it "should throw an error for no coefficient" do
-      expect { @image.tilt_shift }.to raise_error
+      expect { @image.tilt_shift }.to raise_error(ArgumentError)
     end
 
     it "should throw an error for a empty string" do

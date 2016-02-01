@@ -1,6 +1,9 @@
 require 'httparty'
 require 'uri'
 
+# TODO figure out how to automatically set cert path
+HTTParty::Basement.default_options.update(verify: false)
+
 module Dragonfly
   module DataStorage
     #class Forbidden < StandardError; end
