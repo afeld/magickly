@@ -87,7 +87,7 @@ Magickly.dragonfly.configure do |c|
 
     list = Magick::ImageList.new(temp_object.path)
     img = list.first
-    histogram = img.resize(600, 600).quantize(num_colors).color_histogram
+    histogram = img.quantize(num_colors).color_histogram
 
     histogram.map do |pixel, frequency|
       {
