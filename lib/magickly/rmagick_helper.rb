@@ -2,7 +2,7 @@ module Magickly
   module RmagickHelper
     # http://blog.kellishaver.com/image-color-analysis-with-rmagick/
     def self.to_hex_val(color_int)
-      sprintf('%02x', (color_int / 256.0).round).upcase
+      sprintf('%02x', color_int / 256).upcase
     end
 
     def self.to_hex(pixel)
